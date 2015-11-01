@@ -1,0 +1,16 @@
+[
+{
+  "modid": "craftcraft",
+  "name": "CraftCraft",
+  "description": "Adds a bunch of Crafting Tables, including two portable ones.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["BlayTheNinth"],
+  "credits": "BlayTheNinth",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

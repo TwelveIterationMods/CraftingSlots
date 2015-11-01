@@ -1,0 +1,132 @@
+def BUILD_NUMBER = System.getenv("BUILD_NUMBER") ?: "0"
+def MAVEN_REPO = System.getenv("MAVEN_REPO") ?: ""
+def MAVEN_USERNAME = System.getenv("MAVEN_USERNAME") ?: ""
+def MAVEN_PASSWORD = System.getenv("MAVEN_PASSWORD") ?: ""
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+    }
+}
+
+apply plugin: 'forge'
+apply plugin: 'maven'
+
+version = "1.0." + BUILD_NUMBER
+group = "net.blay09.mods"
+archivesBaseName = "craftcraft"
+
+minecraft {
+    version = "1.7.10-10.13.4.1541-1.7.10"
+    runDir = "run"
+
+    //useDepAts = true
+}
+
+idea {
+    module {
+        inheritOutputDirs = true
+    }
+}
+
+repositories {
+    maven {
+        name = "EiraNet"
+        url = "http://repo.blay09.net"
+    }
+}
+
+dependencies {
+    compile "net.blay09.mods:craftingtweaks:1.0.49:dev"
+}
+
+processResources
+{
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+                
+        // replace version and mcversion
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+        
+    // copy everything else, thats not the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+jar {
+    from sourceSets.api.output
+    appendix "mc" + minecraft.version
+
+    /**manifest {
+        attributes 'FMLAT': 'craftcraft_at.cfg'
+    }**/
+}
+
+
+task jarAPI(type: Jar) {
+    from sourceSets.api.output
+
+    classifier "api"
+    appendix "mc" + minecraft.version
+}
+
+task jarDev(type: Jar) {
+    from sourceSets.main.output
+    from sourceSets.api.output
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    classifier "dev"
+    appendix "mc" + minecraft.version
+}
+
+artifacts {
+    archives jarAPI
+    archives jarDev
+}
+
+
+uploadArchives {
+    dependsOn 'reobf'
+    repositories {
+        mavenDeployer {
+            repository(url: MAVEN_REPO) {
+                authentication(userName: MAVEN_USERNAME, password: MAVEN_PASSWORD)
+            }
+
+            pom {
+                groupId = project.group
+                version = project.version
+                artifactId = project.archivesBaseName
+            }
+
+            pom.withXml {
+                asNode().dependencies.dependency.findAll {
+                    it.scope.text() == "compile"
+                }.each {
+                    if(it.optional)
+                        it.optional.value = 'true'
+                    else
+                        it.appendNode('optional', 'true');
+                }
+            }
+        }
+    }
+}
