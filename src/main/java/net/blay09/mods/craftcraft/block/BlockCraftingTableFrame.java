@@ -10,6 +10,7 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -20,6 +21,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -112,12 +114,10 @@ public class BlockCraftingTableFrame extends BlockContainer {
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int metadata) {
         TileEntityCraftingTableFrame tileEntity = (TileEntityCraftingTableFrame) world.getTileEntity(x, y, z);
-        if(tileEntity != null) {
-            Block visualBlock = tileEntity.getVisualBlock();
-            if (visualBlock != null && FluidRegistry.lookupFluidForBlock(visualBlock) == null) {
-                EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(visualBlock, 1, visualBlock.damageDropped(tileEntity.getVisualMetadata())));
-                world.spawnEntityInWorld(entityItem);
-            }
+        Block visualBlock = tileEntity.getVisualBlock();
+        if (visualBlock != null && FluidRegistry.lookupFluidForBlock(visualBlock) == null) {
+            EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(visualBlock, 1, visualBlock.damageDropped(tileEntity.getVisualMetadata())));
+            world.spawnEntityInWorld(entityItem);
         }
         super.breakBlock(world, x, y, z, block, metadata);
     }
@@ -127,5 +127,30 @@ public class BlockCraftingTableFrame extends BlockContainer {
         return new TileEntityCraftingTableFrame();
     }
 
+    @Override
+    public int getLightValue(IBlockAccess world, int x, int y, int z) {
+        TileEntityCraftingTableFrame tileEntity = (TileEntityCraftingTableFrame) world.getTileEntity(x, y, z);
+        if(tileEntity.getVisualBlock() != null) {
+            return tileEntity.getVisualBlock().getLightValue();
+        }
+        return super.getLightValue();
+    }
 
+    @Override
+    public int getLightOpacity(IBlockAccess world, int x, int y, int z) {
+        TileEntityCraftingTableFrame tileEntity = (TileEntityCraftingTableFrame) world.getTileEntity(x, y, z);
+        if(tileEntity.getVisualBlock() != null) {
+            return tileEntity.getVisualBlock().getLightOpacity();
+        }
+        return super.getLightOpacity();
+    }
+
+    @Override
+    public float getExplosionResistance(Entity entity, World world, int x, int y, int z, double explosionX, double explosionY, double explosionZ) {
+        TileEntityCraftingTableFrame tileEntity = (TileEntityCraftingTableFrame) world.getTileEntity(x, y, z);
+        if(tileEntity.getVisualBlock() != null) {
+            return tileEntity.getVisualBlock().getExplosionResistance(entity);
+        }
+        return super.getExplosionResistance(entity, world, x, y, z, explosionX, explosionY, explosionZ);
+    }
 }
