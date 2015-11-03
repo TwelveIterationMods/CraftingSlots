@@ -1,8 +1,8 @@
 [
 {
-  "modid": "craftcraft",
-  "name": "CraftCraft",
-  "description": "Adds a bunch of Crafting Tables, including two portable ones.",
+  "modid": "craftingcraft",
+  "name": "CraftingCraft",
+  "description": "Adds a bunch of Crafting Tables, including two portable ones. Companion mod to Crafting Tweaks.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
