@@ -4,84 +4,86 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 
-public class InventoryPlayerCrafting implements IInventory {
+public class InventoryCraftingWrapper extends InventoryCrafting {
 
-    private final InventoryPlayer inventoryPlayer;
+    private final IInventory inventory;
     private final Container eventHandler;
 
-    public InventoryPlayerCrafting(InventoryPlayer inventoryPlayer, Container eventHandler) {
-        this.inventoryPlayer = inventoryPlayer;
+    public InventoryCraftingWrapper(IInventory inventory, Container eventHandler) {
+        super(eventHandler, 3, 3);
+        this.inventory = inventory;
         this.eventHandler = eventHandler;
     }
 
     @Override
     public int getSizeInventory() {
-        return inventoryPlayer.getSizeInventory();
+        return inventory.getSizeInventory();
     }
 
     @Override
     public ItemStack getStackInSlot(int i) {
-        return inventoryPlayer.getStackInSlot(i);
+        return inventory.getStackInSlot(i);
     }
 
     @Override
     public ItemStack decrStackSize(int i, int count) {
-        ItemStack itemStack = inventoryPlayer.decrStackSize(i, count);
+        ItemStack itemStack = inventory.decrStackSize(i, count);
         eventHandler.onCraftMatrixChanged(this);
         return itemStack;
     }
 
     @Override
     public ItemStack getStackInSlotOnClosing(int i) {
-        return inventoryPlayer.getStackInSlotOnClosing(i);
+        return inventory.getStackInSlotOnClosing(i);
     }
 
     @Override
     public void setInventorySlotContents(int i, ItemStack itemStack) {
-        inventoryPlayer.setInventorySlotContents(i, itemStack);
+        inventory.setInventorySlotContents(i, itemStack);
         eventHandler.onCraftMatrixChanged(this);
     }
 
     @Override
     public String getInventoryName() {
-        return inventoryPlayer.getInventoryName();
+        return inventory.getInventoryName();
     }
 
     @Override
     public boolean hasCustomInventoryName() {
-        return inventoryPlayer.hasCustomInventoryName();
+        return inventory.hasCustomInventoryName();
     }
 
     @Override
     public int getInventoryStackLimit() {
-        return inventoryPlayer.getInventoryStackLimit();
+        return inventory.getInventoryStackLimit();
     }
 
     @Override
     public void markDirty() {
-        inventoryPlayer.markDirty();
+        inventory.markDirty();
     }
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer entityPlayer) {
-        return inventoryPlayer.isUseableByPlayer(entityPlayer);
+        return inventory.isUseableByPlayer(entityPlayer);
     }
 
     @Override
     public void openInventory() {
-        inventoryPlayer.openInventory();
+        inventory.openInventory();
     }
 
     @Override
     public void closeInventory() {
-        inventoryPlayer.closeInventory();
+        inventory.closeInventory();
     }
 
     @Override
     public boolean isItemValidForSlot(int i, ItemStack itemStack) {
-        return inventoryPlayer.isItemValidForSlot(i, itemStack);
+        return inventory.isItemValidForSlot(i, itemStack);
     }
 
 }

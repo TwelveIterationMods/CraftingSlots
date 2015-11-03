@@ -1,6 +1,7 @@
 package net.blay09.mods.craftcraft.client;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -24,6 +25,8 @@ public class ClientProxy extends CommonProxy {
         super.init(event);
         keyPortableCrafting = new KeyBinding("key.craftcraft.portableCrafting", Keyboard.KEY_C, "key.categories.craftcraft");
         ClientRegistry.registerKeyBinding(keyPortableCrafting);
+
+        RenderingRegistry.registerBlockHandler(BlockRendererCraftingTableFrame.RENDER_ID, new BlockRendererCraftingTableFrame());
 
         FMLCommonHandler.instance().bus().register(this);
     }

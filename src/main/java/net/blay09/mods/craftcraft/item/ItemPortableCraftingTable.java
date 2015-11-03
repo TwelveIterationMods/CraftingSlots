@@ -1,5 +1,6 @@
-package net.blay09.mods.craftcraft;
+package net.blay09.mods.craftcraft.item;
 
+import net.blay09.mods.craftcraft.CraftCraft;
 import net.blay09.mods.craftcraft.net.GuiHandler;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -25,8 +26,8 @@ public class ItemPortableCraftingTable extends Item {
 
     @Override
     public void getSubItems(Item item, CreativeTabs creativeTab, List list) {
-        list.add(new ItemStack(item, 0, 0));
-        list.add(new ItemStack(item, 0, 1));
+        list.add(new ItemStack(item, 1, 0));
+        list.add(new ItemStack(item, 1, 1));
     }
 
     @Override
@@ -54,8 +55,8 @@ public class ItemPortableCraftingTable extends Item {
     @Override
     public String getUnlocalizedName(ItemStack itemStack) {
         switch(itemStack.getItemDamage()) {
-            case 0: return "craftcraft:portableCraftingTable";
-            case 1: return "craftcraft:inventoryCraftingTable";
+            case 0: return "item.craftcraft:portableCraftingTable";
+            case 1: return "item.craftcraft:inventoryCraftingTable";
         }
         return super.getUnlocalizedName(itemStack);
     }

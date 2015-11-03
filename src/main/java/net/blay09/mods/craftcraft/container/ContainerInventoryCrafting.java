@@ -13,7 +13,7 @@ public class ContainerInventoryCrafting extends Container {
 
     public ContainerInventoryCrafting(EntityPlayer entityPlayer) {
         this.entityPlayer = entityPlayer;
-        IInventory inventoryPlayer = new InventoryPlayerCrafting(entityPlayer.inventory, this);
+        IInventory inventoryPlayer = new InventoryCraftingWrapper(entityPlayer.inventory, this);
         craftMatrix = new InventoryIntegratedCrafting(this, entityPlayer.inventory);
 
         // Crafting Matrix
