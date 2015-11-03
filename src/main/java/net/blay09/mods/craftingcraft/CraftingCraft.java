@@ -10,6 +10,7 @@ import net.blay09.mods.craftingcraft.block.BlockCraftingTableFrame;
 import net.blay09.mods.craftingcraft.block.BlockStoneCraftingTable;
 import net.blay09.mods.craftingcraft.block.TileEntityCraftingTableFrame;
 import net.blay09.mods.craftingcraft.block.TileEntityStoneCraftingTable;
+import net.blay09.mods.craftingcraft.item.ItemBlockCraftingTableFrame;
 import net.blay09.mods.craftingcraft.item.ItemBlockStoneCraftingTable;
 import net.blay09.mods.craftingcraft.item.ItemPortableCraftingTable;
 import net.blay09.mods.craftingcraft.net.GuiHandler;
@@ -44,7 +45,7 @@ public class CraftingCraft {
     public void init(FMLInitializationEvent event) {
         GameRegistry.registerItem(portableCraftingTable, "portableCraftingTable");
         GameRegistry.registerBlock(stoneCraftingTable, ItemBlockStoneCraftingTable.class, "stoneCraftingTable");
-        GameRegistry.registerBlock(craftingTableFrame, "craftingTableFrame");
+        GameRegistry.registerBlock(craftingTableFrame, ItemBlockCraftingTableFrame.class, "craftingTableFrame");
         GameRegistry.registerTileEntity(TileEntityStoneCraftingTable.class, "craftingcraft:stoneCraftingTable");
         GameRegistry.registerTileEntity(TileEntityCraftingTableFrame.class, "craftingcraft:craftingTableFrame");
 

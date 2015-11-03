@@ -73,7 +73,7 @@ public class BlockCraftingTableFrame extends BlockContainer {
             if(tileEntity.getVisualBlock() == null && itemStack != null) {
                 if(itemStack.getItem() instanceof ItemBlock) {
                     Block visualBlock = ((ItemBlock) itemStack.getItem()).field_150939_a;
-                    if (visualBlock.renderAsNormalBlock()) {
+                    if (visualBlock.renderAsNormalBlock() || visualBlock == Blocks.glass) {
                         int metadata = itemStack.getItem().getMetadata(itemStack.getItemDamage());
                         if (visualBlock == Blocks.grass) {
                             visualBlock = Blocks.dirt;

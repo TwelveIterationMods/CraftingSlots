@@ -5,6 +5,7 @@ tile.craftingcraft:stoneCraftingTable.name=Stone Crafting Table
 tile.craftingcraft:stoneCraftingTable.tooltip=Does not drop its content when closed.
 tile.craftingcraft:netherCraftingTable.name=Nether Crafting Table
 tile.craftingcraft:craftingTableFrame.name=Crafting Table Frame
+tile.craftingcraft:craftingTableFrame.tooltip=Right click with any block to set appearance.
 
 craftingcraft:container.inventoryCraftingTable=Inventory Crafting
 

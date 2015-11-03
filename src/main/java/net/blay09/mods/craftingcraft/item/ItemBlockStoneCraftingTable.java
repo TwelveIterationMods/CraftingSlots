@@ -32,6 +32,6 @@ public class ItemBlockStoneCraftingTable extends ItemBlock {
     @Override
     public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List list, boolean flag) {
         super.addInformation(itemStack, entityPlayer, list, flag);
-        list.add("\u00a7e" + StatCollector.translateToLocal("tile.craftingcraft:stoneCraftingTable.tooltip"));
+        list.add("\u00a77" + StatCollector.translateToLocal("tile.craftingcraft:stoneCraftingTable.tooltip"));
     }
 }
