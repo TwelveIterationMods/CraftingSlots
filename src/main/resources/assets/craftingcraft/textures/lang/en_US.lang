@@ -1,0 +1,14 @@
+item.craftingcraft:inventoryCraftingTable.name=Inventory Crafting Table
+item.craftingcraft:portableCraftingTable.name=Portable Crafting Table
+
+tile.craftingcraft:stoneCraftingTable.name=Stone Crafting Table
+tile.craftingcraft:stoneCraftingTable.tooltip=Does not drop its content when closed.
+tile.craftingcraft:netherCraftingTable.name=Nether Crafting Table
+tile.craftingcraft:craftingTableFrame.name=Crafting Table Frame
+
+craftingcraft:container.inventoryCraftingTable=Inventory Crafting
+
+key.categories.craftingcraft=CraftingCraft
+key.craftingcraft.portableCrafting=Open Portable Crafting
+
+itemGroup.craftingcraft=CraftingCraft
