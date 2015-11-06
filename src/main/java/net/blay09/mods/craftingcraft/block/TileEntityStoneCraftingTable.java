@@ -19,7 +19,7 @@ public class TileEntityStoneCraftingTable extends TileEntity implements IInvento
 
     @Override
     public ItemStack getStackInSlot(int i) {
-        return craftMatrix[i];
+        return i < 9 ? craftMatrix[i] : null;
     }
 
     @Override

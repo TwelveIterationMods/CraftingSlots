@@ -84,7 +84,6 @@ processResources
 }
 
 jar {
-    from sourceSets.api.output
     appendix "mc" + minecraft.version
 
     /**manifest {
@@ -92,17 +91,8 @@ jar {
     }**/
 }
 
-
-task jarAPI(type: Jar) {
-    from sourceSets.api.output
-
-    classifier "api"
-    appendix "mc" + minecraft.version
-}
-
 task jarDev(type: Jar) {
     from sourceSets.main.output
-    from sourceSets.api.output
 
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     classifier "dev"
@@ -110,7 +100,6 @@ task jarDev(type: Jar) {
 }
 
 artifacts {
-    archives jarAPI
     archives jarDev
 }
 
