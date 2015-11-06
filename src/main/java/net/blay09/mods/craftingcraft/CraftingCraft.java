@@ -66,6 +66,8 @@ public class CraftingCraft {
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         event.buildSoftDependProxy("craftingtweaks", "net.blay09.mods.craftingcraft.addon.CraftingTweaksAddon");
+
+        proxy.postInit(event);
     }
 
 }

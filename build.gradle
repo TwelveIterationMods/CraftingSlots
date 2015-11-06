@@ -34,21 +34,33 @@ minecraft {
     //useDepAts = true
 }
 
-idea {
-    module {
-        inheritOutputDirs = true
-    }
-}
-
 repositories {
     maven {
         name = "EiraNet"
         url = "http://repo.blay09.net"
     }
+    maven {
+        name = "NEI"
+        url = "http://chickenbones.net/maven/"
+    }
+}
+
+configurations {
+    provided
+}
+
+sourceSets.main.compileClasspath += [configurations.provided]
+
+idea {
+    module {
+        inheritOutputDirs = true
+        scopes.PROVIDED.plus += [configurations.provided]
+    }
 }
 
 dependencies {
     compile "net.blay09.mods:craftingtweaks:1.0.49:dev"
+    provided "codechicken:NotEnoughItems:1.7.10-1.0.5.118:dev"
 }
 
 processResources
