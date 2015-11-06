@@ -7,10 +7,12 @@ import net.minecraft.item.ItemStack;
 
 public class InventoryIntegratedCrafting extends InventoryCrafting {
 
+    private final Container eventHandler;
     private final InventoryPlayer inventoryPlayer;
 
-    public InventoryIntegratedCrafting(Container container, InventoryPlayer inventoryPlayer) {
-        super(container, 3, 3);
+    public InventoryIntegratedCrafting(Container eventHandler, InventoryPlayer inventoryPlayer) {
+        super(eventHandler, 3, 3);
+        this.eventHandler = eventHandler;
         this.inventoryPlayer = inventoryPlayer;
     }
 
@@ -31,12 +33,14 @@ public class InventoryIntegratedCrafting extends InventoryCrafting {
         if (itemStack != null) {
             if (itemStack.stackSize <= count) {
                 inventoryPlayer.setInventorySlotContents(getInventorySlot(i), null);
+                eventHandler.onCraftMatrixChanged(this);
                 return itemStack;
             } else {
                 itemStack = itemStack.splitStack(count);
                 if (oldStack.stackSize == 0) {
                     inventoryPlayer.setInventorySlotContents(getInventorySlot(i), null);
                 }
+                eventHandler.onCraftMatrixChanged(this);
                 return itemStack;
             }
         } else {
@@ -47,6 +51,7 @@ public class InventoryIntegratedCrafting extends InventoryCrafting {
     @Override
     public void setInventorySlotContents(int i, ItemStack itemStack) {
         inventoryPlayer.setInventorySlotContents(getInventorySlot(i), itemStack);
+        eventHandler.onCraftMatrixChanged(this);
     }
 
     public int getInventorySlot(int i) {
