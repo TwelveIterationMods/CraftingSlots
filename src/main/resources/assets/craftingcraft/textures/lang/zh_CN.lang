@@ -1,0 +1,15 @@
+item.craftingcraft:inventoryCraftingTable.name=背包工作台
+item.craftingcraft:portableCraftingTable.name=便携工作台
+
+tile.craftingcraft:stoneCraftingTable.name=石砖工作台
+tile.craftingcraft:stoneCraftingTable.tooltip=关闭时内部物品不会掉落.
+tile.craftingcraft:netherCraftingTable.name=地狱砖工作台
+tile.craftingcraft:craftingTableFrame.name=框架工作台
+tile.craftingcraft:craftingTableFrame.tooltip=持方块右键设置外观.
+
+craftingcraft:container.inventoryCraftingTable=背包合成
+
+key.categories.craftingcraft=CraftingCraft
+key.craftingcraft.portableCrafting=打开便携工作台
+
+itemGroup.craftingcraft=CraftingCraft
