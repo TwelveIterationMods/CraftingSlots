@@ -43,6 +43,21 @@ public class InventoryCraftingTweakProvider implements TweakProvider {
     }
 
     @Override
+    public ItemStack transferIntoGrid(EntityPlayer entityPlayer, Container container, int i, ItemStack itemStack) {
+        return defaultProvider.transferIntoGrid(entityPlayer, container, ((ContainerInventoryCrafting) container).getCraftMatrix(), itemStack);
+    }
+
+    @Override
+    public ItemStack putIntoGrid(EntityPlayer entityPlayer, Container container, int i, ItemStack itemStack, int slotNumber) {
+        return defaultProvider.putIntoGrid(entityPlayer, container, ((ContainerInventoryCrafting) container).getCraftMatrix(), itemStack, slotNumber);
+    }
+
+    @Override
+    public IInventory getCraftMatrix(EntityPlayer entityPlayer, Container container, int i) {
+        return ((ContainerInventoryCrafting) container).getCraftMatrix();
+    }
+
+    @Override
     public void initGui(GuiContainer guiContainer, List list) {
         list.add(CraftingTweaksAPI.createRotateButton(0, guiContainer.width / 2 + 10, guiContainer.height / 2 - 49));
         list.add(CraftingTweaksAPI.createBalanceButton(0, guiContainer.width / 2 + 28, guiContainer.height / 2 - 49));

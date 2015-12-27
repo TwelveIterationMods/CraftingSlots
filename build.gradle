@@ -59,7 +59,7 @@ idea {
 }
 
 dependencies {
-    compile "net.blay09.mods:craftingtweaks:1.0.49:dev"
+    compile "net.blay09.mods:craftingtweaks:1.0.58:dev"
     provided "codechicken:NotEnoughItems:1.7.10-1.0.5.118:dev"
 }
 
@@ -105,7 +105,6 @@ artifacts {
 
 
 uploadArchives {
-    dependsOn 'reobf'
     repositories {
         mavenDeployer {
             repository(url: MAVEN_REPO) {
