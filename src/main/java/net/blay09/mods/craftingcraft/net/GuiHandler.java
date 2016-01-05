@@ -2,8 +2,8 @@ package net.blay09.mods.craftingcraft.net;
 
 import net.blay09.mods.craftingcraft.block.TileEntityStoneCraftingTable;
 import net.blay09.mods.craftingcraft.container.ContainerPortableCrafting;
-import net.blay09.mods.craftingcraft.client.GuiCraftCrafting;
-import net.blay09.mods.craftingcraft.client.GuiInventoryCrafting;
+import net.blay09.mods.craftingcraft.client.gui.GuiCraftCrafting;
+import net.blay09.mods.craftingcraft.client.gui.GuiInventoryCrafting;
 import net.blay09.mods.craftingcraft.container.ContainerInventoryCrafting;
 import net.blay09.mods.craftingcraft.container.ContainerStoneCraftingTable;
 import net.minecraft.entity.player.EntityPlayer;

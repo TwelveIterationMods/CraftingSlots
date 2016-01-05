@@ -9,7 +9,7 @@
         "north": { "texture": "#front", "cullface": "north" },
         "south": { "texture": "#side", "cullface": "south" },
         "west":  { "texture": "#front", "cullface": "west" },
-        "east":  { "texture": "#side", "cullface": "east" },
+        "east":  { "texture": "#side", "cullface": "east" }
       }
     }
   ],

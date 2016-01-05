@@ -1,4 +1,4 @@
-package net.blay09.mods.craftingcraft.client;
+package net.blay09.mods.craftingcraft.client.gui;
 
 public interface GuiFocusProvider {
 

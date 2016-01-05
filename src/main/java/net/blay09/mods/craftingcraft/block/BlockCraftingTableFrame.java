@@ -5,9 +5,10 @@ import net.blay09.mods.craftingcraft.net.GuiHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.ItemModelMesher;
-import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
@@ -19,20 +20,41 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.property.ExtendedBlockState;
+import net.minecraftforge.common.property.IExtendedBlockState;
+import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.relauncher.FMLCorePlugin;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockCraftingTableFrame extends BlockContainer {
 
     public static final String name = "craftingTableFrame";
+    public static final IUnlistedProperty<IBlockState> VISUAL_BLOCK = new IUnlistedProperty<IBlockState>() {
+        @Override
+        public String getName() {
+            return "visualBlock";
+        }
+
+        @Override
+        public boolean isValid(IBlockState value) {
+            return true;
+        }
+
+        @Override
+        public Class<IBlockState> getType() {
+            return IBlockState.class;
+        }
+
+        @Override
+        public String valueToString(IBlockState value) {
+            return value.toString();
+        }
+    };
 
     public BlockCraftingTableFrame() {
         super(Material.wood);
@@ -49,7 +71,7 @@ public class BlockCraftingTableFrame extends BlockContainer {
 
     @Override
     public int getRenderType() {
-        return 2;
+        return 3;
     }
 
     @Override
@@ -66,7 +88,7 @@ public class BlockCraftingTableFrame extends BlockContainer {
                             visualBlock = Blocks.dirt;
                         }
                         itemStack.splitStack(1);
-                        tileEntity.setVisualBlock(visualBlock, metadata);
+                        tileEntity.setVisualBlock(visualBlock.getStateFromMeta(metadata));
                         return true;
                     }
                 } else if(FluidContainerRegistry.isFilledContainer(itemStack)) {
@@ -81,7 +103,7 @@ public class BlockCraftingTableFrame extends BlockContainer {
                                 entityPlayer.dropPlayerItemWithRandomChoice(emptyStack, false);
                             }
                         }
-                        tileEntity.setVisualBlock(fluidBlock, 0);
+                        tileEntity.setVisualBlock(fluidBlock.getStateFromMeta(0));
                         return true;
                     }
                 }
@@ -91,14 +113,31 @@ public class BlockCraftingTableFrame extends BlockContainer {
         return true;
     }
 
+    @Override
+    protected BlockState createBlockState() {
+        IProperty[] listedProperties = new IProperty[0];
+        IUnlistedProperty[] unlistedProperties = new IUnlistedProperty[] {VISUAL_BLOCK};
+        return new ExtendedBlockState(this, listedProperties, unlistedProperties);
+    }
 
+    @Override
+    public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
+        if(state instanceof IExtendedBlockState) {
+            IExtendedBlockState extendedState = (IExtendedBlockState) state;
+            TileEntityCraftingTableFrame tileEntity = (TileEntityCraftingTableFrame) world.getTileEntity(pos);
+            IBlockState visualBlockState = tileEntity.getVisualBlockState();
+            extendedState = extendedState.withProperty(VISUAL_BLOCK, visualBlockState);
+            return extendedState;
+        }
+        return state;
+    }
 
     @Override
     public void breakBlock(World world, BlockPos pos, IBlockState state) {
         TileEntityCraftingTableFrame tileEntity = (TileEntityCraftingTableFrame) world.getTileEntity(pos);
         Block visualBlock = tileEntity.getVisualBlock();
         if (visualBlock != null && FluidRegistry.lookupFluidForBlock(visualBlock) == null) {
-            EntityItem entityItem = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(visualBlock, 1, visualBlock.damageDropped(getStateFromMeta(tileEntity.getVisualMetadata()))));
+            EntityItem entityItem = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(visualBlock, 1, visualBlock.damageDropped(tileEntity.getVisualBlockState())));
             world.spawnEntityInWorld(entityItem);
         }
         super.breakBlock(world, pos, state);
@@ -138,10 +177,7 @@ public class BlockCraftingTableFrame extends BlockContainer {
 
     @SideOnly(Side.CLIENT)
     public void registerModels(ItemModelMesher mesher) {
-        ModelBakery.registerItemVariants(Item.getItemFromBlock(this), new ResourceLocation(CraftingCraft.MOD_ID, ":stoneCraftingTable"), new ResourceLocation(CraftingCraft.MOD_ID, ":netherCraftingTable"));
-
-        mesher.register(Item.getItemFromBlock(this), 0, new ModelResourceLocation(CraftingCraft.MOD_ID + ":stoneCraftingTable", "inventory"));
-        mesher.register(Item.getItemFromBlock(this), 1, new ModelResourceLocation(CraftingCraft.MOD_ID + ":netherCraftingTable", "inventory"));
+        mesher.register(Item.getItemFromBlock(this), 0, new ModelResourceLocation(CraftingCraft.MOD_ID + ":craftingTableFrame", "inventory"));
     }
 
 }

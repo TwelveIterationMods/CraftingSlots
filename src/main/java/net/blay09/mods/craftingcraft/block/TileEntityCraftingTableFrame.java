@@ -2,6 +2,7 @@ package net.blay09.mods.craftingcraft.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -11,7 +12,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class TileEntityCraftingTableFrame extends TileEntityStoneCraftingTable {
 
     private Block visualBlock;
-    private int visualMetadata;
+    private IBlockState visualBlockState;
 
     @Override
     public void readFromNBT(NBTTagCompound tagCompound) {
@@ -19,7 +20,8 @@ public class TileEntityCraftingTableFrame extends TileEntityStoneCraftingTable {
         String blockModId = tagCompound.getString("VisualBlockModId");
         String blockName = tagCompound.getString("VisualBlockName");
         visualBlock = GameRegistry.findBlock(blockModId, blockName);
-        visualMetadata = tagCompound.getByte("VisualMetadata");
+        int visualMetadata = tagCompound.getByte("VisualMetadata");
+        visualBlockState = visualBlock.getStateFromMeta(visualMetadata);
     }
 
     @Override
@@ -29,7 +31,7 @@ public class TileEntityCraftingTableFrame extends TileEntityStoneCraftingTable {
         if(identifier != null) {
             tagCompound.setString("VisualBlockModId", identifier.modId);
             tagCompound.setString("VisualBlockName", identifier.name);
-            tagCompound.setByte("VisualMetadata", (byte) visualMetadata);
+            tagCompound.setByte("VisualMetadata", (byte) visualBlock.getMetaFromState(visualBlockState));
         }
     }
 
@@ -40,7 +42,7 @@ public class TileEntityCraftingTableFrame extends TileEntityStoneCraftingTable {
         if(identifier != null) {
             tagCompound.setString("VisualBlockModId", identifier.modId);
             tagCompound.setString("VisualBlockName", identifier.name);
-            tagCompound.setByte("VisualMetadata", (byte) visualMetadata);
+            tagCompound.setByte("VisualMetadata", (byte) visualBlock.getMetaFromState(visualBlockState));
         }
         return new S35PacketUpdateTileEntity(pos, 0, tagCompound);
     }
@@ -50,7 +52,8 @@ public class TileEntityCraftingTableFrame extends TileEntityStoneCraftingTable {
         String blockModId = pkt.getNbtCompound().getString("VisualBlockModId");
         String blockName = pkt.getNbtCompound().getString("VisualBlockName");
         visualBlock = GameRegistry.findBlock(blockModId, blockName);
-        visualMetadata = pkt.getNbtCompound().getByte("VisualMetadata");
+        int visualMetadata = pkt.getNbtCompound().getByte("VisualMetadata");
+        visualBlockState = visualBlock.getStateFromMeta(visualMetadata);
         IBlockState blockState = worldObj.getBlockState(pos);
         worldObj.markAndNotifyBlock(pos, worldObj.getChunkFromBlockCoords(pos), blockState, blockState, 1 | 2);
     }
@@ -59,14 +62,14 @@ public class TileEntityCraftingTableFrame extends TileEntityStoneCraftingTable {
         return visualBlock;
     }
 
-    public int getVisualMetadata() {
-        return visualMetadata;
-    }
-
-    public void setVisualBlock(Block visualBlock, int metadata) {
-        this.visualBlock = visualBlock;
-        this.visualMetadata = metadata;
+    public void setVisualBlock(IBlockState visualBlockState) {
+        this.visualBlock = visualBlockState.getBlock();
+        this.visualBlockState = visualBlockState;
         markDirty();
         worldObj.markBlockForUpdate(pos);
+    }
+
+    public IBlockState getVisualBlockState() {
+        return visualBlockState;
     }
 }
