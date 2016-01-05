@@ -4,6 +4,7 @@ import net.blay09.mods.craftingcraft.container.ContainerInventoryCrafting;
 import net.blay09.mods.craftingtweaks.api.CraftingTweaksAPI;
 import net.blay09.mods.craftingtweaks.api.DefaultProvider;
 import net.blay09.mods.craftingtweaks.api.TweakProvider;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -58,7 +59,7 @@ public class InventoryCraftingTweakProvider implements TweakProvider {
     }
 
     @Override
-    public void initGui(GuiContainer guiContainer, List list) {
+    public void initGui(GuiContainer guiContainer, List<GuiButton> list) {
         list.add(CraftingTweaksAPI.createRotateButton(0, guiContainer.width / 2 + 10, guiContainer.height / 2 - 49));
         list.add(CraftingTweaksAPI.createBalanceButton(0, guiContainer.width / 2 + 28, guiContainer.height / 2 - 49));
         list.add(CraftingTweaksAPI.createClearButton(0, guiContainer.width / 2 + 46, guiContainer.height / 2 - 49));

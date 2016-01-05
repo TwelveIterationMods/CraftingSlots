@@ -5,6 +5,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IChatComponent;
 
 public class InventoryCraftingWrapper extends InventoryCrafting {
 
@@ -35,24 +36,29 @@ public class InventoryCraftingWrapper extends InventoryCrafting {
     }
 
     @Override
-    public ItemStack getStackInSlotOnClosing(int i) {
-        return inventory.getStackInSlotOnClosing(i);
-    }
-
-    @Override
     public void setInventorySlotContents(int i, ItemStack itemStack) {
         inventory.setInventorySlotContents(i, itemStack);
         eventHandler.onCraftMatrixChanged(this);
     }
 
     @Override
-    public String getInventoryName() {
-        return inventory.getInventoryName();
+    public ItemStack removeStackFromSlot(int index) {
+        return inventory.removeStackFromSlot(index);
     }
 
     @Override
-    public boolean hasCustomInventoryName() {
-        return inventory.hasCustomInventoryName();
+    public String getName() {
+        return inventory.getName();
+    }
+
+    @Override
+    public IChatComponent getDisplayName() {
+        return inventory.getDisplayName();
+    }
+
+    @Override
+    public boolean hasCustomName() {
+        return inventory.hasCustomName();
     }
 
     @Override
@@ -71,18 +77,38 @@ public class InventoryCraftingWrapper extends InventoryCrafting {
     }
 
     @Override
-    public void openInventory() {
-        inventory.openInventory();
+    public void openInventory(EntityPlayer entityPlayer) {
+        inventory.openInventory(entityPlayer);
     }
 
     @Override
-    public void closeInventory() {
-        inventory.closeInventory();
+    public void closeInventory(EntityPlayer entityPlayer) {
+        inventory.closeInventory(entityPlayer);
     }
 
     @Override
     public boolean isItemValidForSlot(int i, ItemStack itemStack) {
         return inventory.isItemValidForSlot(i, itemStack);
+    }
+
+    @Override
+    public int getField(int id) {
+        return inventory.getField(id);
+    }
+
+    @Override
+    public void setField(int id, int value) {
+        inventory.setField(id, value);
+    }
+
+    @Override
+    public int getFieldCount() {
+        return inventory.getFieldCount();
+    }
+
+    @Override
+    public void clear() {
+        inventory.clear();
     }
 
 }

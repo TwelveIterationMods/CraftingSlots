@@ -1,6 +1,5 @@
 package net.blay09.mods.craftingcraft.addon;
 
-import codechicken.nei.LayoutManager;
 import codechicken.nei.OffsetPositioner;
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;

@@ -22,8 +22,8 @@ public class InventoryIntegratedCrafting extends InventoryCrafting {
     }
 
     @Override
-    public ItemStack getStackInSlotOnClosing(int i) {
-        return getStackInSlot(i);
+    public ItemStack removeStackFromSlot(int index) {
+        return inventoryPlayer.removeStackFromSlot(getInventorySlot(index));
     }
 
     @Override

@@ -1,11 +1,5 @@
 package net.blay09.mods.craftingcraft;
 
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.blay09.mods.craftingcraft.block.BlockCraftingTableFrame;
 import net.blay09.mods.craftingcraft.block.BlockStoneCraftingTable;
 import net.blay09.mods.craftingcraft.block.TileEntityCraftingTableFrame;
@@ -20,9 +14,17 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
-@Mod(modid = "craftingcraft", name = "CraftingCraft")
+@Mod(modid = CraftingCraft.MOD_ID, name = "CraftingCraft")
 public class CraftingCraft {
+
+    public static final String MOD_ID = "craftingcraft";
 
     public static final CreativeTabs creativeTab = new CreativeTabs("craftingcraft") {
         @Override
@@ -31,9 +33,9 @@ public class CraftingCraft {
         }
     };
 
-    public static final ItemPortableCraftingTable portableCraftingTable = new ItemPortableCraftingTable();
-    public static final BlockStoneCraftingTable stoneCraftingTable = new BlockStoneCraftingTable();
-    public static final BlockCraftingTableFrame craftingTableFrame = new BlockCraftingTableFrame();
+    public static ItemPortableCraftingTable portableCraftingTable;
+    public static BlockStoneCraftingTable stoneCraftingTable;
+    public static BlockCraftingTableFrame craftingTableFrame;
 
     @Mod.Instance
     public static CraftingCraft instance;
@@ -43,11 +45,16 @@ public class CraftingCraft {
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
-        GameRegistry.registerItem(portableCraftingTable, "portableCraftingTable");
-        GameRegistry.registerBlock(stoneCraftingTable, ItemBlockStoneCraftingTable.class, "stoneCraftingTable");
-        GameRegistry.registerBlock(craftingTableFrame, ItemBlockCraftingTableFrame.class, "craftingTableFrame");
-        GameRegistry.registerTileEntity(TileEntityStoneCraftingTable.class, "craftingcraft:stoneCraftingTable");
-        GameRegistry.registerTileEntity(TileEntityCraftingTableFrame.class, "craftingcraft:craftingTableFrame");
+        portableCraftingTable = new ItemPortableCraftingTable();
+        GameRegistry.registerItem(portableCraftingTable, ItemPortableCraftingTable.name);
+
+        stoneCraftingTable = new BlockStoneCraftingTable();
+        GameRegistry.registerBlock(stoneCraftingTable, ItemBlockStoneCraftingTable.class, BlockStoneCraftingTable.name);
+        GameRegistry.registerTileEntity(TileEntityStoneCraftingTable.class, MOD_ID + ":" + BlockStoneCraftingTable.name);
+
+        craftingTableFrame = new BlockCraftingTableFrame();
+        GameRegistry.registerBlock(craftingTableFrame, ItemBlockCraftingTableFrame.class, BlockCraftingTableFrame.name);
+        GameRegistry.registerTileEntity(TileEntityCraftingTableFrame.class, MOD_ID + ":" + BlockCraftingTableFrame.name);
 
         GameRegistry.addShapedRecipe(new ItemStack(portableCraftingTable, 1, 0), " c", "s ", 'c', Blocks.crafting_table, 's', Items.stick);
         GameRegistry.addShapelessRecipe(new ItemStack(portableCraftingTable, 1, 1), new ItemStack(portableCraftingTable, 1, 0));

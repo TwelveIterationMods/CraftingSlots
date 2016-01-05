@@ -4,6 +4,7 @@ import net.blay09.mods.craftingcraft.container.ContainerStoneCraftingTable;
 import net.blay09.mods.craftingtweaks.api.CraftingTweaksAPI;
 import net.blay09.mods.craftingtweaks.api.DefaultProvider;
 import net.blay09.mods.craftingtweaks.api.TweakProvider;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -52,7 +53,7 @@ public class StoneCraftingTableTweakProvider implements TweakProvider {
     }
 
     @Override
-    public void initGui(GuiContainer guiContainer, List list) {
+    public void initGui(GuiContainer guiContainer, List<GuiButton> list) {
         list.add(CraftingTweaksAPI.createRotateButton(0, guiContainer.width / 2 - 77, guiContainer.height / 2 - 66));
         list.add(CraftingTweaksAPI.createBalanceButton(0, guiContainer.width / 2 - 77, guiContainer.height / 2 - 48));
         list.add(CraftingTweaksAPI.createClearButton(0, guiContainer.width / 2 - 77, guiContainer.height / 2 - 30));

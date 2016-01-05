@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "variant=stone": { "model": "craftingcraft:stoneCraftingTable" },
+    "variant=nether": { "model": "craftingcraft:netherCraftingTable" }
+  }
+}

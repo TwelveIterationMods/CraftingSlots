@@ -52,7 +52,7 @@ public class ContainerStoneCraftingTable extends Container {
         super.onContainerClosed(entityPlayer);
         if (!entityPlayer.worldObj.isRemote) {
             for (int i = 0; i < 9; ++i) {
-                ItemStack itemStack = craftMatrix.getStackInSlotOnClosing(i);
+                ItemStack itemStack = craftMatrix.removeStackFromSlot(i);
                 if (itemStack != null) {
                     if (!entityPlayer.inventory.addItemStackToInventory(itemStack)) {
                         entityPlayer.dropPlayerItemWithRandomChoice(itemStack, false);
@@ -66,7 +66,7 @@ public class ContainerStoneCraftingTable extends Container {
     @Override
     public ItemStack transferStackInSlot(EntityPlayer entityPlayer, int i) {
         ItemStack itemstack = null;
-        Slot slot = (Slot) this.inventorySlots.get(i);
+        Slot slot = this.inventorySlots.get(i);
 
         if (slot != null && slot.getHasStack()) {
             ItemStack itemstack1 = slot.getStack();
@@ -107,8 +107,8 @@ public class ContainerStoneCraftingTable extends Container {
     }
 
     @Override
-    public boolean func_94530_a(ItemStack itemStack, Slot slot) {
-        return slot.inventory != craftResult && super.func_94530_a(itemStack, slot);
+    public boolean canMergeSlot(ItemStack itemStack, Slot slot) {
+        return slot.inventory != craftResult && super.canMergeSlot(itemStack, slot);
     }
 
     public InventoryCrafting getCraftMatrix() {

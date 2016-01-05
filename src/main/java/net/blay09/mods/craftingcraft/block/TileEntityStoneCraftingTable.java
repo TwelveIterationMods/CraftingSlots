@@ -1,11 +1,13 @@
 package net.blay09.mods.craftingcraft.block;
 
+import net.blay09.mods.craftingcraft.CraftingCraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IChatComponent;
 import net.minecraftforge.common.util.Constants;
 
 public class TileEntityStoneCraftingTable extends TileEntity implements IInventory {
@@ -44,8 +46,10 @@ public class TileEntityStoneCraftingTable extends TileEntity implements IInvento
     }
 
     @Override
-    public ItemStack getStackInSlotOnClosing(int i) {
-        return craftMatrix[i];
+    public ItemStack removeStackFromSlot(int index) {
+        ItemStack itemStack = craftMatrix[index];
+        craftMatrix[index] = null;
+        return itemStack;
     }
 
     @Override
@@ -55,13 +59,18 @@ public class TileEntityStoneCraftingTable extends TileEntity implements IInvento
     }
 
     @Override
-    public String getInventoryName() {
-        return "craftingcraft:container.stoneCraftingTable";
+    public String getName() {
+        return CraftingCraft.MOD_ID + ":container.stoneCraftingTable";
     }
 
     @Override
-    public boolean hasCustomInventoryName() {
+    public boolean hasCustomName() {
         return false;
+    }
+
+    @Override
+    public IChatComponent getDisplayName() {
+        return null;
     }
 
     @Override
@@ -75,14 +84,35 @@ public class TileEntityStoneCraftingTable extends TileEntity implements IInvento
     }
 
     @Override
-    public void openInventory() {}
+    public void openInventory(EntityPlayer entityPlayer) {}
 
     @Override
-    public void closeInventory() {}
+    public void closeInventory(EntityPlayer entityPlayer) {}
 
     @Override
     public boolean isItemValidForSlot(int i, ItemStack itemStack) {
         return false;
+    }
+
+    @Override
+    public int getField(int id) {
+        return 0;
+    }
+
+    @Override
+    public void setField(int id, int value) {
+    }
+
+    @Override
+    public int getFieldCount() {
+        return 0;
+    }
+
+    @Override
+    public void clear() {
+        for(int i = 0; i < craftMatrix.length; i++) {
+            craftMatrix[i] = null;
+        }
     }
 
     @Override

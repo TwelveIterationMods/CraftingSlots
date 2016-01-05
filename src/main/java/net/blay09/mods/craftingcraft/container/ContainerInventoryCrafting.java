@@ -58,7 +58,7 @@ public class ContainerInventoryCrafting extends Container {
     @Override
     public ItemStack transferStackInSlot(EntityPlayer player, int slotIndex) {
         ItemStack itemStack = null;
-        Slot slot = (Slot) inventorySlots.get(slotIndex);
+        Slot slot = inventorySlots.get(slotIndex);
         if (slot != null && slot.getHasStack()) {
             ItemStack slotStack = slot.getStack();
             itemStack = slotStack.copy();
@@ -95,8 +95,8 @@ public class ContainerInventoryCrafting extends Container {
     }
 
     @Override
-    public boolean func_94530_a(ItemStack itemStack, Slot slot) {
-        return slot.inventory != craftResult && super.func_94530_a(itemStack, slot);
+    public boolean canMergeSlot(ItemStack itemStack, Slot slot) {
+        return slot.inventory != craftResult && super.canMergeSlot(itemStack, slot);
     }
 
     public InventoryCrafting getCraftMatrix() {

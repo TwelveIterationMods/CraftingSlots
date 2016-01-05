@@ -1,12 +1,12 @@
 package net.blay09.mods.craftingcraft.block;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-import net.blay09.mods.craftingcraft.CraftingCraft;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class TileEntityCraftingTableFrame extends TileEntityStoneCraftingTable {
 
@@ -42,16 +42,17 @@ public class TileEntityCraftingTableFrame extends TileEntityStoneCraftingTable {
             tagCompound.setString("VisualBlockName", identifier.name);
             tagCompound.setByte("VisualMetadata", (byte) visualMetadata);
         }
-        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, tagCompound);
+        return new S35PacketUpdateTileEntity(pos, 0, tagCompound);
     }
 
     @Override
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
-        String blockModId = pkt.func_148857_g().getString("VisualBlockModId");
-        String blockName = pkt.func_148857_g().getString("VisualBlockName");
+        String blockModId = pkt.getNbtCompound().getString("VisualBlockModId");
+        String blockName = pkt.getNbtCompound().getString("VisualBlockName");
         visualBlock = GameRegistry.findBlock(blockModId, blockName);
-        visualMetadata = pkt.func_148857_g().getByte("VisualMetadata");
-        worldObj.markAndNotifyBlock(xCoord, yCoord, zCoord, worldObj.getChunkFromBlockCoords(xCoord, zCoord), CraftingCraft.craftingTableFrame, CraftingCraft.craftingTableFrame, 1 | 2);
+        visualMetadata = pkt.getNbtCompound().getByte("VisualMetadata");
+        IBlockState blockState = worldObj.getBlockState(pos);
+        worldObj.markAndNotifyBlock(pos, worldObj.getChunkFromBlockCoords(pos), blockState, blockState, 1 | 2);
     }
 
     public Block getVisualBlock() {
@@ -66,6 +67,6 @@ public class TileEntityCraftingTableFrame extends TileEntityStoneCraftingTable {
         this.visualBlock = visualBlock;
         this.visualMetadata = metadata;
         markDirty();
-        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+        worldObj.markBlockForUpdate(pos);
     }
 }

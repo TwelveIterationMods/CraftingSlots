@@ -2,30 +2,35 @@ package net.blay09.mods.craftingcraft.item;
 
 import net.blay09.mods.craftingcraft.CraftingCraft;
 import net.blay09.mods.craftingcraft.net.GuiHandler;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.client.renderer.ItemModelMesher;
+import net.minecraft.client.resources.model.ModelBakery;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
 public class ItemPortableCraftingTable extends Item {
 
-    private IIcon iconInventoryCraftingTable;
+    public static final String name = "portableCraftingTable";
 
     public ItemPortableCraftingTable() {
-        setUnlocalizedName("craftingcraft:portableCraftingTable");
-        setTextureName("craftingcraft:portableCraftingTable");
+        setUnlocalizedName(CraftingCraft.MOD_ID + ":" + name);
         setHasSubtypes(true);
         setMaxStackSize(1);
         setCreativeTab(CraftingCraft.creativeTab);
     }
 
     @Override
-    public void getSubItems(Item item, CreativeTabs creativeTab, List list) {
+    public void getSubItems(Item item, CreativeTabs creativeTab, List<ItemStack> list) {
         list.add(new ItemStack(item, 1, 0));
         list.add(new ItemStack(item, 1, 1));
     }
@@ -37,7 +42,7 @@ public class ItemPortableCraftingTable extends Item {
     }
 
     @Override
-    public boolean onItemUse(ItemStack itemStack, EntityPlayer entityPlayer, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
+    public boolean onItemUse(ItemStack itemStack, EntityPlayer entityPlayer, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ) {
         openPortableCrafting(entityPlayer, itemStack);
         return true;
     }
@@ -52,6 +57,14 @@ public class ItemPortableCraftingTable extends Item {
         }
     }
 
+    @SideOnly(Side.CLIENT)
+    public void registerModels(ItemModelMesher mesher) {
+        ModelBakery.registerItemVariants(this, new ResourceLocation(CraftingCraft.MOD_ID, "portableCraftingTable"), new ResourceLocation(CraftingCraft.MOD_ID, "inventoryCraftingTable"));
+
+        mesher.register(this, 0, new ModelResourceLocation(CraftingCraft.MOD_ID + ":portableCraftingTable", "inventory"));
+        mesher.register(this, 1, new ModelResourceLocation(CraftingCraft.MOD_ID + ":inventoryCraftingTable", "inventory"));
+    }
+
     @Override
     public String getUnlocalizedName(ItemStack itemStack) {
         switch(itemStack.getItemDamage()) {
@@ -61,18 +74,4 @@ public class ItemPortableCraftingTable extends Item {
         return super.getUnlocalizedName(itemStack);
     }
 
-    @Override
-    public void registerIcons(IIconRegister iconRegister) {
-        super.registerIcons(iconRegister);
-        iconInventoryCraftingTable = iconRegister.registerIcon("craftingcraft:inventoryCraftingTable");
-    }
-
-    @Override
-    public IIcon getIconFromDamage(int i) {
-        switch(i) {
-            case 0: return itemIcon;
-            case 1: return iconInventoryCraftingTable;
-        }
-        return itemIcon;
-    }
 }

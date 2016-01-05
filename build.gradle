@@ -1,37 +1,33 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+    }
+}
+apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'maven'
+
 def BUILD_NUMBER = System.getenv("BUILD_NUMBER") ?: "0"
 def MAVEN_REPO = System.getenv("MAVEN_REPO") ?: ""
 def MAVEN_USERNAME = System.getenv("MAVEN_USERNAME") ?: ""
 def MAVEN_PASSWORD = System.getenv("MAVEN_PASSWORD") ?: ""
 
-buildscript {
-    repositories {
-        mavenCentral()
-        maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
-        }
-        maven {
-            name = "sonatype"
-            url = "https://oss.sonatype.org/content/repositories/snapshots/"
-        }
-    }
-    dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
-    }
-}
-
-apply plugin: 'forge'
-apply plugin: 'maven'
-
-version = "1.0." + BUILD_NUMBER
+version = "2.0." + BUILD_NUMBER
 group = "net.blay09.mods"
 archivesBaseName = "craftingcraft"
 
 minecraft {
-    version = "1.7.10-10.13.4.1541-1.7.10"
+    version = "1.8.9-11.15.0.1684"
     runDir = "run"
 
-    //useDepAts = true
+    mappings = "stable_20"
+    useDepAts = true
 }
 
 repositories {
@@ -45,12 +41,6 @@ repositories {
     }
 }
 
-configurations {
-    provided
-}
-
-sourceSets.main.compileClasspath += [configurations.provided]
-
 idea {
     module {
         inheritOutputDirs = true
@@ -59,25 +49,21 @@ idea {
 }
 
 dependencies {
-    compile "net.blay09.mods:craftingtweaks:1.0.58:dev"
+    compile "net.blay09.mods:craftingtweaks:3.0.7:dev"
     provided "codechicken:NotEnoughItems:1.7.10-1.0.5.118:dev"
 }
 
 processResources
 {
-    // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
 
-    // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
                 
-        // replace version and mcversion
         expand 'version':project.version, 'mcversion':project.minecraft.version
     }
         
-    // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
@@ -85,10 +71,6 @@ processResources
 
 jar {
     appendix "mc" + minecraft.version
-
-    /**manifest {
-        attributes 'FMLAT': 'craftcraft_at.cfg'
-    }**/
 }
 
 task jarDev(type: Jar) {
@@ -102,7 +84,6 @@ task jarDev(type: Jar) {
 artifacts {
     archives jarDev
 }
-
 
 uploadArchives {
     repositories {

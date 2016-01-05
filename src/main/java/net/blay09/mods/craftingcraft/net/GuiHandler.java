@@ -1,6 +1,5 @@
 package net.blay09.mods.craftingcraft.net;
 
-import cpw.mods.fml.common.network.IGuiHandler;
 import net.blay09.mods.craftingcraft.block.TileEntityStoneCraftingTable;
 import net.blay09.mods.craftingcraft.container.ContainerPortableCrafting;
 import net.blay09.mods.craftingcraft.client.GuiCraftCrafting;
@@ -9,7 +8,9 @@ import net.blay09.mods.craftingcraft.container.ContainerInventoryCrafting;
 import net.blay09.mods.craftingcraft.container.ContainerStoneCraftingTable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.network.IGuiHandler;
 
 public class GuiHandler implements IGuiHandler {
 
@@ -24,7 +25,7 @@ public class GuiHandler implements IGuiHandler {
         } else if(id == GUI_INVENTORY_CRAFTING) {
             return new ContainerInventoryCrafting(entityPlayer);
         } else if(id == GUI_STONE_CRAFTING_TABLE) {
-            TileEntity tileEntity = world.getTileEntity(x, y, z);
+            TileEntity tileEntity = world.getTileEntity(new BlockPos(x, y, z));
             if(tileEntity instanceof TileEntityStoneCraftingTable) {
                 return new ContainerStoneCraftingTable(entityPlayer, (TileEntityStoneCraftingTable) tileEntity);
             }
@@ -39,7 +40,7 @@ public class GuiHandler implements IGuiHandler {
         } else if(id == GUI_INVENTORY_CRAFTING) {
             return new GuiInventoryCrafting(new ContainerInventoryCrafting(entityPlayer));
         } else if(id == GUI_STONE_CRAFTING_TABLE) {
-            TileEntity tileEntity = world.getTileEntity(x, y, z);
+            TileEntity tileEntity = world.getTileEntity(new BlockPos(x, y, z));
             if(tileEntity instanceof TileEntityStoneCraftingTable) {
                 return new GuiCraftCrafting(new ContainerStoneCraftingTable(entityPlayer, (TileEntityStoneCraftingTable) tileEntity));
             }

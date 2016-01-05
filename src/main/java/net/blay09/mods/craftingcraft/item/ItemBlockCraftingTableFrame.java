@@ -20,7 +20,7 @@ public class ItemBlockCraftingTableFrame extends ItemBlock {
     }
 
     @Override
-    public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List list, boolean flag) {
+    public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List<String> list, boolean flag) {
         super.addInformation(itemStack, entityPlayer, list, flag);
         list.add("\u00a77" + StatCollector.translateToLocal("tile.craftingcraft:craftingTableFrame.tooltip"));
     }
