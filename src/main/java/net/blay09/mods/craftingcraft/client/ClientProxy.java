@@ -16,6 +16,7 @@ import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.client.event.ModelBakeEvent;
+import net.minecraftforge.client.model.IFlexibleBakedModel;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -36,6 +37,8 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void preInit(FMLPreInitializationEvent event) {
+        super.preInit(event);
+
         StateMapperBase ignoreState = new StateMapperBase() {
             @Override
             protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
@@ -85,7 +88,7 @@ public class ClientProxy extends CommonProxy {
     public void onModelBakeEvent(ModelBakeEvent event) {
         Object object = event.modelRegistry.getObject(BlockModelCraftingTableFrame.modelResource);
         if(object != null) {
-            IBakedModel model = (IBakedModel) object;
+            IFlexibleBakedModel model = (IFlexibleBakedModel) object;
             BlockModelCraftingTableFrame customModel = new BlockModelCraftingTableFrame(model);
             event.modelRegistry.putObject(BlockModelCraftingTableFrame.modelResource, customModel);
         }

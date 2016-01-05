@@ -20,6 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -70,6 +71,11 @@ public class BlockCraftingTableFrame extends BlockContainer {
     }
 
     @Override
+    public EnumWorldBlockLayer getBlockLayer() {
+        return EnumWorldBlockLayer.CUTOUT;
+    }
+
+    @Override
     public int getRenderType() {
         return 3;
     }
@@ -91,7 +97,7 @@ public class BlockCraftingTableFrame extends BlockContainer {
                         tileEntity.setVisualBlock(visualBlock.getStateFromMeta(metadata));
                         return true;
                     }
-                } else if(FluidContainerRegistry.isFilledContainer(itemStack)) {
+                }/* else if(FluidContainerRegistry.isFilledContainer(itemStack)) {
                     Block fluidBlock = FluidContainerRegistry.getFluidForFilledItem(itemStack).getFluid().getBlock();
                     if(fluidBlock != null) {
                         ItemStack emptyStack = FluidContainerRegistry.drainFluidContainer(itemStack);
@@ -106,7 +112,7 @@ public class BlockCraftingTableFrame extends BlockContainer {
                         tileEntity.setVisualBlock(fluidBlock.getStateFromMeta(0));
                         return true;
                     }
-                }
+                }*/
             }
             entityPlayer.openGui(CraftingCraft.instance, GuiHandler.GUI_STONE_CRAFTING_TABLE, world, pos.getX(), pos.getY(), pos.getZ());
         }
@@ -151,7 +157,7 @@ public class BlockCraftingTableFrame extends BlockContainer {
     @Override
     public int getLightValue(IBlockAccess world, BlockPos pos) {
         TileEntityCraftingTableFrame tileEntity = (TileEntityCraftingTableFrame) world.getTileEntity(pos);
-        if(tileEntity.getVisualBlock() != null) {
+        if(tileEntity != null &&tileEntity.getVisualBlock() != null) {
             return tileEntity.getVisualBlock().getLightValue();
         }
         return super.getLightValue();
@@ -160,7 +166,7 @@ public class BlockCraftingTableFrame extends BlockContainer {
     @Override
     public int getLightOpacity(IBlockAccess world, BlockPos pos) {
         TileEntityCraftingTableFrame tileEntity = (TileEntityCraftingTableFrame) world.getTileEntity(pos);
-        if(tileEntity.getVisualBlock() != null) {
+        if(tileEntity != null && tileEntity.getVisualBlock() != null) {
             return tileEntity.getVisualBlock().getLightOpacity();
         }
         return super.getLightOpacity();
@@ -169,7 +175,7 @@ public class BlockCraftingTableFrame extends BlockContainer {
     @Override
     public float getExplosionResistance(World world, BlockPos pos, Entity exploder, Explosion explosion) {
         TileEntityCraftingTableFrame tileEntity = (TileEntityCraftingTableFrame) world.getTileEntity(pos);
-        if(tileEntity.getVisualBlock() != null) {
+        if(tileEntity != null && tileEntity.getVisualBlock() != null) {
             return tileEntity.getVisualBlock().getExplosionResistance(exploder);
         }
         return super.getExplosionResistance(world, pos, exploder, explosion);

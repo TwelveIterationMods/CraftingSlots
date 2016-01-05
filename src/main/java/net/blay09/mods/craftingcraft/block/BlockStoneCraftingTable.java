@@ -114,7 +114,7 @@ public class BlockStoneCraftingTable extends BlockContainer {
 
     @SideOnly(Side.CLIENT)
     public void registerModels(ItemModelMesher mesher) {
-        ModelBakery.registerItemVariants(Item.getItemFromBlock(this), new ResourceLocation(CraftingCraft.MOD_ID, ":stoneCraftingTable"), new ResourceLocation(CraftingCraft.MOD_ID, ":netherCraftingTable"));
+        ModelBakery.registerItemVariants(Item.getItemFromBlock(this), new ResourceLocation(CraftingCraft.MOD_ID, "stoneCraftingTable"), new ResourceLocation(CraftingCraft.MOD_ID, "netherCraftingTable"));
 
         mesher.register(Item.getItemFromBlock(this), 0, new ModelResourceLocation(CraftingCraft.MOD_ID + ":stoneCraftingTable", "inventory"));
         mesher.register(Item.getItemFromBlock(this), 1, new ModelResourceLocation(CraftingCraft.MOD_ID + ":netherCraftingTable", "inventory"));

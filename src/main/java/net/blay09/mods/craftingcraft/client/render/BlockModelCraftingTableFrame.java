@@ -1,5 +1,6 @@
 package net.blay09.mods.craftingcraft.client.render;
 
+import com.google.common.collect.ImmutableMap;
 import net.blay09.mods.craftingcraft.CraftingCraft;
 import net.blay09.mods.craftingcraft.block.BlockCraftingTableFrame;
 import net.minecraft.block.state.IBlockState;
@@ -9,11 +10,15 @@ import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
+import net.minecraftforge.client.model.IFlexibleBakedModel;
 import net.minecraftforge.client.model.ISmartBlockModel;
+import net.minecraftforge.client.model.MultiModel;
 import net.minecraftforge.common.property.IExtendedBlockState;
 
 import java.util.List;
@@ -21,9 +26,9 @@ import java.util.List;
 public class BlockModelCraftingTableFrame implements ISmartBlockModel {
 
     public static final ModelResourceLocation modelResource = new ModelResourceLocation(CraftingCraft.MOD_ID + ":" + "craftingTableFrame");
-    private final IBakedModel emptyModel;
+    private final IFlexibleBakedModel emptyModel;
 
-    public BlockModelCraftingTableFrame(IBakedModel emptyModel) {
+    public BlockModelCraftingTableFrame(IFlexibleBakedModel emptyModel) {
         this.emptyModel = emptyModel;
     }
 
@@ -41,7 +46,7 @@ public class BlockModelCraftingTableFrame implements ISmartBlockModel {
                 if(visualModel instanceof  ISmartBlockModel) {
                     visualModel = ((ISmartBlockModel) visualModel).handleBlockState(visualState);
                 }
-                model = visualModel;
+                model = new MultiModel.Baked(new IFlexibleBakedModel.Wrapper(visualModel, DefaultVertexFormats.BLOCK), ImmutableMap.of("overlay", emptyModel));
             }
         }
         return model;

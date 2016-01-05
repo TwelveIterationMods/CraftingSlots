@@ -18,6 +18,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -44,7 +45,7 @@ public class CraftingCraft {
     public static CommonProxy proxy;
 
     @Mod.EventHandler
-    public void init(FMLInitializationEvent event) {
+    public void preInit(FMLPreInitializationEvent event) {
         portableCraftingTable = new ItemPortableCraftingTable();
         GameRegistry.registerItem(portableCraftingTable, ItemPortableCraftingTable.name);
 
@@ -56,6 +57,11 @@ public class CraftingCraft {
         GameRegistry.registerBlock(craftingTableFrame, ItemBlockCraftingTableFrame.class, BlockCraftingTableFrame.name);
         GameRegistry.registerTileEntity(TileEntityCraftingTableFrame.class, MOD_ID + ":" + BlockCraftingTableFrame.name);
 
+        proxy.preInit(event);
+    }
+
+    @Mod.EventHandler
+    public void init(FMLInitializationEvent event) {
         GameRegistry.addShapedRecipe(new ItemStack(portableCraftingTable, 1, 0), " c", "s ", 'c', Blocks.crafting_table, 's', Items.stick);
         GameRegistry.addShapelessRecipe(new ItemStack(portableCraftingTable, 1, 1), new ItemStack(portableCraftingTable, 1, 0));
         GameRegistry.addShapelessRecipe(new ItemStack(portableCraftingTable, 1, 0), new ItemStack(portableCraftingTable, 1, 1));
