@@ -66,11 +66,6 @@ public class InventoryCraftingTweakProvider implements TweakProvider {
     }
 
     @Override
-    public boolean areHotkeysEnabled(EntityPlayer entityPlayer, Container container) {
-        return true;
-    }
-
-    @Override
     public String getModId() {
         return "craftingcraft";
     }
