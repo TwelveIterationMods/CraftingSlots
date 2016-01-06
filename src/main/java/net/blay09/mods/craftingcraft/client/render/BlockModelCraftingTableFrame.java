@@ -39,7 +39,7 @@ public class BlockModelCraftingTableFrame implements ISmartBlockModel {
         if(state instanceof IExtendedBlockState) {
             IExtendedBlockState extendedState = (IExtendedBlockState) state;
             IBlockState visualState = extendedState.getValue(BlockCraftingTableFrame.VISUAL_BLOCK);
-            if(visualState != airState) {
+            if(visualState != null && visualState != airState) {
                 BlockRendererDispatcher dispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();
                 BlockModelShapes shapes = dispatcher.getBlockModelShapes();
                 IBakedModel visualModel = shapes.getModelForState(visualState);
