@@ -2,7 +2,6 @@ package net.blay09.mods.craftingcraft.client;
 
 import net.blay09.mods.craftingcraft.CommonProxy;
 import net.blay09.mods.craftingcraft.CraftingCraft;
-import net.blay09.mods.craftingcraft.client.gui.GuiFocusProvider;
 import net.blay09.mods.craftingcraft.client.render.BlockModelCraftingTableFrame;
 import net.blay09.mods.craftingcraft.net.MessagePortableCrafting;
 import net.blay09.mods.craftingcraft.net.NetworkHandler;
@@ -11,29 +10,24 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.client.resources.model.IBakedModel;
-import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.model.IFlexibleBakedModel;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent;
 import org.lwjgl.input.Keyboard;
 
 public class ClientProxy extends CommonProxy {
 
     private static KeyBinding keyPortableCrafting;
-
-    private GuiFocusProvider focusProvider;
-    private boolean wasKeyDown;
 
     @Override
     public void preInit(FMLPreInitializationEvent event) {
@@ -63,24 +57,19 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.registerKeyBinding(keyPortableCrafting);
     }
 
-    @Override
-    public void postInit(FMLPostInitializationEvent event) {
-        focusProvider = (GuiFocusProvider) event.buildSoftDependProxy("NotEnoughItems", "net.blay09.mods.craftingcraft.addon.NEIFocusProvider").orNull();
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public void onKeyboardEvent(GuiScreenEvent.KeyboardInputEvent.Pre event) {
+        if(Keyboard.getEventKeyState() && keyPortableCrafting.getKeyCode() > 0 && Keyboard.getEventKey() == keyPortableCrafting.getKeyCode()) {
+            if(Minecraft.getMinecraft().currentScreen instanceof GuiInventory) {
+                NetworkHandler.instance.sendToServer(new MessagePortableCrafting());
+            }
+        }
     }
 
     @SubscribeEvent
-    public void clientTick(TickEvent.ClientTickEvent event) {
-        if(focusProvider == null || !focusProvider.isTextboxFocused()) {
-            if(keyPortableCrafting.getKeyCode() > 0 && Keyboard.isKeyDown(keyPortableCrafting.getKeyCode())) {
-                if(!wasKeyDown) {
-                    if(Minecraft.getMinecraft().currentScreen == null || Minecraft.getMinecraft().currentScreen instanceof GuiInventory) {
-                        NetworkHandler.instance.sendToServer(new MessagePortableCrafting());
-                    }
-                    wasKeyDown = true;
-                }
-            } else {
-                wasKeyDown = false;
-            }
+    public void onKeyboardEvent(InputEvent.KeyInputEvent event) {
+        if(Keyboard.getEventKeyState() && keyPortableCrafting.getKeyCode() > 0 && Keyboard.getEventKey() == keyPortableCrafting.getKeyCode()) {
+            NetworkHandler.instance.sendToServer(new MessagePortableCrafting());
         }
     }
 
