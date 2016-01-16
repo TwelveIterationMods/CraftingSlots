@@ -78,6 +78,10 @@ jar {
     appendix "mc" + minecraft.version
 }
 
+sourceJar {
+    appendix "mc" + minecraft.version
+}
+
 task jarDev(type: Jar) {
     from sourceSets.main.output
 
