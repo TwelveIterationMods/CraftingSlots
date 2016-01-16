@@ -48,22 +48,6 @@ public class ContainerStoneCraftingTable extends Container {
     }
 
     @Override
-    public void onContainerClosed(EntityPlayer entityPlayer) {
-        super.onContainerClosed(entityPlayer);
-        if (!entityPlayer.worldObj.isRemote) {
-            for (int i = 0; i < 9; ++i) {
-                ItemStack itemStack = craftMatrix.removeStackFromSlot(i);
-                if (itemStack != null) {
-                    if (!entityPlayer.inventory.addItemStackToInventory(itemStack)) {
-                        entityPlayer.dropPlayerItemWithRandomChoice(itemStack, false);
-                    }
-                }
-            }
-            entityPlayer.inventoryContainer.detectAndSendChanges();
-        }
-    }
-
-    @Override
     public ItemStack transferStackInSlot(EntityPlayer entityPlayer, int i) {
         ItemStack itemstack = null;
         Slot slot = this.inventorySlots.get(i);
