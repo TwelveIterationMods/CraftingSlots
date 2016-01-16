@@ -11,14 +11,14 @@ public class CraftingTweaksAddon {
 
     public CraftingTweaksAddon() {
         SimpleTweakProvider provider = CraftingTweaksAPI.registerSimpleProvider(CraftingCraft.MOD_ID, ContainerPortableCrafting.class);
-        provider.setTweakRotate(true, true, -10, 17);
-        provider.setTweakBalance(true, true, -10, 17 + 18);
-        provider.setTweakClear(true, true, -10, 17 + 36);
+        provider.setTweakRotate(true, true, 10, 17);
+        provider.setTweakBalance(true, true, 10, 17 + 18);
+        provider.setTweakClear(true, true, 10, 17 + 36);
 
         provider = CraftingTweaksAPI.registerSimpleProvider(CraftingCraft.MOD_ID, ContainerStoneCraftingTable.class);
-        provider.setTweakRotate(true, true, -10, 17);
-        provider.setTweakBalance(true, true, -10, 17 + 18);
-        provider.setTweakClear(true, true, -10, 17 + 36);
+        provider.setTweakRotate(true, true, 10, 17);
+        provider.setTweakBalance(true, true, 10, 17 + 18);
+        provider.setTweakClear(true, true, 10, 17 + 36);
 
         CraftingTweaksAPI.registerProvider(ContainerInventoryCrafting.class, new InventoryCraftingTweakProvider());
     }

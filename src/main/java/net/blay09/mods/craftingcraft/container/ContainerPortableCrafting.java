@@ -45,17 +45,15 @@ public class ContainerPortableCrafting extends Container {
     @Override
     public void onContainerClosed(EntityPlayer entityPlayer) {
         super.onContainerClosed(entityPlayer);
-        if (!entityPlayer.worldObj.isRemote) {
-            for (int i = 0; i < 9; i++) {
-                ItemStack itemStack = craftMatrix.removeStackFromSlot(i);
-                if (itemStack != null) {
-                    if (!entityPlayer.inventory.addItemStackToInventory(itemStack)) {
-                        entityPlayer.dropPlayerItemWithRandomChoice(itemStack, false);
-                    }
+        for (int i = 0; i < 9; i++) {
+            ItemStack itemStack = craftMatrix.removeStackFromSlot(i);
+            if (itemStack != null) {
+                if (!entityPlayer.inventory.addItemStackToInventory(itemStack) && !entityPlayer.worldObj.isRemote) {
+                    entityPlayer.dropPlayerItemWithRandomChoice(itemStack, false);
                 }
             }
-            entityPlayer.inventoryContainer.detectAndSendChanges();
         }
+        entityPlayer.inventoryContainer.detectAndSendChanges();
     }
 
     @Override

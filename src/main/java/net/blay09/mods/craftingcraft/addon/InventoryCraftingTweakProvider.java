@@ -39,7 +39,9 @@ public class InventoryCraftingTweakProvider implements TweakProvider {
 
     @Override
     public void clearGrid(EntityPlayer entityPlayer, Container container, int id) {
-        defaultProvider.clearGrid(this, id, entityPlayer, container, false);
+        for(int i = 0; i < 9; i++) {
+            container.transferStackInSlot(entityPlayer, i);
+        }
     }
 
     @Override
