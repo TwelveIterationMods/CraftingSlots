@@ -53,7 +53,7 @@ idea {
 }
 
 dependencies {
-    deobfCompile "net.blay09.mods:craftingtweaks:3.0.10:dev"
+    deobfCompile "net.blay09.mods:craftingtweaks:3.0.30:dev"
     deobfCompile "mezz.jei:jei_1.8.9:2.14.0.67"
     //provided "codechicken:NotEnoughItems:1.7.10-1.0.5.118:dev"
 }
