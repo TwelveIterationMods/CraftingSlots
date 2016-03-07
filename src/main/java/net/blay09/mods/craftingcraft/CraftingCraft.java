@@ -3,6 +3,7 @@ package net.blay09.mods.craftingcraft;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -10,6 +11,9 @@ import net.blay09.mods.craftingcraft.block.BlockCraftingTableFrame;
 import net.blay09.mods.craftingcraft.block.BlockStoneCraftingTable;
 import net.blay09.mods.craftingcraft.block.TileEntityCraftingTableFrame;
 import net.blay09.mods.craftingcraft.block.TileEntityStoneCraftingTable;
+import net.blay09.mods.craftingcraft.container.ContainerInventoryCrafting;
+import net.blay09.mods.craftingcraft.container.ContainerPortableCrafting;
+import net.blay09.mods.craftingcraft.container.ContainerStoneCraftingTable;
 import net.blay09.mods.craftingcraft.item.ItemBlockCraftingTableFrame;
 import net.blay09.mods.craftingcraft.item.ItemBlockStoneCraftingTable;
 import net.blay09.mods.craftingcraft.item.ItemPortableCraftingTable;
@@ -20,6 +24,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
 @Mod(modid = "craftingcraft", name = "CraftingCraft")
 public class CraftingCraft {

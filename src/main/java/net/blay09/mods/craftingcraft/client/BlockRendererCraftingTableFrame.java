@@ -6,6 +6,7 @@ import net.blay09.mods.craftingcraft.block.TileEntityCraftingTableFrame;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.util.ForgeDirection;
 
@@ -49,12 +50,18 @@ public class BlockRendererCraftingTableFrame implements ISimpleBlockRenderingHan
         } else {
             Tessellator.instance.setColorOpaque_F(1f, 1f, 1f);
         }
-        renderer.renderFaceXNeg(block, x, y, z, block.getIcon(ForgeDirection.EAST.ordinal(), metadata));
-        renderer.renderFaceXPos(block, x, y, z, block.getIcon(ForgeDirection.WEST.ordinal(), metadata));
-        renderer.renderFaceZNeg(block, x, y, z, block.getIcon(ForgeDirection.NORTH.ordinal(), metadata));
-        renderer.renderFaceZPos(block, x, y, z, block.getIcon(ForgeDirection.SOUTH.ordinal(), metadata));
-        renderer.renderFaceYNeg(block, x, y, z, block.getIcon(ForgeDirection.DOWN.ordinal(), metadata));
-        renderer.renderFaceYPos(block, x, y, z, block.getIcon(ForgeDirection.UP.ordinal(), metadata));
+        IIcon icon = block.getIcon(ForgeDirection.EAST.ordinal(), metadata);
+        if(icon != null) renderer.renderFaceXNeg(block, x, y, z, icon);
+        icon = block.getIcon(ForgeDirection.WEST.ordinal(), metadata);
+        if(icon != null) renderer.renderFaceXPos(block, x, y, z, icon);
+        icon = block.getIcon(ForgeDirection.NORTH.ordinal(), metadata);
+        if(icon != null) renderer.renderFaceZNeg(block, x, y, z, icon);
+        icon = block.getIcon(ForgeDirection.SOUTH.ordinal(), metadata);
+        if(icon != null) renderer.renderFaceZPos(block, x, y, z, icon);
+        icon = block.getIcon(ForgeDirection.DOWN.ordinal(), metadata);
+        if(icon != null) renderer.renderFaceYNeg(block, x, y, z, icon);
+        icon = block.getIcon(ForgeDirection.UP.ordinal(), metadata);
+        if(icon != null) renderer.renderFaceYPos(block, x, y, z, icon);
     }
 
     @Override

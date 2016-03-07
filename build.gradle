@@ -32,6 +32,7 @@ minecraft {
     runDir = "run"
 
     //useDepAts = true
+    mappings = "stable_12"
 }
 
 repositories {
@@ -59,7 +60,7 @@ idea {
 }
 
 dependencies {
-    compile "net.blay09.mods:craftingtweaks:1.0.58:dev"
+    compile "net.blay09.mods:craftingtweaks:1.0.79:dev"
     provided "codechicken:NotEnoughItems:1.7.10-1.0.5.118:dev"
 }
 

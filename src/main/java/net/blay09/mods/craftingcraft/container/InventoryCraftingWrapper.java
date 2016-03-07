@@ -51,8 +51,8 @@ public class InventoryCraftingWrapper extends InventoryCrafting {
     }
 
     @Override
-    public boolean hasCustomInventoryName() {
-        return inventory.hasCustomInventoryName();
+    public boolean isCustomInventoryName() {
+        return inventory.isCustomInventoryName();
     }
 
     @Override
@@ -71,13 +71,13 @@ public class InventoryCraftingWrapper extends InventoryCrafting {
     }
 
     @Override
-    public void openInventory() {
-        inventory.openInventory();
+    public void openChest() {
+        inventory.openChest();
     }
 
     @Override
-    public void closeInventory() {
-        inventory.closeInventory();
+    public void closeChest() {
+        inventory.closeChest();
     }
 
     @Override

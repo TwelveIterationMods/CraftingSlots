@@ -26,19 +26,20 @@ public class BlockStoneCraftingTable extends BlockContainer {
 
     public BlockStoneCraftingTable() {
         super(Material.rock);
-        setBlockName("craftingcraft:stoneCraftingTable");
+        setUnlocalizedName("craftingcraft:stoneCraftingTable");
         setHardness(2f);
         setResistance(10f);
         setCreativeTab(CraftingCraft.creativeTab);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void getSubBlocks(Item item, CreativeTabs creativeTab, List list) {
         list.add(new ItemStack(item, 1, 0));
         list.add(new ItemStack(item, 1, 1));
     }
 
-    @SideOnly(Side.CLIENT)
+    @Override
     public IIcon getIcon(int side, int metadata) {
         if(metadata > 1) {
             metadata = 0;
@@ -46,8 +47,8 @@ public class BlockStoneCraftingTable extends BlockContainer {
         return side == 1 ? topIcon[metadata] : (side == 0 ? Blocks.planks.getBlockTextureFromSide(side) : (side != 2 && side != 4 ? sideIcon[metadata] : frontIcon[metadata]));
     }
 
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister iconRegister) {
+    @Override
+    public void registerIcons(IIconRegister iconRegister) {
         sideIcon[0] = iconRegister.registerIcon("craftingcraft:stoneCraftingTable_side");
         topIcon[0] = iconRegister.registerIcon("craftingcraft:stoneCraftingTable_top");
         frontIcon[0] = iconRegister.registerIcon("craftingcraft:stoneCraftingTable_front");

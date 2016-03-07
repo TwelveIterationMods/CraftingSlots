@@ -47,10 +47,10 @@ public class TileEntityCraftingTableFrame extends TileEntityStoneCraftingTable {
 
     @Override
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
-        String blockModId = pkt.func_148857_g().getString("VisualBlockModId");
-        String blockName = pkt.func_148857_g().getString("VisualBlockName");
+        String blockModId = pkt.getNbtCompound().getString("VisualBlockModId");
+        String blockName = pkt.getNbtCompound().getString("VisualBlockName");
         visualBlock = GameRegistry.findBlock(blockModId, blockName);
-        visualMetadata = pkt.func_148857_g().getByte("VisualMetadata");
+        visualMetadata = pkt.getNbtCompound().getByte("VisualMetadata");
         worldObj.markAndNotifyBlock(xCoord, yCoord, zCoord, worldObj.getChunkFromBlockCoords(xCoord, zCoord), CraftingCraft.craftingTableFrame, CraftingCraft.craftingTableFrame, 1 | 2);
     }
 

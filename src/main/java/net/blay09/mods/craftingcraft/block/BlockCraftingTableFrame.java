@@ -31,7 +31,7 @@ public class BlockCraftingTableFrame extends BlockContainer {
 
     public BlockCraftingTableFrame() {
         super(Material.wood);
-        setBlockName("craftingcraft:craftingTableFrame");
+        setUnlocalizedName("craftingcraft:craftingTableFrame");
         setHardness(1f);
         setResistance(10f);
         setCreativeTab(CraftingCraft.creativeTab);
@@ -52,13 +52,13 @@ public class BlockCraftingTableFrame extends BlockContainer {
         return BlockRendererCraftingTableFrame.RENDER_ID;
     }
 
-    @SideOnly(Side.CLIENT)
+    @Override
     public IIcon getIcon(int side, int metadata) {
         return side == 1 ? topIcon : (side == 0 ? bottomIcon : (side != 2 && side != 4 ? sideIcon : frontIcon));
     }
 
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister iconRegister) {
+    @Override
+    public void registerIcons(IIconRegister iconRegister) {
         sideIcon = iconRegister.registerIcon("craftingcraft:craftingTable_side");
         topIcon = iconRegister.registerIcon("craftingcraft:craftingTable_top");
         frontIcon = iconRegister.registerIcon("craftingcraft:craftingTable_front");
@@ -72,9 +72,9 @@ public class BlockCraftingTableFrame extends BlockContainer {
             TileEntityCraftingTableFrame tileEntity = (TileEntityCraftingTableFrame) world.getTileEntity(x, y, z);
             if(tileEntity.getVisualBlock() == null && itemStack != null) {
                 if(itemStack.getItem() instanceof ItemBlock) {
-                    Block visualBlock = ((ItemBlock) itemStack.getItem()).field_150939_a;
+                    Block visualBlock = ((ItemBlock) itemStack.getItem()).blockInstance;
                     if (visualBlock.renderAsNormalBlock() || visualBlock == Blocks.glass) {
-                        int metadata = itemStack.getItem().getMetadata(itemStack.getItemDamage());
+                        int metadata = itemStack.getItem().getMetadata(itemStack.getMetadata());
                         if (visualBlock == Blocks.grass) {
                             visualBlock = Blocks.dirt;
                         }

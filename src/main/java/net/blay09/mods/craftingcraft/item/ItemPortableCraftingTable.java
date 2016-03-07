@@ -25,6 +25,7 @@ public class ItemPortableCraftingTable extends Item {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void getSubItems(Item item, CreativeTabs creativeTab, List list) {
         list.add(new ItemStack(item, 1, 0));
         list.add(new ItemStack(item, 1, 1));
@@ -44,7 +45,7 @@ public class ItemPortableCraftingTable extends Item {
 
     public void openPortableCrafting(EntityPlayer entityPlayer, ItemStack itemStack) {
         if(!entityPlayer.worldObj.isRemote) {
-            if (itemStack.getItemDamage() == 1) {
+            if (itemStack.getMetadata() == 1) {
                 entityPlayer.openGui(CraftingCraft.instance, GuiHandler.GUI_INVENTORY_CRAFTING, entityPlayer.worldObj, (int) entityPlayer.posX, (int) entityPlayer.posY, (int) entityPlayer.posZ);
             } else {
                 entityPlayer.openGui(CraftingCraft.instance, GuiHandler.GUI_PORTABLE_CRAFTING, entityPlayer.worldObj, (int) entityPlayer.posX, (int) entityPlayer.posY, (int) entityPlayer.posZ);
@@ -54,7 +55,7 @@ public class ItemPortableCraftingTable extends Item {
 
     @Override
     public String getUnlocalizedName(ItemStack itemStack) {
-        switch(itemStack.getItemDamage()) {
+        switch(itemStack.getMetadata()) {
             case 0: return "item.craftingcraft:portableCraftingTable";
             case 1: return "item.craftingcraft:inventoryCraftingTable";
         }

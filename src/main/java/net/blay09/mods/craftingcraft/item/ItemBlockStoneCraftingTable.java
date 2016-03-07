@@ -22,7 +22,7 @@ public class ItemBlockStoneCraftingTable extends ItemBlock {
 
     @Override
     public String getUnlocalizedName(ItemStack itemStack) {
-        switch(itemStack.getItemDamage()) {
+        switch(itemStack.getMetadata()) {
             case 0: return "tile.craftingcraft:stoneCraftingTable";
             case 1: return "tile.craftingcraft:netherCraftingTable";
         }
@@ -30,6 +30,7 @@ public class ItemBlockStoneCraftingTable extends ItemBlock {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List list, boolean flag) {
         super.addInformation(itemStack, entityPlayer, list, flag);
         list.add("\u00a77" + StatCollector.translateToLocal("tile.craftingcraft:stoneCraftingTable.tooltip"));
