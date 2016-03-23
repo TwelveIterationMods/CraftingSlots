@@ -3,15 +3,14 @@ package net.blay09.mods.craftingcraft.item;
 import net.blay09.mods.craftingcraft.CraftingCraft;
 import net.blay09.mods.craftingcraft.net.GuiHandler;
 import net.minecraft.client.renderer.ItemModelMesher;
-import net.minecraft.client.resources.model.ModelBakery;
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.model.ModelBakery;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -36,15 +35,15 @@ public class ItemPortableCraftingTable extends Item {
     }
 
     @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer entityPlayer) {
+    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer entityPlayer, EnumHand hand) {
         openPortableCrafting(entityPlayer, itemStack);
-        return itemStack;
+        return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
     }
 
     @Override
-    public boolean onItemUse(ItemStack itemStack, EntityPlayer entityPlayer, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public EnumActionResult onItemUse(ItemStack itemStack, EntityPlayer entityPlayer, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         openPortableCrafting(entityPlayer, itemStack);
-        return true;
+        return EnumActionResult.SUCCESS;
     }
 
     public void openPortableCrafting(EntityPlayer entityPlayer, ItemStack itemStack) {

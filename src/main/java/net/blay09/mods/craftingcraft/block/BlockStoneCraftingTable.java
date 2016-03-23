@@ -5,20 +5,18 @@ import net.blay09.mods.craftingcraft.net.GuiHandler;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.ItemModelMesher;
-import net.minecraft.client.resources.model.ModelBakery;
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.model.ModelBakery;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -27,9 +25,9 @@ import java.util.List;
 
 public class BlockStoneCraftingTable extends BlockContainer {
 
-    public enum EnumType implements IStringSerializable {
-        STONE(0),
-        NETHER(1);
+    private enum EnumType implements IStringSerializable {
+        stone(0),
+        nether(1);
 
         private final int meta;
 
@@ -53,14 +51,14 @@ public class BlockStoneCraftingTable extends BlockContainer {
 
         public static EnumType byMetadata(int meta) {
             if (meta == 1) {
-                return NETHER;
+                return nether;
             }
-            return STONE;
+            return stone;
         }
 
     }
 
-    public static final PropertyEnum VARIANT = PropertyEnum.create("variant", EnumType.class);
+    private static final PropertyEnum<EnumType> VARIANT = PropertyEnum.create("variant", EnumType.class);
 
     public static final String name = "stoneCraftingTable";
 
@@ -80,17 +78,17 @@ public class BlockStoneCraftingTable extends BlockContainer {
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        return ((EnumType) state.getValue(VARIANT)).getMetadata();
+        return (state.getValue(VARIANT)).getMetadata();
     }
 
     @Override
-    protected BlockState createBlockState() {
-        return new BlockState(this, VARIANT);
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, VARIANT);
     }
 
     @Override
-    public int getRenderType() {
-        return 3;
+    public EnumBlockRenderType getRenderType(IBlockState state) {
+        return EnumBlockRenderType.MODEL;
     }
 
     @Override
@@ -100,7 +98,7 @@ public class BlockStoneCraftingTable extends BlockContainer {
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer entityPlayer, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer entityPlayer, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (!world.isRemote) {
             entityPlayer.openGui(CraftingCraft.instance, GuiHandler.GUI_STONE_CRAFTING_TABLE, world, pos.getX(), pos.getY(), pos.getZ());
         }

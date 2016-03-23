@@ -2,11 +2,10 @@ package net.blay09.mods.craftingcraft.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class TileEntityCraftingTableFrame extends TileEntityStoneCraftingTable {
@@ -44,11 +43,11 @@ public class TileEntityCraftingTableFrame extends TileEntityStoneCraftingTable {
             tagCompound.setString("VisualBlockName", identifier.name);
             tagCompound.setByte("VisualMetadata", (byte) visualBlock.getMetaFromState(visualBlockState));
         }
-        return new S35PacketUpdateTileEntity(pos, 0, tagCompound);
+        return new SPacketUpdateTileEntity(pos, 0, tagCompound);
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
         String blockModId = pkt.getNbtCompound().getString("VisualBlockModId");
         String blockName = pkt.getNbtCompound().getString("VisualBlockName");
         visualBlock = GameRegistry.findBlock(blockModId, blockName);
@@ -66,7 +65,8 @@ public class TileEntityCraftingTableFrame extends TileEntityStoneCraftingTable {
         this.visualBlock = visualBlockState.getBlock();
         this.visualBlockState = visualBlockState;
         markDirty();
-        worldObj.markBlockForUpdate(pos);
+        IBlockState blockState = worldObj.getBlockState(pos);
+        worldObj.markAndNotifyBlock(pos, worldObj.getChunkFromBlockCoords(pos), blockState, blockState, 1 | 2);
     }
 
     public IBlockState getVisualBlockState() {

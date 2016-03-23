@@ -1,11 +1,10 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "craftingcraft:craftingTableFrame",
+    "model": "craftingcraft:netherCraftingTable",
     "transform": "forge:default-block"
   },
   "variants": {
-    "normal": [{}],
     "inventory": [{}]
   }
 }

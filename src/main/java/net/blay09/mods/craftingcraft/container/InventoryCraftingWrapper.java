@@ -5,7 +5,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IChatComponent;
+import net.minecraft.util.text.ITextComponent;
 
 public class InventoryCraftingWrapper extends InventoryCrafting {
 
@@ -52,7 +52,7 @@ public class InventoryCraftingWrapper extends InventoryCrafting {
     }
 
     @Override
-    public IChatComponent getDisplayName() {
+    public ITextComponent getDisplayName() {
         return inventory.getDisplayName();
     }
 

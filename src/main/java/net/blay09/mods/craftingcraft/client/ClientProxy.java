@@ -8,13 +8,13 @@ import net.blay09.mods.craftingcraft.net.NetworkHandler;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiInventory;
+import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
-import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.ModelBakeEvent;
-import net.minecraftforge.client.model.IFlexibleBakedModel;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -75,11 +75,10 @@ public class ClientProxy extends CommonProxy {
 
     @SubscribeEvent
     public void onModelBakeEvent(ModelBakeEvent event) {
-        Object object = event.modelRegistry.getObject(BlockModelCraftingTableFrame.modelResource);
+        Object object = event.getModelRegistry().getObject(BlockModelCraftingTableFrame.modelResource);
         if(object != null) {
-            IFlexibleBakedModel model = (IFlexibleBakedModel) object;
-            BlockModelCraftingTableFrame customModel = new BlockModelCraftingTableFrame(model);
-            event.modelRegistry.putObject(BlockModelCraftingTableFrame.modelResource, customModel);
+            BlockModelCraftingTableFrame customModel = new BlockModelCraftingTableFrame((IBakedModel) object);
+            event.getModelRegistry().putObject(BlockModelCraftingTableFrame.modelResource, customModel);
         }
     }
 

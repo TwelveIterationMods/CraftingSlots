@@ -1,6 +1,19 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "model": "craftingcraft:stoneCraftingTable",
+    "transform": "forge:default-block"
+  },
   "variants": {
-    "variant=stone": { "model": "craftingcraft:stoneCraftingTable" },
-    "variant=nether": { "model": "craftingcraft:netherCraftingTable" }
+    "normal": [{}],
+    "inventory": [{}],
+    "variant": {
+      "stone": {
+        "model": "craftingcraft:stoneCraftingTable"
+      },
+      "nether": {
+        "model": "craftingcraft:netherCraftingTable"
+      }
+    }
   }
 }

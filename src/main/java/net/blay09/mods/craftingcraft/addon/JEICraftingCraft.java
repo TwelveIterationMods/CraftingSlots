@@ -7,19 +7,13 @@ import net.blay09.mods.craftingcraft.container.ContainerInventoryCrafting;
 import net.blay09.mods.craftingcraft.container.ContainerPortableCrafting;
 import net.blay09.mods.craftingcraft.container.ContainerStoneCraftingTable;
 
+import javax.annotation.Nonnull;
+
 @JEIPlugin
 public class JEICraftingCraft implements IModPlugin {
 
     @Override
-    public void onJeiHelpersAvailable(IJeiHelpers jeiHelpers) {
-    }
-
-    @Override
-    public void onItemRegistryAvailable(IItemRegistry itemRegistry) {
-    }
-
-    @Override
-    public void register(IModRegistry registry) {
+    public void register(@Nonnull IModRegistry registry) {
         IRecipeTransferRegistry transferRegistry = registry.getRecipeTransferRegistry();
         transferRegistry.addRecipeTransferHandler(ContainerStoneCraftingTable.class, VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 36);
         transferRegistry.addRecipeTransferHandler(ContainerPortableCrafting.class, VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 36);
@@ -27,7 +21,6 @@ public class JEICraftingCraft implements IModPlugin {
     }
 
     @Override
-    public void onRecipeRegistryAvailable(IRecipeRegistry recipeRegistry) {
-    }
+    public void onRuntimeAvailable(@Nonnull IJeiRuntime jeiRuntime) {}
 
 }
