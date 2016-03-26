@@ -6,6 +6,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class TileEntityCraftingTableFrame extends TileEntityStoneCraftingTable {
@@ -26,23 +27,19 @@ public class TileEntityCraftingTableFrame extends TileEntityStoneCraftingTable {
     @Override
     public void writeToNBT(NBTTagCompound tagCompound) {
         super.writeToNBT(tagCompound);
-        GameRegistry.UniqueIdentifier identifier = GameRegistry.findUniqueIdentifierFor(visualBlock);
-        if(identifier != null) {
-            tagCompound.setString("VisualBlockModId", identifier.modId);
-            tagCompound.setString("VisualBlockName", identifier.name);
-            tagCompound.setByte("VisualMetadata", (byte) visualBlock.getMetaFromState(visualBlockState));
-        }
+        ResourceLocation identifier = new ResourceLocation(visualBlock.getRegistryName());
+        tagCompound.setString("VisualBlockModId", identifier.getResourceDomain());
+        tagCompound.setString("VisualBlockName", identifier.getResourcePath());
+        tagCompound.setByte("VisualMetadata", (byte) visualBlock.getMetaFromState(visualBlockState));
     }
 
     @Override
     public Packet getDescriptionPacket() {
         NBTTagCompound tagCompound = new NBTTagCompound();
-        GameRegistry.UniqueIdentifier identifier = GameRegistry.findUniqueIdentifierFor(visualBlock);
-        if(identifier != null) {
-            tagCompound.setString("VisualBlockModId", identifier.modId);
-            tagCompound.setString("VisualBlockName", identifier.name);
-            tagCompound.setByte("VisualMetadata", (byte) visualBlock.getMetaFromState(visualBlockState));
-        }
+        ResourceLocation identifier = new ResourceLocation(visualBlock.getRegistryName());
+        tagCompound.setString("VisualBlockModId", identifier.getResourceDomain());
+        tagCompound.setString("VisualBlockName", identifier.getResourcePath());
+        tagCompound.setByte("VisualMetadata", (byte) visualBlock.getMetaFromState(visualBlockState));
         return new SPacketUpdateTileEntity(pos, 0, tagCompound);
     }
 
