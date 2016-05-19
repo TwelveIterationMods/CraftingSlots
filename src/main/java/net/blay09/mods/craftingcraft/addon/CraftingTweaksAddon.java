@@ -7,6 +7,7 @@ import net.blay09.mods.craftingcraft.container.ContainerStoneCraftingTable;
 import net.blay09.mods.craftingtweaks.api.CraftingTweaksAPI;
 import net.blay09.mods.craftingtweaks.api.SimpleTweakProvider;
 
+@SuppressWarnings("unused")
 public class CraftingTweaksAddon {
 
     public CraftingTweaksAddon() {

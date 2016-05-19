@@ -9,6 +9,7 @@ import net.blay09.mods.craftingcraft.container.ContainerStoneCraftingTable;
 
 import javax.annotation.Nonnull;
 
+@SuppressWarnings("unused")
 @JEIPlugin
 public class JEICraftingCraft implements IModPlugin {
 

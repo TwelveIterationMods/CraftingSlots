@@ -61,6 +61,7 @@ public class ContainerInventoryCrafting extends Container {
         Slot slot = inventorySlots.get(slotIndex);
         if (slot != null && slot.getHasStack()) {
             ItemStack slotStack = slot.getStack();
+            //noinspection ConstantConditions
             itemStack = slotStack.copy();
             if (slotIndex < 9) {
                 if (!this.mergeItemStack(slotStack, 9, inventorySlots.size() - 1, true)) {
@@ -71,11 +72,7 @@ public class ContainerInventoryCrafting extends Container {
                     return null;
                 }
                 slot.onSlotChange(slotStack, itemStack);
-            } else if (slotIndex >= 27) {
-                if (!this.mergeItemStack(slotStack, 9, inventorySlots.size() - 10, true)) {
-                    return null;
-                }
-            } else if (!this.mergeItemStack(slotStack, 27, inventorySlots.size() - 1, false)) {
+            } else if (!this.mergeItemStack(slotStack, 0, 9, false)) {
                 return null;
             }
 
@@ -99,7 +96,4 @@ public class ContainerInventoryCrafting extends Container {
         return slot.inventory != craftResult && super.canMergeSlot(itemStack, slot);
     }
 
-    public InventoryCrafting getCraftMatrix() {
-        return craftMatrix;
-    }
 }

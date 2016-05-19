@@ -12,6 +12,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.property.IExtendedBlockState;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,12 +26,12 @@ public class BlockModelCraftingTableFrame implements IBakedModel {
     }
 
     @Override
-    public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand) {
+    public List<BakedQuad> getQuads(@Nullable IBlockState state, @Nullable EnumFacing side, long rand) {
 		List<BakedQuad> quads = new ArrayList<>();
         if(state instanceof IExtendedBlockState) {
             IExtendedBlockState extendedState = (IExtendedBlockState) state;
             IBlockState visualState = extendedState.getValue(BlockCraftingTableFrame.VISUAL_BLOCK);
-            if(visualState != null && visualState != Blocks.air.getDefaultState()) {
+            if(visualState != null && visualState != Blocks.AIR.getDefaultState()) {
                 BlockRendererDispatcher dispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();
                 BlockModelShapes shapes = dispatcher.getBlockModelShapes();
                 IBakedModel visualModel = shapes.getModelForState(visualState);

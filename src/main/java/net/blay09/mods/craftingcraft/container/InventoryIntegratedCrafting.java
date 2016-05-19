@@ -5,6 +5,8 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nullable;
+
 public class InventoryIntegratedCrafting extends InventoryCrafting {
 
     private final Container eventHandler;
@@ -49,7 +51,7 @@ public class InventoryIntegratedCrafting extends InventoryCrafting {
     }
 
     @Override
-    public void setInventorySlotContents(int i, ItemStack itemStack) {
+    public void setInventorySlotContents(int i, @Nullable ItemStack itemStack) {
         inventoryPlayer.setInventorySlotContents(getInventorySlot(i), itemStack);
         eventHandler.onCraftMatrixChanged(this);
     }

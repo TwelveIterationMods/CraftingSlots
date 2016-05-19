@@ -17,10 +17,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class BlockStoneCraftingTable extends BlockContainer {
@@ -63,9 +66,9 @@ public class BlockStoneCraftingTable extends BlockContainer {
     public static final String name = "stoneCraftingTable";
 
     public BlockStoneCraftingTable() {
-        super(Material.rock);
-
-        setUnlocalizedName(CraftingCraft.MOD_ID + ":" + name);
+        super(Material.ROCK);
+        setRegistryName(CraftingCraft.MOD_ID, name);
+        setUnlocalizedName(getRegistryName().toString());
         setHardness(2f);
         setResistance(10f);
         setCreativeTab(CraftingCraft.creativeTab);
@@ -98,7 +101,7 @@ public class BlockStoneCraftingTable extends BlockContainer {
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer entityPlayer, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer entityPlayer, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (!world.isRemote) {
             entityPlayer.openGui(CraftingCraft.instance, GuiHandler.GUI_STONE_CRAFTING_TABLE, world, pos.getX(), pos.getY(), pos.getZ());
         }
@@ -112,10 +115,15 @@ public class BlockStoneCraftingTable extends BlockContainer {
 
     @SideOnly(Side.CLIENT)
     public void registerModels(ItemModelMesher mesher) {
+        //noinspection ConstantConditions /// getItemFromBlock will never return null here
         ModelBakery.registerItemVariants(Item.getItemFromBlock(this), new ResourceLocation(CraftingCraft.MOD_ID, "stoneCraftingTable"), new ResourceLocation(CraftingCraft.MOD_ID, "netherCraftingTable"));
 
         mesher.register(Item.getItemFromBlock(this), 0, new ModelResourceLocation(CraftingCraft.MOD_ID + ":stoneCraftingTable", "inventory"));
         mesher.register(Item.getItemFromBlock(this), 1, new ModelResourceLocation(CraftingCraft.MOD_ID + ":netherCraftingTable", "inventory"));
     }
 
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
+        tooltip.add(TextFormatting.GRAY + I18n.translateToLocal("tile." + CraftingCraft.MOD_ID + ":" + name + ".tooltip"));
+    }
 }

@@ -12,6 +12,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 
+import javax.annotation.Nullable;
+
 public class GuiHandler implements IGuiHandler {
 
     public static final int GUI_PORTABLE_CRAFTING = 1;
@@ -19,6 +21,7 @@ public class GuiHandler implements IGuiHandler {
     public static final int GUI_STONE_CRAFTING_TABLE = 3;
 
     @Override
+    @Nullable
     public Object getServerGuiElement(int id, EntityPlayer entityPlayer, World world, int x, int y, int z) {
         if(id == GUI_PORTABLE_CRAFTING) {
             return new ContainerPortableCrafting(entityPlayer);
@@ -34,6 +37,7 @@ public class GuiHandler implements IGuiHandler {
     }
 
     @Override
+    @Nullable
     public Object getClientGuiElement(int id, EntityPlayer entityPlayer, World world, int x, int y, int z) {
         if(id == GUI_PORTABLE_CRAFTING) {
             return new GuiCraftCrafting(new ContainerPortableCrafting(entityPlayer));

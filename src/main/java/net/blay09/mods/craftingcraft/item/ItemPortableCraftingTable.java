@@ -22,7 +22,8 @@ public class ItemPortableCraftingTable extends Item {
     public static final String name = "portableCraftingTable";
 
     public ItemPortableCraftingTable() {
-        setUnlocalizedName(CraftingCraft.MOD_ID + ":" + name);
+        setRegistryName(CraftingCraft.MOD_ID, name);
+        setUnlocalizedName(getRegistryName().toString());
         setHasSubtypes(true);
         setMaxStackSize(1);
         setCreativeTab(CraftingCraft.creativeTab);

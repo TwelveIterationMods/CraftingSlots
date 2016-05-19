@@ -25,6 +25,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import org.lwjgl.input.Keyboard;
 
+@SuppressWarnings("unused")
 public class ClientProxy extends CommonProxy {
 
     private static KeyBinding keyPortableCrafting;

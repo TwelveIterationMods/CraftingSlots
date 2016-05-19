@@ -7,9 +7,12 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
+import javax.annotation.Nullable;
+
 public class HandlerPortableCrafting implements IMessageHandler<MessagePortableCrafting, IMessage> {
 
     @Override
+    @Nullable
     public IMessage onMessage(MessagePortableCrafting message, MessageContext ctx) {
         EntityPlayer entityPlayer = ctx.getServerHandler().playerEntity;
         for(int i = 0; i < entityPlayer.inventory.getSizeInventory(); i++) {
