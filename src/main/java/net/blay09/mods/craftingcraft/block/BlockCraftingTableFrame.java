@@ -4,6 +4,7 @@ import net.blay09.mods.craftingcraft.CraftingCraft;
 import net.blay09.mods.craftingcraft.net.GuiHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
@@ -95,6 +96,9 @@ public class BlockCraftingTableFrame extends BlockContainer {
                 if(heldItem.getItem() instanceof ItemBlock) {
                     Block visualBlock = ((ItemBlock) heldItem.getItem()).block;
                     if(visualBlock == CraftingCraft.craftingTableFrame) {
+                        return true;
+                    }
+                    if(visualBlock instanceof ITileEntityProvider) {
                         return true;
                     }
                     if (visualBlock == Blocks.GRASS) {
