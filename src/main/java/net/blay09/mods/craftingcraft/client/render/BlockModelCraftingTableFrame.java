@@ -35,7 +35,7 @@ public class BlockModelCraftingTableFrame implements IBakedModel {
                 BlockRendererDispatcher dispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();
                 BlockModelShapes shapes = dispatcher.getBlockModelShapes();
                 IBakedModel visualModel = shapes.getModelForState(visualState);
-                quads.addAll(visualModel.getQuads(state, side, rand));
+                quads.addAll(visualModel.getQuads(visualState, side, rand));
             }
         }
         quads.addAll(emptyModel.getQuads(state, side, rand));
