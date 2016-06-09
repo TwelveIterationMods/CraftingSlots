@@ -75,6 +75,11 @@ public class BlockStoneCraftingTable extends BlockContainer {
     }
 
     @Override
+    public int damageDropped(IBlockState state) {
+        return getMetaFromState(state);
+    }
+
+    @Override
     public IBlockState getStateFromMeta(int meta) {
         return getDefaultState().withProperty(VARIANT, EnumType.byMetadata(meta));
     }
