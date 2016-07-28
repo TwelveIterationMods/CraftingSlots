@@ -158,18 +158,22 @@ public class BlockCraftingTableFrame extends BlockContainer {
 
     @Override
     public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
-        TileEntityCraftingTableFrame tileEntity = (TileEntityCraftingTableFrame) world.getTileEntity(pos);
-        if(tileEntity != null &&tileEntity.getVisualBlock() != null) {
-            return tileEntity.getVisualBlock().getBlock().getLightValue(state);
+        TileEntity tileEntity = world.getTileEntity(pos);
+        if (tileEntity instanceof TileEntityCraftingTableFrame) {
+            if (((TileEntityCraftingTableFrame) tileEntity).getVisualBlock() != null) {
+                return ((TileEntityCraftingTableFrame) tileEntity).getVisualBlock().getBlock().getLightValue(state);
+            }
         }
         return super.getLightValue(state, world, pos);
     }
 
     @Override
     public int getLightOpacity(IBlockState state, IBlockAccess world, BlockPos pos) {
-        TileEntityCraftingTableFrame tileEntity = (TileEntityCraftingTableFrame) world.getTileEntity(pos);
-        if(tileEntity != null && tileEntity.getVisualBlock() != null) {
-            return tileEntity.getVisualBlock().getBlock().getLightOpacity(state);
+        TileEntity tileEntity = world.getTileEntity(pos);
+        if(tileEntity instanceof TileEntityCraftingTableFrame) {
+            if (((TileEntityCraftingTableFrame) tileEntity).getVisualBlock() != null) {
+                return ((TileEntityCraftingTableFrame) tileEntity).getVisualBlock().getBlock().getLightOpacity(state);
+            }
         }
         return super.getLightOpacity(state, world, pos);
     }
