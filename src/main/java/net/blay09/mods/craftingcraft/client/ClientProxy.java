@@ -2,6 +2,8 @@ package net.blay09.mods.craftingcraft.client;
 
 import net.blay09.mods.craftingcraft.CommonProxy;
 import net.blay09.mods.craftingcraft.CraftingCraft;
+import net.blay09.mods.craftingcraft.client.gui.GuiCraftCrafting;
+import net.blay09.mods.craftingcraft.client.gui.GuiInventoryCrafting;
 import net.blay09.mods.craftingcraft.client.render.BlockModelCraftingTableFrame;
 import net.blay09.mods.craftingcraft.net.MessagePortableCrafting;
 import net.blay09.mods.craftingcraft.net.NetworkHandler;
@@ -29,6 +31,7 @@ import org.lwjgl.input.Keyboard;
 public class ClientProxy extends CommonProxy {
 
     private static KeyBinding keyPortableCrafting;
+    private static KeyBinding keyBackToInventory;
 
     @Override
     public void preInit(FMLPreInitializationEvent event) {
@@ -55,21 +58,29 @@ public class ClientProxy extends CommonProxy {
         CraftingCraft.craftingTableFrame.registerModels(renderItem.getItemModelMesher());
 
         keyPortableCrafting = new KeyBinding("key.craftingcraft.portableCrafting", Keyboard.KEY_C, "key.categories.craftingcraft");
+        keyBackToInventory = new KeyBinding("key.craftingcraft.backToInventory", 0, "key.categories.craftingcraft");
         ClientRegistry.registerKeyBinding(keyPortableCrafting);
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void onKeyboardEvent(GuiScreenEvent.KeyboardInputEvent.Pre event) {
-        if(Keyboard.getEventKeyState() && keyPortableCrafting.getKeyCode() > 0 && Keyboard.getEventKey() == keyPortableCrafting.getKeyCode()) {
-            if(Minecraft.getMinecraft().currentScreen instanceof GuiInventory) {
-                NetworkHandler.instance.sendToServer(new MessagePortableCrafting());
+        if(Keyboard.getEventKeyState()) {
+            if(keyPortableCrafting.isActiveAndMatches(Keyboard.getEventKey())) {
+                if (Minecraft.getMinecraft().currentScreen instanceof GuiInventory) {
+                    NetworkHandler.instance.sendToServer(new MessagePortableCrafting());
+                }
+            } else if(keyBackToInventory.isActiveAndMatches(Keyboard.getEventKey())) {
+                if (Minecraft.getMinecraft().currentScreen instanceof GuiInventoryCrafting || Minecraft.getMinecraft().currentScreen instanceof GuiCraftCrafting) {
+                    Minecraft.getMinecraft().thePlayer.closeScreen();
+                    Minecraft.getMinecraft().displayGuiScreen(new GuiInventory(Minecraft.getMinecraft().thePlayer));
+                }
             }
         }
     }
 
     @SubscribeEvent
     public void onKeyboardEvent(InputEvent.KeyInputEvent event) {
-        if(Keyboard.getEventKeyState() && keyPortableCrafting.getKeyCode() > 0 && Keyboard.getEventKey() == keyPortableCrafting.getKeyCode()) {
+        if(Keyboard.getEventKeyState() && keyPortableCrafting.isActiveAndMatches(Keyboard.getEventKey())) {
             NetworkHandler.instance.sendToServer(new MessagePortableCrafting());
         }
     }

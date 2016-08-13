@@ -11,5 +11,6 @@ craftingcraft:container.inventoryCraftingTable=Inventory Crafting
 
 key.categories.craftingcraft=CraftingCraft
 key.craftingcraft.portableCrafting=Open Portable Crafting
+key.craftingcraft.backToInventory=Back to Inventory
 
 itemGroup.craftingcraft=CraftingCraft

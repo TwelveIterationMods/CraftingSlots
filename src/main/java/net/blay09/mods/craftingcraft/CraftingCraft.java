@@ -25,6 +25,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import javax.annotation.Nonnull;
 
 @Mod(modid = CraftingCraft.MOD_ID, name = "CraftingCraft",
+        acceptedMinecraftVersions = "[1.10]",
     updateJSON = "http://balyware.com/new/forge_update.php?modid=" + CraftingCraft.MOD_ID)
 public class CraftingCraft {
 
