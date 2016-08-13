@@ -25,6 +25,9 @@ public class ItemHandlerCrafting extends InventoryCrafting {
 
     @Override
     public ItemStack getStackInSlot(int i) {
+        if(i < 0 || i >= itemHandler.getSlots()) {
+            return null; // For recipes doing it wrong, just return null instead of crashing in ItemStackHandler.validateSlotIndex
+        }
         return itemHandler.getStackInSlot(i);
     }
 
