@@ -32,10 +32,15 @@ public class BlockModelCraftingTableFrame implements IBakedModel {
             IExtendedBlockState extendedState = (IExtendedBlockState) state;
             IBlockState visualState = extendedState.getValue(BlockCraftingTableFrame.VISUAL_BLOCK);
             if(visualState != null && visualState != Blocks.AIR.getDefaultState()) {
-                BlockRendererDispatcher dispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();
-                BlockModelShapes shapes = dispatcher.getBlockModelShapes();
-                IBakedModel visualModel = shapes.getModelForState(visualState);
-                quads.addAll(visualModel.getQuads(visualState, side, rand));
+                try {
+                    BlockRendererDispatcher dispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();
+                    BlockModelShapes shapes = dispatcher.getBlockModelShapes();
+                    IBakedModel visualModel = shapes.getModelForState(visualState);
+                    quads.addAll(visualModel.getQuads(visualState, side, rand));
+                } catch (Exception e) {
+                    // Fail-safe for people who do state-dependent black magic (like ExUtils2 threaded XUBlockState loading)
+                    // Just don't render their blocks instead of crashing
+                }
             }
         }
         quads.addAll(emptyModel.getQuads(state, side, rand));
