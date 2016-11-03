@@ -11,7 +11,7 @@ import javax.annotation.Nonnull;
 
 @SuppressWarnings("unused")
 @JEIPlugin
-public class JEICraftingCraft implements IModPlugin {
+public class JEICraftingCraft extends BlankModPlugin {
 
     @Override
     public void register(@Nonnull IModRegistry registry) {
@@ -20,8 +20,5 @@ public class JEICraftingCraft implements IModPlugin {
         transferRegistry.addRecipeTransferHandler(ContainerPortableCrafting.class, VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 36);
         transferRegistry.addRecipeTransferHandler(ContainerInventoryCrafting.class, VanillaRecipeCategoryUid.CRAFTING, 0, 9, 9, 27);
     }
-
-    @Override
-    public void onRuntimeAvailable(@Nonnull IJeiRuntime jeiRuntime) {}
 
 }
