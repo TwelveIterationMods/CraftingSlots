@@ -27,7 +27,7 @@ public class TileEntityCraftingTableFrame extends TileEntityStoneCraftingTable {
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound tagCompound) {
         super.writeToNBT(tagCompound);
-        if(visualBlockState != null) {
+        if(visualBlockState != null && visualBlockState.getBlock().getRegistryName() != null) {
             tagCompound.setString("VisualBlock", visualBlockState.getBlock().getRegistryName().toString());
             tagCompound.setByte("VisualBlockMeta", (byte) visualBlockState.getBlock().getMetaFromState(visualBlockState));
         }
