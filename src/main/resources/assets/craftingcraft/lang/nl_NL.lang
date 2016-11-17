@@ -1,0 +1,10 @@
+item.craftingcraft:inventoryCraftingTable.name=Inventaris Werktafel
+item.craftingcraft:portableCraftingTable.name=Mobiele Werktafel
+
+craftingcraft:container.inventoryCraftingTable=Inventaris Vervaardiging
+
+key.categories.craftingcraft=CraftingCraft
+key.craftingcraft.portableCrafting=Open Mobiele Werktafel
+key.craftingcraft.backToInventory=Terug naar Inventaris
+
+itemGroup.craftingcraft=CraftingCraft
