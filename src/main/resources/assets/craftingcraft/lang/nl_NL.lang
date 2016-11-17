@@ -1,0 +1,16 @@
+item.craftingcraft:inventoryCraftingTable.name=Inventaris Werktafel
+item.craftingcraft:portableCraftingTable.name=Mobiele Werktafel
+
+tile.craftingcraft:stoneCraftingTable.name=Stenen Werkbank
+tile.craftingcraft:stoneCraftingTable.tooltip=Laat de inhoud niet vallen wanneer interface gesloten wordt.
+tile.craftingcraft:netherCraftingTable.name=Nether Werkbank
+tile.craftingcraft:craftingTableFrame.name=Werktafelframe
+tile.craftingcraft:craftingTableFrame.tooltip=Rechtsklik met een en blok om deze vorm te geven.
+
+craftingcraft:container.inventoryCraftingTable=Inventaris Vervaardiging
+
+key.categories.craftingcraft=CraftingCraft
+key.craftingcraft.portableCrafting=Open Mobiele Werktafel
+key.craftingcraft.backToInventory=Terug naar Inventaris
+
+itemGroup.craftingcraft=CraftingCraft
