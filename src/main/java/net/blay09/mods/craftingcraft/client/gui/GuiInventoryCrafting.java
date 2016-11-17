@@ -9,7 +9,7 @@ import org.lwjgl.opengl.GL11;
 
 public class GuiInventoryCrafting extends GuiContainer {
 
-    private final ResourceLocation texture = new ResourceLocation(CraftingCraft.MOD_ID, "textures/gui/portableCraftingTable.png");
+    private final ResourceLocation texture = new ResourceLocation(CraftingCraft.MOD_ID, "textures/gui/portable_crafting_table.png");
 
     public GuiInventoryCrafting(Container container) {
         super(container);
@@ -19,7 +19,7 @@ public class GuiInventoryCrafting extends GuiContainer {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        fontRendererObj.drawString(I18n.format(CraftingCraft.MOD_ID + ":container.inventoryCraftingTable"), 8, ySize - 96 + 1, 4210752);
+        fontRendererObj.drawString(I18n.format(CraftingCraft.MOD_ID + ":container.inventory_crafting_table"), 8, ySize - 96 + 1, 4210752);
     }
 
     @Override

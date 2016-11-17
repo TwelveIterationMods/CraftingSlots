@@ -1,6 +1,6 @@
-@ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-package net.blay09.mods.craftingcraft.block;
+@ParametersAreNonnullByDefault
+package net.blay09.mods.craftingcraft;
 
 import mcp.MethodsReturnNonnullByDefault;
 

@@ -1,4 +1,4 @@
 dependencies {
-    deobfCompile "net.blay09.mods:CraftingTweaks_1.10.2:6.1.16"
-    deobfCompile "mezz.jei:jei_1.10.2:3.13.1.343"
+    deobfCompile "net.blay09.mods:CraftingTweaks_1.11:7.1.1"
+    deobfCompile "mezz.jei:jei_1.11:4.0.1.190"
 }

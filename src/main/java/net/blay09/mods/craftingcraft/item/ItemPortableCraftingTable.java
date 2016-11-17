@@ -15,11 +15,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
-
 public class ItemPortableCraftingTable extends Item {
 
-    public static final String name = "portableCraftingTable";
+    public static final String name = "portable_crafting_table";
 
     public ItemPortableCraftingTable() {
         setRegistryName(CraftingCraft.MOD_ID, name);
@@ -30,46 +28,47 @@ public class ItemPortableCraftingTable extends Item {
     }
 
     @Override
-    public void getSubItems(Item item, CreativeTabs creativeTab, List<ItemStack> list) {
+    public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
         list.add(new ItemStack(item, 1, 0));
         list.add(new ItemStack(item, 1, 1));
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer entityPlayer, EnumHand hand) {
-        openPortableCrafting(entityPlayer, itemStack);
-        return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+        ItemStack heldItem = player.getHeldItem(hand);
+        openPortableCrafting(player, heldItem);
+        return new ActionResult<>(EnumActionResult.SUCCESS, heldItem);
     }
 
     @Override
-    public EnumActionResult onItemUse(ItemStack itemStack, EntityPlayer entityPlayer, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        openPortableCrafting(entityPlayer, itemStack);
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        openPortableCrafting(player, player.getHeldItem(hand));
         return EnumActionResult.SUCCESS;
     }
 
     public void openPortableCrafting(EntityPlayer entityPlayer, ItemStack itemStack) {
-        if(!entityPlayer.worldObj.isRemote) {
+        if(!entityPlayer.world.isRemote) {
             if (itemStack.getItemDamage() == 1) {
-                entityPlayer.openGui(CraftingCraft.instance, GuiHandler.GUI_INVENTORY_CRAFTING, entityPlayer.worldObj, (int) entityPlayer.posX, (int) entityPlayer.posY, (int) entityPlayer.posZ);
+                entityPlayer.openGui(CraftingCraft.instance, GuiHandler.GUI_INVENTORY_CRAFTING, entityPlayer.world, (int) entityPlayer.posX, (int) entityPlayer.posY, (int) entityPlayer.posZ);
             } else {
-                entityPlayer.openGui(CraftingCraft.instance, GuiHandler.GUI_PORTABLE_CRAFTING, entityPlayer.worldObj, (int) entityPlayer.posX, (int) entityPlayer.posY, (int) entityPlayer.posZ);
+                entityPlayer.openGui(CraftingCraft.instance, GuiHandler.GUI_PORTABLE_CRAFTING, entityPlayer.world, (int) entityPlayer.posX, (int) entityPlayer.posY, (int) entityPlayer.posZ);
             }
         }
     }
 
     @SideOnly(Side.CLIENT)
     public void registerModels(ItemModelMesher mesher) {
-        ModelBakery.registerItemVariants(this, new ResourceLocation(CraftingCraft.MOD_ID, "portableCraftingTable"), new ResourceLocation(CraftingCraft.MOD_ID, "inventoryCraftingTable"));
+        ModelBakery.registerItemVariants(this, new ResourceLocation(CraftingCraft.MOD_ID, "portable_crafting_table"), new ResourceLocation(CraftingCraft.MOD_ID, "inventory_crafting_table"));
 
-        mesher.register(this, 0, new ModelResourceLocation(CraftingCraft.MOD_ID + ":portableCraftingTable", "inventory"));
-        mesher.register(this, 1, new ModelResourceLocation(CraftingCraft.MOD_ID + ":inventoryCraftingTable", "inventory"));
+        mesher.register(this, 0, new ModelResourceLocation(CraftingCraft.MOD_ID + ":portable_crafting_table", "inventory"));
+        mesher.register(this, 1, new ModelResourceLocation(CraftingCraft.MOD_ID + ":inventory_crafting_table", "inventory"));
     }
 
     @Override
     public String getUnlocalizedName(ItemStack itemStack) {
         switch(itemStack.getItemDamage()) {
-            case 0: return "item.craftingcraft:portableCraftingTable";
-            case 1: return "item.craftingcraft:inventoryCraftingTable";
+            case 0: return "item.craftingcraft:portable_crafting_table";
+            case 1: return "item.craftingcraft:inventory_crafting_table";
         }
         return super.getUnlocalizedName(itemStack);
     }

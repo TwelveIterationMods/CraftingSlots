@@ -45,7 +45,7 @@ public class InventoryCraftingTweakProvider implements TweakProvider<ContainerIn
             container.transferStackInSlot(entityPlayer, i);
             if(forced && container.inventorySlots.get(i).getHasStack()) {
                 entityPlayer.dropItem(container.inventorySlots.get(i).getStack(), false);
-                container.inventorySlots.get(i).putStack(null);
+                container.inventorySlots.get(i).putStack(ItemStack.field_190927_a);
             }
         }
     }

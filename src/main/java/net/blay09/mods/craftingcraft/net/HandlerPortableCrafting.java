@@ -17,7 +17,7 @@ public class HandlerPortableCrafting implements IMessageHandler<MessagePortableC
         EntityPlayer entityPlayer = ctx.getServerHandler().playerEntity;
         for(int i = 0; i < entityPlayer.inventory.getSizeInventory(); i++) {
             ItemStack itemStack = entityPlayer.inventory.getStackInSlot(i);
-            if(itemStack != null && itemStack.getItem() == CraftingCraft.portableCraftingTable) {
+            if(!itemStack.func_190926_b() && itemStack.getItem() == CraftingCraft.portableCraftingTable) {
                 CraftingCraft.portableCraftingTable.openPortableCrafting(entityPlayer, itemStack);
             }
         }

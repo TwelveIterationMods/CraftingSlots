@@ -6,11 +6,11 @@ import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
-public class GuiCraftCrafting extends GuiContainer {
+public class GuiPortableCrafting extends GuiContainer {
 
     private static final ResourceLocation texture = new ResourceLocation("textures/gui/container/crafting_table.png");
 
-    public GuiCraftCrafting(Container container) {
+    public GuiPortableCrafting(Container container) {
         super(container);
     }
 

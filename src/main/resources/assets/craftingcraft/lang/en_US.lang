@@ -1,16 +1,10 @@
-item.craftingcraft:inventoryCraftingTable.name=Inventory Crafting Table
-item.craftingcraft:portableCraftingTable.name=Portable Crafting Table
+item.craftingcraft:inventory_crafting_table.name=Inventory Crafting Table
+item.craftingcraft:portable_crafting_table.name=Portable Crafting Table
 
-tile.craftingcraft:stoneCraftingTable.name=Stone Crafting Table
-tile.craftingcraft:stoneCraftingTable.tooltip=Does not drop its content when closed.
-tile.craftingcraft:netherCraftingTable.name=Nether Crafting Table
-tile.craftingcraft:craftingTableFrame.name=Crafting Table Frame
-tile.craftingcraft:craftingTableFrame.tooltip=Right click with any block to set appearance.
-
-craftingcraft:container.inventoryCraftingTable=Inventory Crafting
+craftingcraft:container.inventory_crafting_table=Inventory Crafting
 
 key.categories.craftingcraft=CraftingCraft
-key.craftingcraft.portableCrafting=Open Portable Crafting
-key.craftingcraft.backToInventory=Back to Inventory
+key.craftingcraft.portable_crafting=Open Portable Crafting
+key.craftingcraft.back_to_inventory=Back to Inventory
 
 itemGroup.craftingcraft=CraftingCraft

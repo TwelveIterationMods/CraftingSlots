@@ -5,8 +5,6 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 
-import javax.annotation.Nullable;
-
 public class InventoryIntegratedCrafting extends InventoryCrafting {
 
     private final Container eventHandler;
@@ -32,26 +30,26 @@ public class InventoryIntegratedCrafting extends InventoryCrafting {
     public ItemStack decrStackSize(int i, int count) {
         ItemStack oldStack = inventoryPlayer.getStackInSlot(getInventorySlot(i));
         ItemStack itemStack = oldStack;
-        if (itemStack != null) {
-            if (itemStack.stackSize <= count) {
-                inventoryPlayer.setInventorySlotContents(getInventorySlot(i), null);
+        if (!itemStack.func_190926_b()) {
+            if (itemStack.func_190916_E() <= count) {
+                inventoryPlayer.setInventorySlotContents(getInventorySlot(i), ItemStack.field_190927_a);
                 eventHandler.onCraftMatrixChanged(this);
                 return itemStack;
             } else {
                 itemStack = itemStack.splitStack(count);
-                if (oldStack.stackSize == 0) {
-                    inventoryPlayer.setInventorySlotContents(getInventorySlot(i), null);
+                if (oldStack.func_190916_E() == 0) {
+                    inventoryPlayer.setInventorySlotContents(getInventorySlot(i), ItemStack.field_190927_a);
                 }
                 eventHandler.onCraftMatrixChanged(this);
                 return itemStack;
             }
         } else {
-            return null;
+            return ItemStack.field_190927_a;
         }
     }
 
     @Override
-    public void setInventorySlotContents(int i, @Nullable ItemStack itemStack) {
+    public void setInventorySlotContents(int i, ItemStack itemStack) {
         inventoryPlayer.setInventorySlotContents(getInventorySlot(i), itemStack);
         eventHandler.onCraftMatrixChanged(this);
     }
