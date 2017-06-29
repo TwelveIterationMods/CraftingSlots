@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "craftingcraft:portable_crafting_table",
+    "data": 0
+  },
+  "type": "forge:ore_shaped",
+  "pattern": [
+    " C",
+    "S "
+  ],
+  "key": {
+    "C": {
+      "type": "ore",
+      "ore": "workbench"
+    },
+    "S": {
+      "type": "ore",
+      "ore": "stickWood"
+    }
+  }
+}

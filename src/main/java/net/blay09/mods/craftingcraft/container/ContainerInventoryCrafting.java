@@ -5,7 +5,7 @@ import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 
-public class ContainerInventoryCrafting extends Container {
+public class ContainerInventoryCrafting extends Container implements ContainerWithCraftMatrix {
 
 	private final EntityPlayer entityPlayer;
 	private InventoryCrafting craftMatrix;
@@ -52,7 +52,7 @@ public class ContainerInventoryCrafting extends Container {
 
 	@Override
 	public void onCraftMatrixChanged(IInventory p_75130_1_) {
-		craftResult.setInventorySlotContents(0, CraftingManager.getInstance().findMatchingRecipe(craftMatrix, entityPlayer.world));
+		craftResult.setInventorySlotContents(0, CraftingManager.findMatchingResult(craftMatrix, entityPlayer.world));
 	}
 
 	@Override
@@ -60,36 +60,36 @@ public class ContainerInventoryCrafting extends Container {
 		final int CRAFTING_GRID_START = 0;
 		final int CRAFTING_GRID_END = 9;
 		final int CRAFTING_RESULT_SLOT = 36;
-		ItemStack itemStack = ItemStack.field_190927_a;
+		ItemStack itemStack = ItemStack.EMPTY;
 		Slot slot = inventorySlots.get(slotIndex);
 		if (slot != null && slot.getHasStack()) {
 			ItemStack slotStack = slot.getStack();
 			itemStack = slotStack.copy();
 			if (slotIndex < CRAFTING_GRID_END) {
 				if (!this.mergeItemStack(slotStack, CRAFTING_GRID_END, inventorySlots.size() - 1, true)) {
-					return ItemStack.field_190927_a;
+					return ItemStack.EMPTY;
 				}
 			} else if (slotIndex == CRAFTING_RESULT_SLOT) {
 				slotStack.getItem().onCreated(slotStack, player.world, player);
 				if (!this.mergeItemStack(slotStack, CRAFTING_GRID_END, inventorySlots.size() - 1, true)) {
-					return ItemStack.field_190927_a;
+					return ItemStack.EMPTY;
 				}
 				slot.onSlotChange(slotStack, itemStack);
 			} else if (!this.mergeItemStack(slotStack, CRAFTING_GRID_START, CRAFTING_GRID_END, false)) {
-				return ItemStack.field_190927_a;
+				return ItemStack.EMPTY;
 			}
 
-			if (slotStack.func_190926_b()) {
-				slot.putStack(ItemStack.field_190927_a);
+			if (slotStack.isEmpty()) {
+				slot.putStack(ItemStack.EMPTY);
 			} else {
 				slot.onSlotChanged();
 			}
 
-			if (slotStack.func_190916_E() == itemStack.func_190916_E()) {
-				return ItemStack.field_190927_a;
+			if (slotStack.getCount() == itemStack.getCount()) {
+				return ItemStack.EMPTY;
 			}
 
-			ItemStack resultStack = slot.func_190901_a(player, slotStack);
+			ItemStack resultStack = slot.onTake(player, slotStack);
 			if (slotIndex == CRAFTING_RESULT_SLOT) {
 				player.dropItem(resultStack, false);
 			}
@@ -102,4 +102,8 @@ public class ContainerInventoryCrafting extends Container {
 		return slot.inventory != craftResult && super.canMergeSlot(itemStack, slot);
 	}
 
+	@Override
+	public InventoryCrafting getCraftMatrix() {
+		return craftMatrix;
+	}
 }

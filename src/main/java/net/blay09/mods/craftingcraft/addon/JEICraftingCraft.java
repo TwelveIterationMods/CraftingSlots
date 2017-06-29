@@ -10,9 +10,8 @@ import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nonnull;
 
-@SuppressWarnings("unused")
 @JEIPlugin
-public class JEICraftingCraft extends BlankModPlugin {
+public class JEICraftingCraft implements IModPlugin {
 
     @Override
     public void register(@Nonnull IModRegistry registry) {
@@ -20,8 +19,8 @@ public class JEICraftingCraft extends BlankModPlugin {
         transferRegistry.addRecipeTransferHandler(ContainerPortableCrafting.class, VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 36);
         transferRegistry.addRecipeTransferHandler(ContainerInventoryCrafting.class, VanillaRecipeCategoryUid.CRAFTING, 0, 9, 9, 27);
 
-        registry.addRecipeCategoryCraftingItem(new ItemStack(CraftingCraft.portableCraftingTable, 1, 0), VanillaRecipeCategoryUid.CRAFTING);
-        registry.addRecipeCategoryCraftingItem(new ItemStack(CraftingCraft.portableCraftingTable, 1, 1), VanillaRecipeCategoryUid.CRAFTING);
+        registry.addRecipeCatalyst(new ItemStack(CraftingCraft.itemPortableCraftingTable, 1, 0), VanillaRecipeCategoryUid.CRAFTING);
+        registry.addRecipeCatalyst(new ItemStack(CraftingCraft.itemPortableCraftingTable, 1, 1), VanillaRecipeCategoryUid.CRAFTING);
     }
 
 }

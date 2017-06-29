@@ -4,12 +4,14 @@ import net.blay09.mods.craftingcraft.container.ContainerInventoryCrafting;
 import net.blay09.mods.craftingtweaks.api.CraftingTweaksAPI;
 import net.blay09.mods.craftingtweaks.api.DefaultProviderV2;
 import net.blay09.mods.craftingtweaks.api.TweakProvider;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.client.FMLClientHandler;
 
 import java.util.List;
 
@@ -45,7 +47,7 @@ public class InventoryCraftingTweakProvider implements TweakProvider<ContainerIn
             container.transferStackInSlot(entityPlayer, i);
             if(forced && container.inventorySlots.get(i).getHasStack()) {
                 entityPlayer.dropItem(container.inventorySlots.get(i).getStack(), false);
-                container.inventorySlots.get(i).putStack(ItemStack.field_190927_a);
+                container.inventorySlots.get(i).putStack(ItemStack.EMPTY);
             }
         }
     }
@@ -87,9 +89,10 @@ public class InventoryCraftingTweakProvider implements TweakProvider<ContainerIn
 
     @Override
     public void initGui(GuiContainer guiContainer, List<GuiButton> list) {
-        list.add(CraftingTweaksAPI.createRotateButton(0, guiContainer.width / 2 + 10, guiContainer.height / 2 - 49));
-        list.add(CraftingTweaksAPI.createBalanceButton(0, guiContainer.width / 2 + 28, guiContainer.height / 2 - 49));
-        list.add(CraftingTweaksAPI.createClearButton(0, guiContainer.width / 2 + 46, guiContainer.height / 2 - 49));
+        Slot firstSlot = guiContainer.inventorySlots.getSlot(getCraftingGridStart(Minecraft.getMinecraft().player, (ContainerInventoryCrafting) guiContainer.inventorySlots, 0));
+        list.add(CraftingTweaksAPI.createRotateButtonRelative(0, guiContainer, firstSlot.xPos, firstSlot.yPos - 18));
+        list.add(CraftingTweaksAPI.createBalanceButtonRelative(0, guiContainer, firstSlot.xPos + 18, firstSlot.yPos - 18));
+        list.add(CraftingTweaksAPI.createClearButtonRelative(0, guiContainer, firstSlot.xPos + 36, firstSlot.yPos - 18));
     }
 
     @Override

@@ -1,0 +1,13 @@
+{
+  "result": {
+    "item": "craftingcraft:portable_crafting_table",
+    "data": 1
+  },
+  "type": "crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "craftingcraft:portable_crafting_table",
+      "data": 0
+    }
+  ]
+}

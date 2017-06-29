@@ -5,7 +5,7 @@ import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 
-public class ContainerPortableCrafting extends Container {
+public class ContainerPortableCrafting extends Container implements ContainerWithCraftMatrix {
 
     private final EntityPlayer entityPlayer;
     private final InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
@@ -34,7 +34,7 @@ public class ContainerPortableCrafting extends Container {
 
     @Override
     public void onCraftMatrixChanged(IInventory inventory) {
-        craftResult.setInventorySlotContents(0, CraftingManager.getInstance().findMatchingRecipe(craftMatrix, entityPlayer.world));
+        craftResult.setInventorySlotContents(0, CraftingManager.findMatchingResult(craftMatrix, entityPlayer.world));
     }
 
     @Override
@@ -47,7 +47,7 @@ public class ContainerPortableCrafting extends Container {
         super.onContainerClosed(entityPlayer);
         for (int i = 0; i < 9; i++) {
             ItemStack itemStack = craftMatrix.removeStackFromSlot(i);
-            if (!itemStack.func_190926_b()) {
+            if (!itemStack.isEmpty()) {
                 if (!entityPlayer.inventory.addItemStackToInventory(itemStack) && !entityPlayer.world.isRemote) {
                     entityPlayer.dropItem(itemStack, false);
                 }
@@ -63,7 +63,7 @@ public class ContainerPortableCrafting extends Container {
         final int CRAFTING_RESULT_SLOT = 0;
         final int HOTBAR_START = 37;
         final int HOTBAR_END = 46;
-        ItemStack itemStack = ItemStack.field_190927_a;
+        ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(slotIndex);
         if (slot != null && slot.getHasStack()) {
             ItemStack slotStack = slot.getStack();
@@ -72,33 +72,33 @@ public class ContainerPortableCrafting extends Container {
             if (slotIndex == CRAFTING_RESULT_SLOT) {
                 slotStack.getItem().onCreated(slotStack, player.world, player);
                 if (!this.mergeItemStack(slotStack, CRAFTING_GRID_END, HOTBAR_END, true)) {
-                    return ItemStack.field_190927_a;
+                    return ItemStack.EMPTY;
                 }
 
                 slot.onSlotChange(slotStack, itemStack);
             } else if (slotIndex >= CRAFTING_GRID_END && slotIndex < HOTBAR_START) {
                 if (!this.mergeItemStack(slotStack, HOTBAR_START, HOTBAR_END, false)) {
-                    return ItemStack.field_190927_a;
+                    return ItemStack.EMPTY;
                 }
             } else if (slotIndex >= HOTBAR_START && slotIndex < HOTBAR_END) {
                 if (!this.mergeItemStack(slotStack, CRAFTING_GRID_END, HOTBAR_START, false)) {
-                    return ItemStack.field_190927_a;
+                    return ItemStack.EMPTY;
                 }
             } else if (!this.mergeItemStack(slotStack, CRAFTING_GRID_END, HOTBAR_END, false)) {
-                return ItemStack.field_190927_a;
+                return ItemStack.EMPTY;
             }
 
-            if (slotStack.func_190926_b()) {
-                slot.putStack(ItemStack.field_190927_a);
+            if (slotStack.isEmpty()) {
+                slot.putStack(ItemStack.EMPTY);
             } else {
                 slot.onSlotChanged();
             }
 
-            if (slotStack.func_190916_E() == itemStack.func_190916_E()) {
-                return ItemStack.field_190927_a;
+            if (slotStack.getCount() == itemStack.getCount()) {
+                return ItemStack.EMPTY;
             }
 
-            ItemStack resultStack = slot.func_190901_a(player, slotStack);
+            ItemStack resultStack = slot.onTake(player, slotStack);
             if (slotIndex == CRAFTING_RESULT_SLOT) {
                 player.dropItem(resultStack, false);
             }
@@ -112,4 +112,8 @@ public class ContainerPortableCrafting extends Container {
         return slot.inventory != craftResult && super.canMergeSlot(itemStack, slot);
     }
 
+    @Override
+    public InventoryCrafting getCraftMatrix() {
+        return craftMatrix;
+    }
 }

@@ -1,14 +1,12 @@
 package net.blay09.mods.craftingcraft.client;
 
 import net.blay09.mods.craftingcraft.CommonProxy;
-import net.blay09.mods.craftingcraft.CraftingCraft;
 import net.blay09.mods.craftingcraft.client.gui.GuiPortableCrafting;
 import net.blay09.mods.craftingcraft.client.gui.GuiInventoryCrafting;
 import net.blay09.mods.craftingcraft.net.MessagePortableCrafting;
 import net.blay09.mods.craftingcraft.net.NetworkHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiInventory;
-import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -36,9 +34,6 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void init(FMLInitializationEvent event) {
         super.init(event);
-
-        RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
-        CraftingCraft.portableCraftingTable.registerModels(renderItem.getItemModelMesher());
 
         keyPortableCrafting = new KeyBinding("key.craftingcraft.portable_crafting", Keyboard.KEY_C, "key.categories.craftingcraft");
         keyBackToInventory = new KeyBinding("key.craftingcraft.back_to_inventory", 0, "key.categories.craftingcraft");

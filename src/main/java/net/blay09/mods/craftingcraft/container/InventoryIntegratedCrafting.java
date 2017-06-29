@@ -30,21 +30,21 @@ public class InventoryIntegratedCrafting extends InventoryCrafting {
     public ItemStack decrStackSize(int i, int count) {
         ItemStack oldStack = inventoryPlayer.getStackInSlot(getInventorySlot(i));
         ItemStack itemStack = oldStack;
-        if (!itemStack.func_190926_b()) {
-            if (itemStack.func_190916_E() <= count) {
-                inventoryPlayer.setInventorySlotContents(getInventorySlot(i), ItemStack.field_190927_a);
+        if (!itemStack.isEmpty()) {
+            if (itemStack.getCount() <= count) {
+                inventoryPlayer.setInventorySlotContents(getInventorySlot(i), ItemStack.EMPTY);
                 eventHandler.onCraftMatrixChanged(this);
                 return itemStack;
             } else {
                 itemStack = itemStack.splitStack(count);
-                if (oldStack.func_190916_E() == 0) {
-                    inventoryPlayer.setInventorySlotContents(getInventorySlot(i), ItemStack.field_190927_a);
+                if (oldStack.isEmpty()) {
+                    inventoryPlayer.setInventorySlotContents(getInventorySlot(i), ItemStack.EMPTY);
                 }
                 eventHandler.onCraftMatrixChanged(this);
                 return itemStack;
             }
         } else {
-            return ItemStack.field_190927_a;
+            return ItemStack.EMPTY;
         }
     }
 

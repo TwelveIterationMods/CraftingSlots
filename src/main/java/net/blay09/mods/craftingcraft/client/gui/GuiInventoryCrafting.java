@@ -19,7 +19,7 @@ public class GuiInventoryCrafting extends GuiContainer {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        fontRendererObj.drawString(I18n.format(CraftingCraft.MOD_ID + ":container.inventory_crafting_table"), 8, ySize - 96 + 1, 4210752);
+        fontRenderer.drawString(I18n.format(CraftingCraft.MOD_ID + ":container.inventory_crafting_table"), 8, ySize - 96 + 1, 4210752);
     }
 
     @Override
