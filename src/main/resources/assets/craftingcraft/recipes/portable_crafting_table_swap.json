@@ -3,7 +3,7 @@
     "item": "craftingcraft:portable_crafting_table",
     "data": 0
   },
-  "type": "crafting_shapeless",
+  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
       "item": "craftingcraft:portable_crafting_table",

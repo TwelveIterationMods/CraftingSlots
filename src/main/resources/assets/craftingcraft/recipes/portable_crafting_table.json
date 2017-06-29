@@ -10,11 +10,11 @@
   ],
   "key": {
     "C": {
-      "type": "ore",
+      "type": "forge:ore_dict",
       "ore": "workbench"
     },
     "S": {
-      "type": "ore",
+      "type": "forge:ore_dict",
       "ore": "stickWood"
     }
   }
