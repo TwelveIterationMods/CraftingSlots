@@ -1,33 +1,39 @@
 package net.blay09.mods.craftingcraft.container;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.*;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.CraftResultInventory;
+import net.minecraft.inventory.CraftingInventory;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.CraftingResultSlot;
+import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
 
-public class ContainerPortableCrafting extends Container implements ContainerWithCraftMatrix {
+public class PortableCraftingContainer extends Container implements ContainerWithCraftMatrix {
 
-    private final EntityPlayer entityPlayer;
-    private final InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
-    private final IInventory craftResult = new InventoryCraftResult();
+    private final PlayerEntity entityPlayer;
+    private final CraftingInventory craftMatrix = new CraftingInventory(this, 3, 3);
+    private final IInventory craftResult = new CraftResultInventory();
 
-    public ContainerPortableCrafting(EntityPlayer entityPlayer) {
-        this.entityPlayer = entityPlayer;
-        addSlotToContainer(new SlotCrafting(entityPlayer, craftMatrix, craftResult, 0, 124, 35));
+    public PortableCraftingContainer(int windowId, PlayerInventory playerInventory) {
+        super(ModContainers.portableCrafting, windowId);
+        this.entityPlayer = playerInventory.player;
+        addSlot(new CraftingResultSlot(entityPlayer, craftMatrix, craftResult, 0, 124, 35));
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                addSlotToContainer(new Slot(craftMatrix, j + i * 3, 30 + j * 18, 17 + i * 18));
+                addSlot(new Slot(craftMatrix, j + i * 3, 30 + j * 18, 17 + i * 18));
             }
         }
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 9; j++) {
-                addSlotToContainer(new Slot(entityPlayer.inventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+                addSlot(new Slot(entityPlayer.inventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
             }
         }
         for (int i = 0; i < 9; i++) {
-            addSlotToContainer(new Slot(entityPlayer.inventory, i, 8 + i * 18, 142));
+            addSlot(new Slot(entityPlayer.inventory, i, 8 + i * 18, 142));
         }
         onCraftMatrixChanged(craftMatrix);
     }
@@ -38,26 +44,7 @@ public class ContainerPortableCrafting extends Container implements ContainerWit
     }
 
     @Override
-    public boolean canInteractWith(EntityPlayer entityPlayer) {
-        return true;
-    }
-
-    @Override
-    public void onContainerClosed(EntityPlayer entityPlayer) {
-        super.onContainerClosed(entityPlayer);
-        for (int i = 0; i < 9; i++) {
-            ItemStack itemStack = craftMatrix.removeStackFromSlot(i);
-            if (!itemStack.isEmpty()) {
-                if (!entityPlayer.inventory.addItemStackToInventory(itemStack) && !entityPlayer.world.isRemote) {
-                    entityPlayer.dropItem(itemStack, false);
-                }
-            }
-        }
-        entityPlayer.inventoryContainer.detectAndSendChanges();
-    }
-
-    @Override
-    public ItemStack transferStackInSlot(EntityPlayer player, int slotIndex) {
+    public ItemStack transferStackInSlot(PlayerEntity player, int slotIndex) {
         final int CRAFTING_GRID_START = 1;
         final int CRAFTING_GRID_END = 10;
         final int CRAFTING_RESULT_SLOT = 0;
@@ -113,7 +100,7 @@ public class ContainerPortableCrafting extends Container implements ContainerWit
     }
 
     @Override
-    public InventoryCrafting getCraftMatrix() {
+    public CraftingInventory getCraftMatrix() {
         return craftMatrix;
     }
 }

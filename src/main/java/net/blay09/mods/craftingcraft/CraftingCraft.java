@@ -2,6 +2,8 @@ package net.blay09.mods.craftingcraft;
 
 import net.blay09.mods.craftingcraft.client.ClientProxy;
 import net.blay09.mods.craftingcraft.client.ModKeybindings;
+import net.blay09.mods.craftingcraft.client.ModScreens;
+import net.blay09.mods.craftingcraft.container.ModContainers;
 import net.blay09.mods.craftingcraft.item.ModItems;
 import net.blay09.mods.craftingcraft.network.NetworkHandler;
 import net.minecraft.inventory.container.ContainerType;

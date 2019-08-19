@@ -1,13 +1,11 @@
 package net.blay09.mods.craftingcraft.container;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
+import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryCrafting;
+import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.ITextComponent;
 
-public class InventoryCraftingWrapper extends InventoryCrafting {
+public class InventoryCraftingWrapper extends CraftingInventory {
 
     private final IInventory inventory;
     private final Container eventHandler;
@@ -47,21 +45,6 @@ public class InventoryCraftingWrapper extends InventoryCrafting {
     }
 
     @Override
-    public String getName() {
-        return inventory.getName();
-    }
-
-    @Override
-    public ITextComponent getDisplayName() {
-        return inventory.getDisplayName();
-    }
-
-    @Override
-    public boolean hasCustomName() {
-        return inventory.hasCustomName();
-    }
-
-    @Override
     public int getInventoryStackLimit() {
         return inventory.getInventoryStackLimit();
     }
@@ -72,38 +55,8 @@ public class InventoryCraftingWrapper extends InventoryCrafting {
     }
 
     @Override
-    public boolean isUsableByPlayer(EntityPlayer entityPlayer) {
-        return inventory.isUsableByPlayer(entityPlayer);
-    }
-
-    @Override
-    public void openInventory(EntityPlayer entityPlayer) {
-        inventory.openInventory(entityPlayer);
-    }
-
-    @Override
-    public void closeInventory(EntityPlayer entityPlayer) {
-        inventory.closeInventory(entityPlayer);
-    }
-
-    @Override
     public boolean isItemValidForSlot(int i, ItemStack itemStack) {
         return inventory.isItemValidForSlot(i, itemStack);
-    }
-
-    @Override
-    public int getField(int id) {
-        return inventory.getField(id);
-    }
-
-    @Override
-    public void setField(int id, int value) {
-        inventory.setField(id, value);
-    }
-
-    @Override
-    public int getFieldCount() {
-        return inventory.getFieldCount();
     }
 
     @Override

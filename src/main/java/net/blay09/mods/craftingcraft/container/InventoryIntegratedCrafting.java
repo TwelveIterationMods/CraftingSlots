@@ -1,44 +1,44 @@
 package net.blay09.mods.craftingcraft.container;
 
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.InventoryCrafting;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.CraftingInventory;
+import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 
-public class InventoryIntegratedCrafting extends InventoryCrafting {
+public class InventoryIntegratedCrafting extends CraftingInventory {
 
     private final Container eventHandler;
-    private final InventoryPlayer inventoryPlayer;
+    private final PlayerInventory playerInventory;
 
-    public InventoryIntegratedCrafting(Container eventHandler, InventoryPlayer inventoryPlayer) {
+    public InventoryIntegratedCrafting(Container eventHandler, PlayerInventory playerInventory) {
         super(eventHandler, 3, 3);
         this.eventHandler = eventHandler;
-        this.inventoryPlayer = inventoryPlayer;
+        this.playerInventory = playerInventory;
     }
 
     @Override
     public ItemStack getStackInSlot(int i) {
-        return inventoryPlayer.getStackInSlot(getInventorySlot(i));
+        return playerInventory.getStackInSlot(getInventorySlot(i));
     }
 
     @Override
     public ItemStack removeStackFromSlot(int index) {
-        return inventoryPlayer.removeStackFromSlot(getInventorySlot(index));
+        return playerInventory.removeStackFromSlot(getInventorySlot(index));
     }
 
     @Override
     public ItemStack decrStackSize(int i, int count) {
-        ItemStack oldStack = inventoryPlayer.getStackInSlot(getInventorySlot(i));
+        ItemStack oldStack = playerInventory.getStackInSlot(getInventorySlot(i));
         ItemStack itemStack = oldStack;
         if (!itemStack.isEmpty()) {
             if (itemStack.getCount() <= count) {
-                inventoryPlayer.setInventorySlotContents(getInventorySlot(i), ItemStack.EMPTY);
+                playerInventory.setInventorySlotContents(getInventorySlot(i), ItemStack.EMPTY);
                 eventHandler.onCraftMatrixChanged(this);
                 return itemStack;
             } else {
-                itemStack = itemStack.splitStack(count);
+                itemStack = itemStack.split(count);
                 if (oldStack.isEmpty()) {
-                    inventoryPlayer.setInventorySlotContents(getInventorySlot(i), ItemStack.EMPTY);
+                    playerInventory.setInventorySlotContents(getInventorySlot(i), ItemStack.EMPTY);
                 }
                 eventHandler.onCraftMatrixChanged(this);
                 return itemStack;
@@ -50,7 +50,7 @@ public class InventoryIntegratedCrafting extends InventoryCrafting {
 
     @Override
     public void setInventorySlotContents(int i, ItemStack itemStack) {
-        inventoryPlayer.setInventorySlotContents(getInventorySlot(i), itemStack);
+        playerInventory.setInventorySlotContents(getInventorySlot(i), itemStack);
         eventHandler.onCraftMatrixChanged(this);
     }
 

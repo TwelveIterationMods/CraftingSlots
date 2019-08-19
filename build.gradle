@@ -77,6 +77,9 @@ dependencies {
             name   : "forge",
             version: "${minecraft_version}-${forge_version}"
     ])
+
+    compile "crafting-tweaks:CraftingTweaks_1.14.4:10.1.3"
+    compile "jei:jei:1.14.4:6.0.0.10"
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..

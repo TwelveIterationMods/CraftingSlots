@@ -1,9 +1,9 @@
 package net.blay09.mods.craftingcraft.network;
 
-import net.blay09.mods.craftingcraft.container.ContainerPortableCrafting;
+import net.blay09.mods.craftingcraft.container.PortableCraftingContainer;
 import net.blay09.mods.craftingcraft.client.gui.PortableCraftingScreen;
 import net.blay09.mods.craftingcraft.client.gui.InventoryCraftingScreen;
-import net.blay09.mods.craftingcraft.container.ContainerInventoryCrafting;
+import net.blay09.mods.craftingcraft.container.InventoryCraftingContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
@@ -19,9 +19,9 @@ public class GuiHandler implements IGuiHandler {
     @Nullable
     public Object getServerGuiElement(int id, EntityPlayer entityPlayer, World world, int x, int y, int z) {
         if(id == GUI_PORTABLE_CRAFTING) {
-            return new ContainerPortableCrafting(entityPlayer);
+            return new PortableCraftingContainer(entityPlayer);
         } else if(id == GUI_INVENTORY_CRAFTING) {
-            return new ContainerInventoryCrafting(entityPlayer);
+            return new InventoryCraftingContainer(entityPlayer);
         }
         return null;
     }
@@ -30,9 +30,9 @@ public class GuiHandler implements IGuiHandler {
     @Nullable
     public Object getClientGuiElement(int id, EntityPlayer entityPlayer, World world, int x, int y, int z) {
         if(id == GUI_PORTABLE_CRAFTING) {
-            return new PortableCraftingScreen(new ContainerPortableCrafting(entityPlayer));
+            return new PortableCraftingScreen(new PortableCraftingContainer(entityPlayer));
         } else if(id == GUI_INVENTORY_CRAFTING) {
-            return new InventoryCraftingScreen(new ContainerInventoryCrafting(entityPlayer));
+            return new InventoryCraftingScreen(new InventoryCraftingContainer(entityPlayer));
         }
         return null;
     }

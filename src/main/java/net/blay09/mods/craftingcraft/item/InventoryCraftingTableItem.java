@@ -1,19 +1,30 @@
 package net.blay09.mods.craftingcraft.item;
 
-import net.blay09.mods.craftingcraft.CraftingCraft;
-import net.blay09.mods.craftingcraft.network.GuiHandler;
+import net.blay09.mods.craftingcraft.container.InventoryCraftingContainer;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
 public class InventoryCraftingTableItem extends PortableCraftingTableItem {
 
     public static final String name = "inventory_crafting_table";
-    public static final ResourceLocation registryName = new ResourceLocation(CraftingCraft.MOD_ID, name);
 
     @Override
-    protected void openPortableCrafting(PlayerEntity entityPlayer, ItemStack itemStack) {
-        entityPlayer.openGui(CraftingCraft.instance, GuiHandler.GUI_INVENTORY_CRAFTING, entityPlayer.world, (int) entityPlayer.posX, (int) entityPlayer.posY, (int) entityPlayer.posZ);
+    protected INamedContainerProvider getCraftingContainerProvider() {
+        return new INamedContainerProvider() {
+            @Override
+            public ITextComponent getDisplayName() {
+                return new TranslationTextComponent("container.craftingcraft:inventory_crafting");
+            }
+
+            @Override
+            public Container createMenu(int windowId, PlayerInventory playerInventory, PlayerEntity playerEntity) {
+                return new InventoryCraftingContainer(windowId, playerInventory);
+            }
+        };
     }
 
 }
