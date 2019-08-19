@@ -3,8 +3,6 @@ package net.blay09.mods.craftingcraft.addon;
 import net.blay09.mods.craftingcraft.CraftingCraft;
 import net.blay09.mods.craftingcraft.container.ContainerInventoryCrafting;
 import net.blay09.mods.craftingcraft.container.ContainerPortableCrafting;
-import net.blay09.mods.craftingtweaks.api.CraftingTweaksAPI;
-import net.blay09.mods.craftingtweaks.api.SimpleTweakProvider;
 
 @SuppressWarnings("unused")
 public class CraftingTweaksAddon {

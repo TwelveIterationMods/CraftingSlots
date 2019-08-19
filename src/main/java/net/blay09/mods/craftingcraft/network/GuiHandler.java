@@ -1,8 +1,8 @@
-package net.blay09.mods.craftingcraft.net;
+package net.blay09.mods.craftingcraft.network;
 
 import net.blay09.mods.craftingcraft.container.ContainerPortableCrafting;
-import net.blay09.mods.craftingcraft.client.gui.GuiPortableCrafting;
-import net.blay09.mods.craftingcraft.client.gui.GuiInventoryCrafting;
+import net.blay09.mods.craftingcraft.client.gui.PortableCraftingScreen;
+import net.blay09.mods.craftingcraft.client.gui.InventoryCraftingScreen;
 import net.blay09.mods.craftingcraft.container.ContainerInventoryCrafting;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -30,9 +30,9 @@ public class GuiHandler implements IGuiHandler {
     @Nullable
     public Object getClientGuiElement(int id, EntityPlayer entityPlayer, World world, int x, int y, int z) {
         if(id == GUI_PORTABLE_CRAFTING) {
-            return new GuiPortableCrafting(new ContainerPortableCrafting(entityPlayer));
+            return new PortableCraftingScreen(new ContainerPortableCrafting(entityPlayer));
         } else if(id == GUI_INVENTORY_CRAFTING) {
-            return new GuiInventoryCrafting(new ContainerInventoryCrafting(entityPlayer));
+            return new InventoryCraftingScreen(new ContainerInventoryCrafting(entityPlayer));
         }
         return null;
     }

@@ -2,16 +2,17 @@ package net.blay09.mods.craftingcraft.client.gui;
 
 import net.blay09.mods.craftingcraft.CraftingCraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
-public class GuiInventoryCrafting extends GuiContainer {
+public class InventoryCraftingScreen extends ContainerScreen {
 
     private final ResourceLocation texture = new ResourceLocation(CraftingCraft.MOD_ID, "textures/gui/portable_crafting_table.png");
 
-    public GuiInventoryCrafting(Container container) {
+    public InventoryCraftingScreen(Container container) {
         super(container);
         xSize = 218;
         ySize = 102;

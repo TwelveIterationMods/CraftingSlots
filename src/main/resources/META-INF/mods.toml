@@ -1,0 +1,13 @@
+modLoader="javafml"
+loaderVersion="[24,)"
+issueTrackerURL="https://github.com/blay09/CraftingCraft/issues"
+displayURL="https://minecraft.curseforge.com/projects/craftingcraft"
+authors="BlayTheNinth"
+
+[[mods]]
+modId="craftingcraft"
+version="${file.jarVersion}"
+displayName="CraftingCraft"
+description='''
+Adds an inventory crafting table and a normal portable one.
+'''
