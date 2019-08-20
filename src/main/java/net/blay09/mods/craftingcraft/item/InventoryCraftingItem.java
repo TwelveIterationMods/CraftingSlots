@@ -8,16 +8,16 @@ import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class InventoryCraftingTableItem extends PortableCraftingTableItem {
+public class InventoryCraftingItem extends PortableCraftingItem {
 
-    public static final String name = "inventory_crafting_table";
+    public static final String name = "inventory_crafting";
 
     @Override
     protected INamedContainerProvider getCraftingContainerProvider() {
         return new INamedContainerProvider() {
             @Override
             public ITextComponent getDisplayName() {
-                return new TranslationTextComponent("container.craftingcraft:inventory_crafting");
+                return new TranslationTextComponent("container.craftingcraft.inventory_crafting");
             }
 
             @Override

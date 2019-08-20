@@ -20,7 +20,7 @@ public class MessagePortableCrafting {
             for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
                 ItemStack itemStack = player.inventory.getStackInSlot(i);
                 if (isPortableCraftingTable(itemStack)) {
-                    // TODO PortableCraftingTableItem.openPortableCrafting(player, itemStack);
+                    // TODO PortableCraftingItem.openPortableCrafting(player, itemStack);
                 }
             }
         });

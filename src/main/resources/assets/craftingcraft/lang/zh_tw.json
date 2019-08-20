@@ -1,8 +1,8 @@
 {
-    "item.craftingcraft:inventoryCraftingTable": "背包工作台",
-    "item.craftingcraft:portableCraftingTable": "便攜工作台",
+    "item.craftingcraft.inventoryCraftingTable": "背包工作台",
+    "item.craftingcraft.portableCraftingTable": "便攜工作台",
 
-    "craftingcraft:container.inventoryCraftingTable": "背包合成",
+    "craftingcraft.container.inventoryCraftingTable": "背包合成",
 
     "key.categories.craftingcraft": "CraftingCraft",
     "key.craftingcraft.portableCrafting": "打開便攜工作台",

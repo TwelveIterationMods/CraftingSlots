@@ -11,7 +11,7 @@ import net.minecraft.util.text.ITextComponent;
 
 public class InventoryCraftingScreen extends ContainerScreen<InventoryCraftingContainer> {
 
-    private final ResourceLocation texture = new ResourceLocation(CraftingCraft.MOD_ID, "textures/gui/portable_crafting_table.png");
+    private final ResourceLocation texture = new ResourceLocation(CraftingCraft.MOD_ID, "textures/gui/portable_crafting.png");
 
     public InventoryCraftingScreen(InventoryCraftingContainer container, PlayerInventory playerInventory, ITextComponent displayName) {
         super(container, playerInventory, displayName);
@@ -21,7 +21,7 @@ public class InventoryCraftingScreen extends ContainerScreen<InventoryCraftingCo
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        minecraft.fontRenderer.drawString(I18n.format(CraftingCraft.MOD_ID + ":container.inventory_crafting_table"), 8, ySize - 96 + 1, 4210752);
+        minecraft.fontRenderer.drawString(I18n.format("container.craftingcraft.inventory_crafting"), 8, ySize - 96 + 1, 4210752);
     }
 
     @Override

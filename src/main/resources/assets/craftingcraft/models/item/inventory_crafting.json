@@ -1,7 +1,7 @@
 {
   "parent": "builtin/generated",
   "textures": {
-    "layer0": "craftingcraft:items/inventory_crafting_table"
+    "layer0": "craftingcraft:items/inventory_crafting"
   },
   "display": {
     "thirdperson": {

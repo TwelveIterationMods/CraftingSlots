@@ -28,7 +28,7 @@ public class InventoryCraftingTweakProvider implements TweakProvider<InventoryCr
 
     @Override
     public int getCraftingGridStart(PlayerEntity entityPlayer, InventoryCraftingContainer container, int id) {
-        return 0;
+        return 1;
     }
 
     @Override
@@ -86,7 +86,8 @@ public class InventoryCraftingTweakProvider implements TweakProvider<InventoryCr
 
     @Override
     public void initGui(ContainerScreen<InventoryCraftingContainer> containerScreen, GuiScreenEvent.InitGuiEvent initGuiEvent) {
-        Slot firstSlot = containerScreen.getContainer().getSlot(getCraftingGridStart(Minecraft.getInstance().player, containerScreen.getContainer(), 0));
+        int craftingGridStart = getCraftingGridStart(Minecraft.getInstance().player, containerScreen.getContainer(), 0);
+        Slot firstSlot = containerScreen.getContainer().getSlot(craftingGridStart);
         initGuiEvent.addWidget(CraftingTweaksAPI.createRotateButtonRelative(0, containerScreen, firstSlot.xPos, firstSlot.yPos - 18));
         initGuiEvent.addWidget(CraftingTweaksAPI.createBalanceButtonRelative(0, containerScreen, firstSlot.xPos + 18, firstSlot.yPos - 18));
         initGuiEvent.addWidget(CraftingTweaksAPI.createClearButtonRelative(0, containerScreen, firstSlot.xPos + 36, firstSlot.yPos - 18));

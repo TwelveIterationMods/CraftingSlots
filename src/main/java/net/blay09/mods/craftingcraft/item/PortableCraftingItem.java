@@ -2,6 +2,7 @@ package net.blay09.mods.craftingcraft.item;
 
 import net.blay09.mods.craftingcraft.CraftingCraft;
 import net.blay09.mods.craftingcraft.container.InventoryCraftingContainer;
+import net.blay09.mods.craftingcraft.container.PortableCraftingContainer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -18,11 +19,11 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class PortableCraftingTableItem extends Item {
+public class PortableCraftingItem extends Item {
 
-    public static final String name = "portable_crafting_table";
+    public static final String name = "portable_crafting";
 
-    public PortableCraftingTableItem() {
+    public PortableCraftingItem() {
         super(new Item.Properties().group(CraftingCraft.itemGroup).maxStackSize(1));
     }
 
@@ -52,12 +53,12 @@ public class PortableCraftingTableItem extends Item {
         return new INamedContainerProvider() {
             @Override
             public ITextComponent getDisplayName() {
-                return new TranslationTextComponent("container.craftingcraft:inventory_crafting");
+                return new TranslationTextComponent("container.craftingcraft.portable_crafting");
             }
 
             @Override
             public Container createMenu(int windowId, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-                return new InventoryCraftingContainer(windowId, playerInventory);
+                return new PortableCraftingContainer(windowId, playerInventory);
             }
         };
     }

@@ -9,7 +9,7 @@
   ],
   "key": {
     "C": {
-      "item": "minecraft:workbench"
+      "item": "minecraft:crafting_table"
     },
     "S": {
       "tag": "forge:rods/wooden"
