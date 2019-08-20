@@ -50,17 +50,7 @@ public class PortableCraftingItem extends Item {
     }
 
     protected INamedContainerProvider getCraftingContainerProvider() {
-        return new INamedContainerProvider() {
-            @Override
-            public ITextComponent getDisplayName() {
-                return new TranslationTextComponent("container.craftingcraft.portable_crafting");
-            }
-
-            @Override
-            public Container createMenu(int windowId, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-                return new PortableCraftingContainer(windowId, playerInventory);
-            }
-        };
+        return PortableCraftingContainer.provider;
     }
 
 }

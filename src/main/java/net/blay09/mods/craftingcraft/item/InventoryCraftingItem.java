@@ -14,17 +14,7 @@ public class InventoryCraftingItem extends PortableCraftingItem {
 
     @Override
     protected INamedContainerProvider getCraftingContainerProvider() {
-        return new INamedContainerProvider() {
-            @Override
-            public ITextComponent getDisplayName() {
-                return new TranslationTextComponent("container.craftingcraft.inventory_crafting");
-            }
-
-            @Override
-            public Container createMenu(int windowId, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-                return new InventoryCraftingContainer(windowId, playerInventory);
-            }
-        };
+        return InventoryCraftingContainer.provider;
     }
 
 }

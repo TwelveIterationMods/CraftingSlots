@@ -5,11 +5,27 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.CraftResultInventory;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.CraftingResultSlot;
+import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
 public class InventoryCraftingContainer extends CraftingContainer {
+
+    public static final INamedContainerProvider provider = new INamedContainerProvider() {
+        @Override
+        public ITextComponent getDisplayName() {
+            return new TranslationTextComponent("container.craftingcraft.inventory_crafting");
+        }
+
+        @Override
+        public Container createMenu(int windowId, PlayerInventory playerInventory, PlayerEntity playerEntity) {
+            return new InventoryCraftingContainer(windowId, playerInventory);
+        }
+    };
 
     private final CraftResultInventory craftResult = new CraftResultInventory();
 
@@ -115,4 +131,5 @@ public class InventoryCraftingContainer extends CraftingContainer {
     protected CraftResultInventory getCraftResult() {
         return craftResult;
     }
+
 }
