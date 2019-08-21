@@ -1,11 +1,11 @@
 {
   "result": {
-    "item": "craftingcraft:inventory_crafting_table"
+    "item": "craftingcraft:inventory_crafting"
   },
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "craftingcraft:portable_crafting_table"
+      "item": "craftingcraft:portable_crafting"
     }
   ]
 }
