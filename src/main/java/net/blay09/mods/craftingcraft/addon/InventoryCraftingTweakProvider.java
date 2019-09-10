@@ -10,6 +10,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.GuiScreenEvent;
 
 public class InventoryCraftingTweakProvider implements TweakProvider<InventoryCraftingContainer> {
@@ -85,6 +87,7 @@ public class InventoryCraftingTweakProvider implements TweakProvider<InventoryCr
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
     public void initGui(ContainerScreen<InventoryCraftingContainer> containerScreen, GuiScreenEvent.InitGuiEvent initGuiEvent) {
         int craftingGridStart = getCraftingGridStart(Minecraft.getInstance().player, containerScreen.getContainer(), 0);
         Slot firstSlot = containerScreen.getContainer().getSlot(craftingGridStart);
