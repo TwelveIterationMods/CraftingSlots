@@ -36,22 +36,26 @@ public class ModKeybindings {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onKeyboardEvent(GuiScreenEvent.KeyboardKeyPressedEvent event) {
         Minecraft minecraft = Minecraft.getInstance();
-        if (keyPortableCrafting.isActiveAndMatches(InputMappings.getInputByCode(event.getKeyCode(), event.getScanCode()))) {
-            if (minecraft.currentScreen instanceof InventoryScreen) {
-                NetworkHandler.channel.sendToServer(new MessagePortableCrafting());
-            }
-        } else if (keyBackToInventory.isActiveAndMatches(InputMappings.getInputByCode(event.getKeyCode(), event.getScanCode()))) {
-            if (minecraft.currentScreen instanceof InventoryCraftingScreen || minecraft.currentScreen instanceof PortableCraftingScreen) {
-                minecraft.player.closeScreen();
-                minecraft.displayGuiScreen(new InventoryScreen(minecraft.player));
+        if (minecraft.player != null) {
+            if (keyPortableCrafting.isActiveAndMatches(InputMappings.getInputByCode(event.getKeyCode(), event.getScanCode()))) {
+                if (minecraft.currentScreen instanceof InventoryScreen) {
+                    NetworkHandler.channel.sendToServer(new MessagePortableCrafting());
+                }
+            } else if (keyBackToInventory.isActiveAndMatches(InputMappings.getInputByCode(event.getKeyCode(), event.getScanCode()))) {
+                if (minecraft.currentScreen instanceof InventoryCraftingScreen || minecraft.currentScreen instanceof PortableCraftingScreen) {
+                    minecraft.player.closeScreen();
+                    minecraft.displayGuiScreen(new InventoryScreen(minecraft.player));
+                }
             }
         }
     }
 
     @SubscribeEvent
     public static void onKeyboardEvent(InputEvent.KeyInputEvent event) {
-        if (event.getAction() == GLFW.GLFW_PRESS && keyPortableCrafting.isActiveAndMatches(InputMappings.getInputByCode(event.getKey(), event.getScanCode()))) {
-            NetworkHandler.channel.sendToServer(new MessagePortableCrafting());
+        if (Minecraft.getInstance().player != null) {
+            if (event.getAction() == GLFW.GLFW_PRESS && keyPortableCrafting.isActiveAndMatches(InputMappings.getInputByCode(event.getKey(), event.getScanCode()))) {
+                NetworkHandler.channel.sendToServer(new MessagePortableCrafting());
+            }
         }
     }
 }
