@@ -20,6 +20,13 @@ public class InventoryCraftingScreen extends ContainerScreen<InventoryCraftingCo
     }
 
     @Override
+    public void render(int mouseX, int mouseY, float partialTicks) {
+        renderBackground();
+        super.render(mouseX, mouseY, partialTicks);
+        renderHoveredToolTip(mouseX, mouseY);
+    }
+
+    @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         minecraft.fontRenderer.drawString(I18n.format("container.craftingcraft.inventory_crafting"), 8, ySize - 96 + 1, 4210752);
     }
