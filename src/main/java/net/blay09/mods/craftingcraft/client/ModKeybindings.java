@@ -52,7 +52,7 @@ public class ModKeybindings {
 
     @SubscribeEvent
     public static void onKeyboardEvent(InputEvent.KeyInputEvent event) {
-        if (Minecraft.getInstance().player != null) {
+        if (Minecraft.getInstance().player != null && Minecraft.getInstance().currentScreen == null) {
             if (event.getAction() == GLFW.GLFW_PRESS && keyPortableCrafting.isActiveAndMatches(InputMappings.getInputByCode(event.getKey(), event.getScanCode()))) {
                 NetworkHandler.channel.sendToServer(new MessagePortableCrafting());
             }
