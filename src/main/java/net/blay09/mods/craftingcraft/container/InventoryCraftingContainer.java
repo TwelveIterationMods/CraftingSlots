@@ -65,12 +65,6 @@ public class InventoryCraftingContainer extends CraftingContainer {
     }
 
     @Override
-    public void onContainerClosed(PlayerEntity playerIn) {
-        super.onContainerClosed(playerIn);
-        clearContainer(playerIn, playerIn.world, craftMatrix);
-    }
-
-    @Override
     public boolean canInteractWith(PlayerEntity playerIn) {
         return true;
     }
