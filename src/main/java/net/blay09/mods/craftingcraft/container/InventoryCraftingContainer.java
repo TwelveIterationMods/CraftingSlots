@@ -78,7 +78,7 @@ public class InventoryCraftingContainer extends CraftingContainer {
     @Override
     public ItemStack transferStackInSlot(PlayerEntity player, int slotIndex) {
         final int CRAFTING_GRID_START = 1;
-        final int CRAFTING_GRID_END = 11;
+        final int CRAFTING_GRID_END = 10;
         final int CRAFTING_RESULT_SLOT = 0;
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = inventorySlots.get(slotIndex);
