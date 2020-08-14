@@ -17,18 +17,18 @@ public class PortableCraftingScreen extends ContainerScreen<PortableCraftingCont
         super(container, playerInventory, displayName);
     }
 
-    @Override // render
-    public void func_230430_a_(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
-        func_230446_a_(matrixStack); // renderBackground
-        super.func_230430_a_(matrixStack, mouseX, mouseY, partialTicks);
+    @Override
+    public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
+        renderBackground(matrixStack);
+        super.render(matrixStack, mouseX, mouseY, partialTicks);
         func_230459_a_(matrixStack, mouseX, mouseY); // renderHoveredTooltip
     }
 
-    @Override // drawGuiContainerBackgroundLayer
-    protected void func_230450_a_(MatrixStack matrixStack, float delta, int mouseX, int mouseY) {
+    @Override
+    protected void drawGuiContainerBackgroundLayer(MatrixStack matrixStack, float delta, int mouseX, int mouseY) {
         RenderSystem.color4f(1f, 1f, 1f, 1f);
         Minecraft.getInstance().getTextureManager().bindTexture(texture);
-        func_238474_b_(matrixStack, guiLeft, guiTop, 0, 0, xSize, ySize); // blit
+        blit(matrixStack, guiLeft, guiTop, 0, 0, xSize, ySize);
     }
 
 }

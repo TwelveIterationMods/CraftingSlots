@@ -90,9 +90,9 @@ dependencies {
             version: "${minecraft_version}-${forge_version}"
     ])
 
-    compile fg.deobf("net.blay09.mods:CraftingTweaks_1.16.1:12.0.3")
-    compileOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.2:api")
-    //runtimeOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.2")
+    compile fg.deobf("net.blay09.mods:CraftingTweaks_1.16.2:12.1.0")
+    compileOnly fg.deobf("mezz.jei:jei-1.16.2:7.1.0.11:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-1.16.2:7.1.0.11")
 }
 
 jar {
