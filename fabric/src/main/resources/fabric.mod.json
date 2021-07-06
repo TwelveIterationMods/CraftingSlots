@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "id": "craftingcraft",
+  "version": "${version}",
+
+  "name": "CraftingCraft",
+  "description": "Adds an inventory crafting table and a normal portable one.",
+  "authors": [
+    "BlayTheNinth"
+  ],
+  "contact": {
+    "homepage": "https://blay09.net/",
+    "sources": "https://github.com/ModdingForBlockheads/CraftingCraft",
+    "issues": "https://github.com/ModdingForBlockheads/CraftingCraft/issues"
+  },
+
+  "license": "All Rights Reserved",
+  "icon": "assets/craftingcraft/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.blay09.mods.craftingcraft.FabricCraftingCraft"
+    ],
+    "client": [
+      "net.blay09.mods.craftingcraft.client.FabricCraftingCraftClient"
+    ],
+    "rei_plugins": [
+      "net.blay09.mods.craftingcraft.compat.RoughlyEnoughItemsIntegration"
+    ]
+  },
+  "mixins": [
+    "craftingcraft.mixins.json"
+  ],
+  "depends": {
+    "cloth-config2": ">=5.0.34",
+    "forbic-fabric": ">=1.0.0",
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16"
+  },
+  "suggests": {
+    "modmenu": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/scGAfXC"
+      }
+    }
+  }
+}

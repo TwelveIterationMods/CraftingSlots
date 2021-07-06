@@ -1,0 +1,18 @@
+{
+  "type": "crafting_shaped",
+  "result": {
+    "item": "craftingcraft:portable_crafting"
+  },
+  "pattern": [
+    " C",
+    "S "
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:crafting_table"
+    },
+    "S": {
+      "tag": "forbic:wooden_rods"
+    }
+  }
+}
