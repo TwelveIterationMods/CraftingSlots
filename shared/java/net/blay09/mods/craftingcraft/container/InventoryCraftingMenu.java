@@ -1,5 +1,6 @@
 package net.blay09.mods.craftingcraft.container;
 
+import net.blay09.mods.forbic.menu.ForbicMenuProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.Container;
@@ -11,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 
 public class InventoryCraftingMenu extends CustomCraftingMenu {
 
-    public static final MenuProvider provider = new MenuProvider() {
+    public static final MenuProvider provider = new ForbicMenuProvider() {
         @Override
         public Component getDisplayName() {
             return new TranslatableComponent("container.craftingcraft.inventory_crafting");

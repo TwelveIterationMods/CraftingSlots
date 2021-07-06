@@ -24,9 +24,6 @@
     ],
     "client": [
       "net.blay09.mods.craftingcraft.client.FabricCraftingCraftClient"
-    ],
-    "rei_plugins": [
-      "net.blay09.mods.craftingcraft.compat.RoughlyEnoughItemsIntegration"
     ]
   },
   "mixins": [
