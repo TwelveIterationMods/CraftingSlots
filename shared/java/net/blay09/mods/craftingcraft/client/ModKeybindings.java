@@ -4,7 +4,7 @@ import com.mojang.blaze3d.platform.InputConstants;
 import net.blay09.mods.craftingcraft.client.screen.InventoryCraftingScreen;
 import net.blay09.mods.craftingcraft.client.screen.PortableCraftingScreen;
 import net.blay09.mods.craftingcraft.network.PortableCraftingMessage;
-import net.blay09.mods.forbic.client.ForbicKeybindings;
+import net.blay09.mods.forbic.client.ForbicKeyBindings;
 import net.blay09.mods.forbic.client.KeyConflictContext;
 import net.blay09.mods.forbic.client.KeyModifier;
 import net.blay09.mods.forbic.network.ForbicNetworking;
@@ -13,7 +13,7 @@ import net.minecraft.client.KeyMapping;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import org.lwjgl.glfw.GLFW;
 
-public class ModKeybindings extends ForbicKeybindings {
+public class ModKeybindings extends ForbicKeyBindings {
 
     private static KeyMapping keyPortableCrafting;
     private static KeyMapping keyBackToInventory;
