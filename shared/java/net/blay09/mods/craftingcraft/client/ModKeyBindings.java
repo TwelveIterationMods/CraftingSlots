@@ -1,37 +1,37 @@
 package net.blay09.mods.craftingcraft.client;
 
 import com.mojang.blaze3d.platform.InputConstants;
+import net.blay09.mods.balm.client.keybinds.BalmKeyMappings;
+import net.blay09.mods.balm.client.keybinds.KeyConflictContext;
+import net.blay09.mods.balm.client.keybinds.KeyModifier;
+import net.blay09.mods.balm.event.client.BalmClientEvents;
 import net.blay09.mods.craftingcraft.client.screen.InventoryCraftingScreen;
 import net.blay09.mods.craftingcraft.client.screen.PortableCraftingScreen;
 import net.blay09.mods.craftingcraft.network.PortableCraftingMessage;
-import net.blay09.mods.forbic.client.ForbicKeyBindings;
-import net.blay09.mods.forbic.client.KeyConflictContext;
-import net.blay09.mods.forbic.client.KeyModifier;
-import net.blay09.mods.forbic.event.ForbicEvents;
-import net.blay09.mods.forbic.network.ForbicNetworking;
+import net.blay09.mods.balm.network.BalmNetworking;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import org.lwjgl.glfw.GLFW;
 
-public class ModKeyBindings extends ForbicKeyBindings {
+public class ModKeyBindings extends BalmKeyMappings {
 
     private static KeyMapping keyPortableCrafting;
     private static KeyMapping keyBackToInventory;
 
     public static void initialize() {
-        keyPortableCrafting = registerKeyBinding("key.craftingcraft.portable_crafting", KeyConflictContext.UNIVERSAL, KeyModifier.NONE, GLFW.GLFW_KEY_C, "key.categories.craftingcraft");
-        keyBackToInventory = registerKeyBinding("key.craftingcraft.back_to_inventory", KeyConflictContext.GUI, KeyModifier.NONE, InputConstants.UNKNOWN.getValue(), "key.categories.craftingcraft");
+        keyPortableCrafting = registerKeyMapping("key.craftingcraft.portable_crafting", KeyConflictContext.UNIVERSAL, KeyModifier.NONE, GLFW.GLFW_KEY_C, "key.categories.craftingcraft");
+        keyBackToInventory = registerKeyMapping("key.craftingcraft.back_to_inventory", KeyConflictContext.GUI, KeyModifier.NONE, InputConstants.UNKNOWN.getValue(), "key.categories.craftingcraft");
 
-        ForbicEvents.onScreenKeyPressed(ModKeyBindings::screenKeyPressed);
-        ForbicEvents.onClientTicked(ModKeyBindings::clientTicked);
+        BalmClientEvents.onScreenKeyPressed(ModKeyBindings::screenKeyPressed);
+        BalmClientEvents.onClientTicked(ModKeyBindings::clientTicked);
     }
 
     private static void clientTicked(Minecraft client) {
         if (isKeyDownIgnoreContext(keyPortableCrafting)) {
             if (client.player != null && client.screen == null) {
-                ForbicNetworking.sendToServer(new PortableCraftingMessage());
+                BalmNetworking.sendToServer(new PortableCraftingMessage());
             }
         }
     }
@@ -40,7 +40,7 @@ public class ModKeyBindings extends ForbicKeyBindings {
         Minecraft client = Minecraft.getInstance();
         if (isActiveAndMatches(keyPortableCrafting, keyCode, scanCode)) {
             if (client.player != null && client.screen instanceof InventoryScreen) {
-                ForbicNetworking.sendToServer(new PortableCraftingMessage());
+                BalmNetworking.sendToServer(new PortableCraftingMessage());
             }
         }
 

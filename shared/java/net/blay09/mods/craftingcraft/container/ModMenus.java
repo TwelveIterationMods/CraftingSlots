@@ -1,12 +1,12 @@
 package net.blay09.mods.craftingcraft.container;
 
+import net.blay09.mods.balm.menu.BalmMenus;
 import net.blay09.mods.craftingcraft.CraftingCraft;
-import net.blay09.mods.forbic.core.DeferredObject;
-import net.blay09.mods.forbic.menu.ForbicModMenus;
+import net.blay09.mods.balm.core.DeferredObject;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.MenuType;
 
-public class ModMenus extends ForbicModMenus {
+public class ModMenus extends BalmMenus {
     public static DeferredObject<MenuType<PortableCraftingMenu>> portableCrafting;
     public static DeferredObject<MenuType<InventoryCraftingMenu>> inventoryCrafting;
 

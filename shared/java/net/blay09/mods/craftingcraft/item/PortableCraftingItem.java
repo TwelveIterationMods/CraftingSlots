@@ -1,8 +1,8 @@
 package net.blay09.mods.craftingcraft.item;
 
 import net.blay09.mods.craftingcraft.container.PortableCraftingMenu;
-import net.blay09.mods.forbic.item.ForbicItem;
-import net.blay09.mods.forbic.network.ForbicNetworking;
+import net.blay09.mods.balm.item.BalmItem;
+import net.blay09.mods.balm.network.BalmNetworking;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -12,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 
-public class PortableCraftingItem extends ForbicItem {
+public class PortableCraftingItem extends BalmItem {
 
     public static final String name = "portable_crafting";
 
@@ -38,7 +38,7 @@ public class PortableCraftingItem extends ForbicItem {
 
     private void openPortableCrafting(Player player) {
         if (!player.level.isClientSide) {
-            ForbicNetworking.openGui(player, getCraftingContainerProvider());
+            BalmNetworking.openGui(player, getCraftingContainerProvider());
         }
     }
 

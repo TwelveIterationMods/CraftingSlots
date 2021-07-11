@@ -1,13 +1,13 @@
 package net.blay09.mods.craftingcraft.item;
 
 import net.blay09.mods.craftingcraft.CraftingCraft;
-import net.blay09.mods.forbic.item.ForbicItems;
+import net.blay09.mods.balm.item.BalmItems;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
-public class ModItems extends ForbicItems {
+public class ModItems extends BalmItems {
     public static final CreativeModeTab creativeModeTab = createCreativeModeTab(id(CraftingCraft.MOD_ID), () -> new ItemStack(ModItems.inventoryCraftingTable));
 
     public static Item portableCraftingTable = new PortableCraftingItem(itemProperties(creativeModeTab));

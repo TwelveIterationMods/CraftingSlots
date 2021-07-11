@@ -1,13 +1,13 @@
 package net.blay09.mods.craftingcraft.client;
 
+import net.blay09.mods.balm.client.screen.BalmScreens;
 import net.blay09.mods.craftingcraft.client.screen.InventoryCraftingScreen;
 import net.blay09.mods.craftingcraft.client.screen.PortableCraftingScreen;
 import net.blay09.mods.craftingcraft.container.ModMenus;
-import net.blay09.mods.forbic.client.ForbicModScreens;
 
-public class ModScreens extends ForbicModScreens {
+public class ModScreens extends BalmScreens {
     public static void initialize() {
-        register(ModMenus.portableCrafting.get(), PortableCraftingScreen::new);
-        register(ModMenus.inventoryCrafting.get(), InventoryCraftingScreen::new);
+        registerScreen(ModMenus.portableCrafting.get(), PortableCraftingScreen::new);
+        registerScreen(ModMenus.inventoryCrafting.get(), InventoryCraftingScreen::new);
     }
 }
