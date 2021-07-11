@@ -25,12 +25,11 @@ public class InventoryCraftingMenu extends CustomCraftingMenu {
     };
 
     private final ResultContainer craftResult = new ResultContainer();
-
-    private CraftingContainer craftMatrix;
+    private final CraftingContainer craftMatrix;
 
     public InventoryCraftingMenu(int windowId, Inventory playerInventory) {
         super(ModMenus.inventoryCrafting.get(), windowId, playerInventory);
-        Container inventoryPlayer = new PortableCraftingContainer(playerInventory, this);
+        Container portableCraftingInventory = new PortableCraftingContainer(playerInventory, this);
         craftMatrix = new InventoryCraftingContainer(this, playerInventory);
 
         addSlot(new ResultSlot(playerInventory.player, craftMatrix, craftResult, 0, 193, 38));
@@ -38,14 +37,14 @@ public class InventoryCraftingMenu extends CustomCraftingMenu {
         // Crafting Matrix
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                addSlot(new Slot(inventoryPlayer, (j + 6) + i * 9 + 9, 119 + j * 18, 20 + i * 18));
+                addSlot(new Slot(portableCraftingInventory, (j + 6) + i * 9 + 9, 119 + j * 18, 20 + i * 18));
             }
         }
 
         // Inventory
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 6; j++) {
-                addSlot(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 20 + i * 18));
+                addSlot(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 20 + i * 18));
             }
         }
 
@@ -55,7 +54,7 @@ public class InventoryCraftingMenu extends CustomCraftingMenu {
             if (i >= 6) {
                 x += 3;
             }
-            addSlot(new Slot(inventoryPlayer, i, x, 78));
+            addSlot(new Slot(playerInventory, i, x, 78));
         }
 
         slotsChanged(craftMatrix);

@@ -18,12 +18,12 @@ public class InventoryCraftingContainer extends CraftingContainer {
 
     @Override
     public ItemStack removeItemNoUpdate(int i) {
-        return playerInventory.removeItemNoUpdate(i);
+        return playerInventory.removeItemNoUpdate(getInventorySlot(i));
     }
 
     @Override
     public ItemStack getItem(int i) {
-        return playerInventory.getItem(i);
+        return playerInventory.getItem(getInventorySlot(i));
     }
 
     @Override
