@@ -50,7 +50,7 @@ dependencies {
 	// You may need to force-disable transitiveness on them.
 
 	modImplementation "net.blay09.mods:balm-fabric:1.1.0+135"
-	modImplementation("net.blay09.mods:craftingtweaks-fabric:13.0.0+11") {
+	modImplementation("net.blay09.mods:craftingtweaks-fabric:13.0.0+16") {
 		exclude(group: "net.blay09.mods")
 	}
 
