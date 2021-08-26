@@ -49,8 +49,8 @@ dependencies {
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
 
-	modImplementation "net.blay09.mods:balm-fabric:1.1.0+135"
-	modImplementation("net.blay09.mods:craftingtweaks-fabric:13.0.0+16") {
+	modImplementation "net.blay09.mods:balm-fabric:1.5.0+16"
+	modImplementation("net.blay09.mods:craftingtweaks-fabric:13.0.0+18") {
 		exclude(group: "net.blay09.mods")
 	}
 

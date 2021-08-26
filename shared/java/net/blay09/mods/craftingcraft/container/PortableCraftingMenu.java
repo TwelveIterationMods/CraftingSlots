@@ -1,6 +1,6 @@
 package net.blay09.mods.craftingcraft.container;
 
-import net.blay09.mods.balm.menu.BalmMenuProvider;
+import net.blay09.mods.balm.api.menu.BalmMenuProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.MenuProvider;

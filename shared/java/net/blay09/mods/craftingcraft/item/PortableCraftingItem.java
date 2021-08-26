@@ -1,8 +1,8 @@
 package net.blay09.mods.craftingcraft.item;
 
+import net.blay09.mods.balm.api.Balm;
+import net.blay09.mods.balm.api.item.BalmItem;
 import net.blay09.mods.craftingcraft.container.PortableCraftingMenu;
-import net.blay09.mods.balm.item.BalmItem;
-import net.blay09.mods.balm.network.BalmNetworking;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -38,7 +38,7 @@ public class PortableCraftingItem extends BalmItem {
 
     private void openPortableCrafting(Player player) {
         if (!player.level.isClientSide) {
-            BalmNetworking.openGui(player, getCraftingContainerProvider());
+            Balm.getNetworking().openGui(player, getCraftingContainerProvider());
         }
     }
 

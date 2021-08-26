@@ -1,8 +1,8 @@
 {
+  "type": "minecraft:crafting_shapeless",
   "result": {
     "item": "craftingcraft:inventory_crafting"
   },
-  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
       "item": "craftingcraft:portable_crafting"

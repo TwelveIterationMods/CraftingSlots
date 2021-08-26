@@ -1,9 +1,9 @@
 package net.blay09.mods.craftingcraft.network;
 
+import net.blay09.mods.balm.api.Balm;
 import net.blay09.mods.craftingcraft.container.InventoryCraftingMenu;
 import net.blay09.mods.craftingcraft.container.PortableCraftingMenu;
 import net.blay09.mods.craftingcraft.item.ModItems;
-import net.blay09.mods.balm.network.BalmNetworking;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Inventory;
@@ -30,9 +30,9 @@ public class PortableCraftingMessage {
 
         ItemStack itemStack = findPortableCrafting(player.getInventory());
         if (itemStack.getItem() == ModItems.inventoryCraftingTable) {
-            BalmNetworking.openGui(player, InventoryCraftingMenu.provider);
+            Balm.getNetworking().openGui(player, InventoryCraftingMenu.provider);
         } else if (itemStack.getItem() == ModItems.portableCraftingTable) {
-            BalmNetworking.openGui(player, PortableCraftingMenu.provider);
+            Balm.getNetworking().openGui(player, PortableCraftingMenu.provider);
         }
     }
 

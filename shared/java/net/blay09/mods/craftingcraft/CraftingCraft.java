@@ -1,5 +1,6 @@
 package net.blay09.mods.craftingcraft;
 
+import net.blay09.mods.balm.api.Balm;
 import net.blay09.mods.craftingcraft.container.ModMenus;
 import net.blay09.mods.craftingcraft.item.ModItems;
 import net.blay09.mods.craftingcraft.network.ModNetworking;
@@ -13,8 +14,8 @@ public class CraftingCraft {
 
     public static void initialize() {
         ModNetworking.initialize();
-        ModItems.initialize();
-        ModMenus.initialize();
+        ModItems.initialize(Balm.getItems());
+        ModMenus.initialize(Balm.getMenus());
 
         if (FabricLoader.getInstance().isModLoaded("craftingtweaks")) {
             try {
