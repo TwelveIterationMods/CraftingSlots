@@ -8,11 +8,11 @@ This mod is available for both Forge and Fabric (starting Minecraft 1.17). This 
 
 #### Forge
 
-[![Versions](http://cf.way2muchnoise.eu/versions/237581_latest.svg)](https://minecraft.curseforge.com/projects/craftingcraft) [![Downloads](http://cf.way2muchnoise.eu/full_237581_downloads.svg)](https://minecraft.curseforge.com/projects/craftingcraft)
+[![Versions](http://cf.way2muchnoise.eu/versions/237581_latest.svg)](https://www.curseforge.com/minecraft/mc-mods/craftingcraft) [![Downloads](http://cf.way2muchnoise.eu/full_237581_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/craftingcraft)
 
 #### Fabric
 
-[![Versions](http://cf.way2muchnoise.eu/versions/502646_latest.svg)](https://minecraft.curseforge.com/projects/craftingcraft-fabric) [![Downloads](http://cf.way2muchnoise.eu/full_502646_downloads.svg)](https://minecraft.curseforge.com/projects/craftingcraft-fabric)
+[![Versions](http://cf.way2muchnoise.eu/versions/502646_latest.svg)](https://www.curseforge.com/minecraft/mc-mods/craftingcraft-fabric) [![Downloads](http://cf.way2muchnoise.eu/full_502646_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/craftingcraft-fabric)
 
 ## Contributing
 
