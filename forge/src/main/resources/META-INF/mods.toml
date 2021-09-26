@@ -1,0 +1,33 @@
+modLoader="javafml"
+loaderVersion="[37,)"
+license="All rights reserved"
+issueTrackerURL="https://github.com/ModdingForBlockheads/CraftingCraft/issues"
+[[mods]]
+modId="craftingcraft"
+version="${file.jarVersion}"
+displayName="CraftingCraft"
+displayURL="https://blay09.net/mods/craftingcraft"
+logoFile="craftingcraft-icon.png"
+credits="BlayTheNinth"
+authors="BlayTheNinth"
+description='''
+Adds an inventory crafting table and a normal portable one.
+'''
+[[dependencies.craftingcraft]]
+    modId="forge"
+    mandatory=true
+    versionRange="[37,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.craftingcraft]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.17.1,1.18)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.craftingcraft]]
+    modId="craftingtweaks"
+    mandatory=false
+    versionRange="[13,)"
+    ordering="NONE"
+    side="BOTH"

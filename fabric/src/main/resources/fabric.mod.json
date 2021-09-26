@@ -15,7 +15,7 @@
   },
 
   "license": "All Rights Reserved",
-  "icon": "assets/craftingcraft/icon.png",
+  "icon": "craftingcraft-icon.png",
 
   "environment": "*",
   "entrypoints": {

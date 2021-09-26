@@ -7,7 +7,7 @@ import net.blay09.mods.craftingcraft.container.ModMenus;
 
 public class ModScreens {
     public static void initialize(BalmScreens screens) {
-        screens.registerScreen(ModMenus.portableCrafting.get(), PortableCraftingScreen::new);
-        screens.registerScreen(ModMenus.inventoryCrafting.get(), InventoryCraftingScreen::new);
+        screens.registerScreen(ModMenus.portableCrafting::get, PortableCraftingScreen::new);
+        screens.registerScreen(ModMenus.inventoryCrafting::get, InventoryCraftingScreen::new);
     }
 }
