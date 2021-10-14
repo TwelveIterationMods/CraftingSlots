@@ -26,6 +26,12 @@ Adds an inventory crafting table and a normal portable one.
     ordering="NONE"
     side="BOTH"
 [[dependencies.craftingcraft]]
+    modId="balm"
+    mandatory=true
+    versionRange="[1.6.0,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.craftingcraft]]
     modId="craftingtweaks"
     mandatory=false
     versionRange="[13,)"

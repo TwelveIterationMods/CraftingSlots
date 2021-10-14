@@ -145,7 +145,7 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
 
-    implementation fg.deobf("net.blay09.mods:balm:1.5.0+28")
+    implementation fg.deobf("net.blay09.mods:balm:1.6.0+74")
     implementation fg.deobf("net.blay09.mods:craftingtweaks:13.0.0+3")
 
 
