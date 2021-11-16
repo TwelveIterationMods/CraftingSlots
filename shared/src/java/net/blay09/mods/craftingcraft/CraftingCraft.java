@@ -15,8 +15,6 @@ public class CraftingCraft {
         ModMenus.initialize(Balm.getMenus());
 
         Balm.initializeIfLoaded("craftingtweaks", "net.blay09.mods.craftingcraft.addon.CraftingTweaksAddon");
-
-        Balm.initialize(MOD_ID);
     }
 
 }
