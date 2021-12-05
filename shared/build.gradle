@@ -15,4 +15,8 @@ dependencies {
         exclude(group: "net.fabricmc", module: "fabric-loader")
         exclude(group: "net.fabricmc.fabric-api")
     }
+    compileOnly("net.blay09.mods:craftingtweaks-fabric:${craftingtweaks_fabric_version}:dev") {
+        exclude(group: "net.fabricmc", module: "fabric-loader")
+        exclude(group: "net.fabricmc.fabric-api")
+    }
 }

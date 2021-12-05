@@ -119,6 +119,7 @@ dependencies {
 	compileOnly project(":shared")
 
     implementation fg.deobf("net.blay09.mods:balm:${balm_forge_version}")
+    implementation fg.deobf("net.blay09.mods:craftingtweaks-forge:${craftingtweaks_forge_version}")
 
     compileOnly fg.deobf("me.shedaniel.cloth:cloth-config-forge:5.0.38")
     testCompileOnly fg.deobf("me.shedaniel.cloth:cloth-config-forge:5.0.38")
