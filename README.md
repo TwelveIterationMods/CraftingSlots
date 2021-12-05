@@ -4,7 +4,7 @@ Minecraft Mod. Adds an inventory crafting table and a normal portable one.
 
 See [the license](https://github.com/ModdingForBlockheads/CraftingCraft/blob/1.17.x/LICENSE) for modpack permissions etc.
 
-This mod is available for both Forge and Fabric (starting Minecraft 1.17). This is a trial run to see if supporting both platforms is feasible.
+This mod is available for both Forge and Fabric (starting Minecraft 1.17).
 
 #### Forge
 

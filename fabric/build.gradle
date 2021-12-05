@@ -1,143 +1,176 @@
-plugins {
-	id 'fabric-loom' version '0.8-SNAPSHOT'
-	id 'maven-publish'
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net' }
+		maven { url = "https://repo.spongepowered.org/maven" }
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+		classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
+		classpath 'gradle.plugin.com.matthewprenger:CurseGradle:1.4.0'
+    }
 }
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: "org.spongepowered.mixin"
+apply plugin: 'maven-publish'
+apply plugin: "com.matthewprenger.cursegradle"
 
-sourceCompatibility = JavaVersion.VERSION_16
-targetCompatibility = JavaVersion.VERSION_16
+def buildNumber = System.getenv("GPR_BUILD_NUMBER") ? "+" + System.getenv("GPR_BUILD_NUMBER") : ""
+version = mod_version + buildNumber
 
-archivesBaseName = project.archives_base_name
-def buildNumber = System.getenv("GPR_BUILD_NUMBER") ?: "0"
-version = project.mod_version + "+" + buildNumber
-group = project.maven_group
+archivesBaseName = "${mod_id}-forge-${minecraft_version}"
+group = mod_group
 
-repositories {
-	// Add repositories to retrieve artifacts from in here.
-	// You should only use this when depending on other mods because
-	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
-	// for more information about repositories.
+minecraft {
+    mappings channel: 'official', version: minecraft_version
 
-	maven {
-		url "https://maven.pkg.github.com/ModdingForBlockheads/Balm"
-		credentials {
-			username project.findProperty("gpr.user") ?: System.getenv("GPR_USERNAME")
-			password project.findProperty("gpr.key") ?: System.getenv("GPR_TOKEN")
-		}
-	}
+    runs {
+        client {
+            workingDirectory project.file('run')
+            ideaModule "${rootProject.name}.${project.name}.main"
+            taskName "Client"
 
-	// For Cloth Config
-	maven { url "https://maven.shedaniel.me/" }
+			arg "-mixin.config=${mod_id}.mixins.json"
 
-	// For ModMenu
-	// maven { url "https://maven.terraformersmc.com/releases/" }
+            property "mixin.env.disableRefMap", "true"
+            property "mixin.debug.export", "true"
+            property "mixin.debug.export.decompile", "false"
+            property "mixin.debug.verbose", "true"
+            property "mixin.debug.dumpTargetOnFailure", "true"
+            property "mixin.checks", "true"
+            property "mixin.hotSwap", "true"
 
-	// For CurseForge
-	maven { url "https://www.cursemaven.com" }
-}
+            property 'forge.logging.console.level', 'debug'
 
-dependencies {
-	// To change the versions see the gradle.properties file
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	// mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-	mappings minecraft.officialMojangMappings()
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+            mods {
+                "${mod_id}" {
+                    source sourceSets.main
+					source project(":shared").sourceSets.main
+                }
+            }
+        }
 
-	// Fabric API. This is technically optional, but you probably want it anyway.
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+        server {
+            workingDirectory project.file('run')
+            ideaModule "${rootProject.name}.${project.name}.main"
+            taskName "Server"
 
-	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
-	// You may need to force-disable transitiveness on them.
+			arg "-mixin.config=${mod_id}.mixins.json"
 
-	modImplementation "net.blay09.mods:balm-fabric:1.8.0+168"
-	modImplementation("net.blay09.mods:craftingtweaks-fabric:13.0.0+18") {
-		exclude(group: "net.blay09.mods")
-	}
+            property "mixin.env.disableRefMap", "true"
+            property "mixin.debug.export", "true"
+            property "mixin.debug.export.decompile", "false"
+            property "mixin.debug.verbose", "true"
+            property "mixin.debug.dumpTargetOnFailure", "true"
+            property "mixin.checks", "true"
+            property "mixin.hotSwap", "true"
 
-	modApi("me.shedaniel.cloth:cloth-config-fabric:5.0.34") {
-		exclude(group: "net.fabricmc.fabric-api")
-	}
+            property 'forge.logging.console.level', 'debug'
 
-	// modImplementation "com.terraformersmc:modmenu:2.0.2"
-	modImplementation "curse.maven:modmenu-308702:3348711"
+            mods {
+                "${mod_id}" {
+                    source sourceSets.main
+					source project(":shared").sourceSets.main
+                }
+            }
+        }
 
-	// Roughly Enough Items
-	modImplementation "curse.maven:roughly-enough-items-310111:3371046"
-	modImplementation "curse.maven:architectury-api-419697:3372837"
-}
+        data {
+            workingDirectory project.file('run')
+            ideaModule "${rootProject.name}.${project.name}.main"
+            taskName "Data"
 
-processResources {
-	inputs.property "version", project.version
+            property 'forge.logging.console.level', 'debug'
 
-	filesMatching("fabric.mod.json") {
-		expand "version": project.version
-	}
-}
+			arg "-mixin.config=${mod_id}.mixins.json"
 
-tasks.withType(JavaCompile).configureEach {
-	// ensure that the encoding is set to UTF-8, no matter what the system default is
-	// this fixes some edge cases with special characters not displaying correctly
-	// see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
-	// If Javadoc is generated, this must be specified in that task too.
-	it.options.encoding = "UTF-8"
+            property "mixin.env.disableRefMap", "true"
+            property "mixin.debug.export", "true"
+            property "mixin.debug.export.decompile", "false"
+            property "mixin.debug.verbose", "true"
+            property "mixin.debug.dumpTargetOnFailure", "true"
+            property "mixin.checks", "true"
+            property "mixin.hotSwap", "true"
 
-	// Minecraft 1.17 (21w19a) upwards uses Java 16.
-	it.options.release = 16
-}
+            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
-java {
-	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
-	// if it is present.
-	// If you remove this line, sources will not be generated.
-	withSourcesJar()
+            mods {
+                "${mod_id}" {
+                    source sourceSets.main
+					source project(":shared").sourceSets.main
+                }
+            }
+        }
+    }
 }
 
 sourceSets {
 	main {
-		java {
-			srcDirs '../shared/src/java/'
-		}
-		resources {
-			srcDirs '../shared/src/resources/'
-		}
+        resources {
+            srcDirs 'src/generated/resources'
+        }
+		ext.refMap = "${mod_id}.refmap.json"
 	}
 }
 
-jar {
-	from("LICENSE") {
-		rename { "${it}_${project.archivesBaseName}"}
-	}
+dependencies {
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    annotationProcessor 'org.spongepowered:mixin:0.8.4:processor'
+	compileOnly project(":shared")
+
+    implementation fg.deobf("net.blay09.mods:balm:${balm_forge_version}")
+
+    compileOnly fg.deobf("me.shedaniel.cloth:cloth-config-forge:5.0.38")
+    testCompileOnly fg.deobf("me.shedaniel.cloth:cloth-config-forge:5.0.38")
+
+    compileOnly fg.deobf("mezz.jei:jei-1.17.1:8.2.0.37:api")
+//    runtimeOnly fg.deobf("mezz.jei:jei-1.17.1:8.2.0.37")
+
+    implementation "org.jetbrains:annotations:22.0.0"
 }
 
-// configure the maven publication
+tasks.withType(JavaCompile) {
+    source(project(":shared").sourceSets.main.allSource)
+}
+
+processResources {
+    from project(":shared").sourceSets.main.resources
+}
+
+jar.finalizedBy('reobfJar')
+
 publishing {
-	publications {
-		mavenJava(MavenPublication) {
-			artifactId = project.archivesBaseName
-
-			// add all the jars that should be included when publishing to maven
-			artifact(remapJar) {
-				builtBy remapJar
-			}
-			artifact(sourcesJar) {
-				builtBy remapSourcesJar
-			}
-		}
-	}
-
-	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-	repositories {
-		// Add repositories to publish to here.
-		// Notice: This block does NOT have the same function as the block in the top level.
-		// The repositories here will be used for publishing your artifact, not for
-		// retrieving dependencies.
+    publications {
+        mavenJava(MavenPublication) {
+			artifactId = mod_id + "-forge"
+			
+            artifact jar
+        }
+    }
+    repositories {
 		maven {
 			name = "GitHubPackages"
-			url = uri("https://maven.pkg.github.com/" + project.github_publish)
+			url = uri("https://maven.pkg.github.com/" + github_repo)
 			credentials {
 				username = project.findProperty("gpr.user") ?: System.getenv("GPR_USERNAME")
 				password = project.findProperty("gpr.key") ?: System.getenv("GPR_TOKEN")
 			}
+		}
+	}
+}
+
+curseforge {
+	apiKey = project.findProperty("curseforge.api_key") ?: System.getenv("CF_API_KEY") ?: "none"
+	project {
+		id = curseforge_forge_project_id
+		releaseType = curseforge_release_type
+		changelogType = 'markdown'
+		changelog = file('../changelog.md')
+		addGameVersion minecraft_version
+		addGameVersion 'Forge'
+
+		relations {
+			requiredLibrary 'balm'
 		}
 	}
 }
