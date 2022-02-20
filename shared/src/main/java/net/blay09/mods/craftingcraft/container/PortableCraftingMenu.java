@@ -60,33 +60,29 @@ public class PortableCraftingMenu extends CustomCraftingMenu {
 
     @Override
     public ItemStack quickMoveStack(Player player, int slotIndex) {
-        final int CRAFTING_GRID_START = 1;
-        final int CRAFTING_GRID_END = 10;
-        final int CRAFTING_RESULT_SLOT = 0;
-        final int HOTBAR_START = 37;
-        final int HOTBAR_END = 46;
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(slotIndex);
         if (slot != null && slot.hasItem()) {
             ItemStack slotStack = slot.getItem();
             itemStack = slotStack.copy();
-
-            if (slotIndex == CRAFTING_RESULT_SLOT) {
+            if (slotIndex == 0) {
                 slotStack.getItem().onCraftedBy(slotStack, player.level, player);
-                if (!this.moveItemStackTo(slotStack, CRAFTING_GRID_END, HOTBAR_END, true)) {
+                if (!this.moveItemStackTo(slotStack, 10, 46, true)) {
                     return ItemStack.EMPTY;
                 }
 
                 slot.onQuickCraft(slotStack, itemStack);
-            } else if (slotIndex >= CRAFTING_GRID_END && slotIndex < HOTBAR_START) {
-                if (!this.moveItemStackTo(slotStack, HOTBAR_START, HOTBAR_END, false)) {
-                    return ItemStack.EMPTY;
+            } else if (slotIndex >= 10 && slotIndex < 46) {
+                if (!this.moveItemStackTo(slotStack, 1, 10, false)) {
+                    if (slotIndex < 37) {
+                        if (!this.moveItemStackTo(slotStack, 37, 46, false)) {
+                            return ItemStack.EMPTY;
+                        }
+                    } else if (!this.moveItemStackTo(slotStack, 10, 37, false)) {
+                        return ItemStack.EMPTY;
+                    }
                 }
-            } else if (slotIndex >= HOTBAR_START && slotIndex < HOTBAR_END) {
-                if (!this.moveItemStackTo(slotStack, CRAFTING_GRID_END, HOTBAR_START, false)) {
-                    return ItemStack.EMPTY;
-                }
-            } else if (!this.moveItemStackTo(slotStack, CRAFTING_GRID_END, HOTBAR_END, false)) {
+            } else if (!this.moveItemStackTo(slotStack, 10, 46, false)) {
                 return ItemStack.EMPTY;
             }
 
@@ -101,7 +97,7 @@ public class PortableCraftingMenu extends CustomCraftingMenu {
             }
 
             slot.onTake(player, slotStack);
-            if (slotIndex == CRAFTING_RESULT_SLOT) {
+            if (slotIndex == 0) {
                 player.drop(slotStack, false);
             }
         }
