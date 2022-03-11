@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[38,)"
+loaderVersion="[40,)"
 license="All rights reserved"
 issueTrackerURL="https://github.com/ModdingForBlockheads/CraftingCraft/issues"
 
@@ -18,7 +18,7 @@ Adds an inventory crafting table and a normal portable one.
 [[dependencies.craftingcraft]]
     modId="forge"
     mandatory=true
-    versionRange="[38,)"
+    versionRange="[40,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.craftingcraft]]
@@ -30,7 +30,7 @@ Adds an inventory crafting table and a normal portable one.
 [[dependencies.craftingcraft]]
     modId="balm"
     mandatory=true
-    versionRange="[2.1.0,)"
+    versionRange="[3.0.0,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.craftingcraft]]
