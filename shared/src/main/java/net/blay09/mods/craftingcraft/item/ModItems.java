@@ -11,12 +11,12 @@ import net.minecraft.world.item.ItemStack;
 public class ModItems {
     public static final CreativeModeTab creativeModeTab = Balm.getItems().createCreativeModeTab(id(CraftingCraft.MOD_ID), () -> new ItemStack(ModItems.inventoryCraftingTable));
 
-    public static Item portableCraftingTable = new PortableCraftingItem(Balm.getItems().itemProperties(creativeModeTab));
-    public static Item inventoryCraftingTable = new InventoryCraftingItem(Balm.getItems().itemProperties(creativeModeTab));
+    public static Item portableCraftingTable;
+    public static Item inventoryCraftingTable;
 
     public static void initialize(BalmItems items) {
-        items.registerItem(() -> portableCraftingTable, id("portable_crafting"));
-        items.registerItem(() -> inventoryCraftingTable, id("inventory_crafting"));
+        items.registerItem(() -> portableCraftingTable = new PortableCraftingItem(Balm.getItems().itemProperties(creativeModeTab)), id("portable_crafting"));
+        items.registerItem(() -> inventoryCraftingTable = new InventoryCraftingItem(Balm.getItems().itemProperties(creativeModeTab)), id("inventory_crafting"));
     }
 
     private static ResourceLocation id(String name) {
