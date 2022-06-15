@@ -2,7 +2,6 @@ package net.blay09.mods.craftingcraft.container;
 
 import net.blay09.mods.balm.api.menu.BalmMenuProvider;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -14,7 +13,7 @@ public class PortableCraftingMenu extends CustomCraftingMenu {
     public static final MenuProvider provider = new BalmMenuProvider() {
         @Override
         public Component getDisplayName() {
-            return new TranslatableComponent("container.craftingcraft.portable_crafting");
+            return Component.translatable("container.craftingcraft.portable_crafting");
         }
 
         @Override
