@@ -1,0 +1,13 @@
+{
+    "item.craftingcraft.inventory_crafting": "Criação de inventário",
+    "item.craftingcraft.portable_crafting": "Criação Portátil",
+
+    "container.craftingcraft.portable_crafting": "Criação Portátil",
+    "container.craftingcraft.inventory_crafting": "Criação de inventário",
+
+    "key.categories.craftingcraft": "CraftingCraft",
+    "key.craftingcraft.portable_crafting": "Abrir Criação Portátil",
+    "key.craftingcraft.back_to_inventory": "Voltar ao Inventário",
+
+    "itemGroup.craftingcraft.craftingcraft": "CraftingCraft"
+}
