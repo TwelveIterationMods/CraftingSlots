@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "craftingcraft:items/inventory_crafting"
+    "layer0": "craftingcraft:item/inventory_crafting"
   }
 }
