@@ -28,7 +28,7 @@ public abstract class CustomCraftingMenu extends AbstractContainerMenu {
     public void slotsChanged(Container container) {
         CraftingContainer craftMatrix = getCraftMatrix();
         ResultContainer craftResult = getCraftResult();
-        Level level = playerInventory.player.level;
+        Level level = playerInventory.player.level();
         if (!level.isClientSide) {
             ServerPlayer player = (ServerPlayer) playerInventory.player;
             ItemStack itemstack = ItemStack.EMPTY;

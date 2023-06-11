@@ -1,9 +1,8 @@
 package net.blay09.mods.craftingcraft.client.screen;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.blay09.mods.craftingcraft.CraftingCraft;
 import net.blay09.mods.craftingcraft.container.InventoryCraftingMenu;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -20,22 +19,21 @@ public class InventoryCraftingScreen extends AbstractContainerScreen<InventoryCr
     }
 
     @Override
-    public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
-        renderBackground(poseStack);
-        super.render(poseStack, mouseX, mouseY, partialTicks);
-        renderTooltip(poseStack, mouseX, mouseY);
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+        renderBackground(guiGraphics);
+        super.render(guiGraphics, mouseX, mouseY, partialTicks);
+        renderTooltip(guiGraphics, mouseX, mouseY);
     }
 
     @Override
-    protected void renderLabels(PoseStack poseStack, int i, int j) {
-        font.draw(poseStack, title, 8, imageHeight - 96 + 1, 0x404040);
+    protected void renderLabels(GuiGraphics guiGraphics, int i, int j) {
+        guiGraphics.drawString(font, title, 8, imageHeight - 96 + 1, 0x404040);
     }
 
     @Override
-    protected void renderBg(PoseStack poseStack, float f, int i, int j) {
-        RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
-        RenderSystem.setShaderTexture(0, texture);
-        blit(poseStack, leftPos, topPos, 0, 0, imageWidth, imageHeight);
+    protected void renderBg(GuiGraphics guiGraphics, float f, int i, int j) {
+        guiGraphics.setColor(1f, 1f, 1f, 1f);
+        guiGraphics.blit(texture, leftPos, topPos, 0, 0, imageWidth, imageHeight);
     }
 
 }

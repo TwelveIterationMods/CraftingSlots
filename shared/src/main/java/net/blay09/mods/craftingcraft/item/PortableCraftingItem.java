@@ -37,7 +37,7 @@ public class PortableCraftingItem extends Item {
     }
 
     private void openPortableCrafting(Player player) {
-        if (!player.level.isClientSide) {
+        if (!player.level().isClientSide) {
             Balm.getNetworking().openGui(player, getCraftingContainerProvider());
         }
     }

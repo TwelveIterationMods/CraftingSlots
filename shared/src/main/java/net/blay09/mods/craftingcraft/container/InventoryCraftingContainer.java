@@ -3,9 +3,10 @@ package net.blay09.mods.craftingcraft.container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.inventory.TransientCraftingContainer;
 import net.minecraft.world.item.ItemStack;
 
-public class InventoryCraftingContainer extends CraftingContainer {
+public class InventoryCraftingContainer extends TransientCraftingContainer {
 
     private final AbstractContainerMenu menu;
     private final Inventory playerInventory;

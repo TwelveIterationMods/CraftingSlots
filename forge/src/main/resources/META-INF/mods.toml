@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/TwelveIterationMods/CraftingCraft/issues"
 
 [[mods]]
 modId="craftingcraft"
-version="${file.jarVersion}"
+version="${mod_version}"
 displayName="Crafting Slots"
 displayURL="https://mods.twelveiterations.com/mc/craftingslots"
 logoFile="craftingcraft-icon.png"

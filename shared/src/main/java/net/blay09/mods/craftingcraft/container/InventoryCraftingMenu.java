@@ -75,7 +75,7 @@ public class InventoryCraftingMenu extends CustomCraftingMenu {
             ItemStack slotStack = slot.getItem();
             itemStack = slotStack.copy();
             if (slotIndex == CRAFTING_RESULT_SLOT) {
-                slotStack.getItem().onCraftedBy(slotStack, player.level, player);
+                slotStack.getItem().onCraftedBy(slotStack, player.level(), player);
                 if (!this.moveItemStackTo(slotStack, CRAFTING_GRID_END, slots.size() - 1, true)) {
                     return ItemStack.EMPTY;
                 }

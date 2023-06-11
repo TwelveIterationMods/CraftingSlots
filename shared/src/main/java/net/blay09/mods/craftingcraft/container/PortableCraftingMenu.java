@@ -22,7 +22,7 @@ public class PortableCraftingMenu extends CustomCraftingMenu {
         }
     };
 
-    private final CraftingContainer craftMatrix = new CraftingContainer(this, 3, 3);
+    private final CraftingContainer craftMatrix = new TransientCraftingContainer(this, 3, 3);
     private final ResultContainer craftResult = new ResultContainer();
 
     public PortableCraftingMenu(int windowId, Inventory playerInventory) {
@@ -65,7 +65,7 @@ public class PortableCraftingMenu extends CustomCraftingMenu {
             ItemStack slotStack = slot.getItem();
             itemStack = slotStack.copy();
             if (slotIndex == 0) {
-                slotStack.getItem().onCraftedBy(slotStack, player.level, player);
+                slotStack.getItem().onCraftedBy(slotStack, player.level(), player);
                 if (!this.moveItemStackTo(slotStack, 10, 46, true)) {
                     return ItemStack.EMPTY;
                 }

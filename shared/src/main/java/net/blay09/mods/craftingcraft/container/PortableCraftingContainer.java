@@ -4,12 +4,13 @@ import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.inventory.TransientCraftingContainer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.Set;
 
-public class PortableCraftingContainer extends CraftingContainer {
+public class PortableCraftingContainer extends TransientCraftingContainer {
 
     private final Container container;
     private final AbstractContainerMenu menu;
