@@ -27,7 +27,7 @@ public class InventoryCraftingScreen extends AbstractContainerScreen<InventoryCr
 
     @Override
     protected void renderLabels(GuiGraphics guiGraphics, int i, int j) {
-        guiGraphics.drawString(font, title, 8, imageHeight - 96 + 1, 0x404040);
+        guiGraphics.drawString(font, title, 8, imageHeight - 96 + 1, 0x404040, false);
     }
 
     @Override
