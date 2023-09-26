@@ -10,6 +10,7 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.ResultContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingRecipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
@@ -32,11 +33,10 @@ public abstract class CustomCraftingMenu extends AbstractContainerMenu {
         if (!level.isClientSide) {
             ServerPlayer player = (ServerPlayer) playerInventory.player;
             ItemStack itemstack = ItemStack.EMPTY;
-            Optional<CraftingRecipe> optional = level.getServer().getRecipeManager().getRecipeFor(RecipeType.CRAFTING, craftMatrix, level);
-            if (optional.isPresent()) {
-                CraftingRecipe recipe = optional.get();
+            RecipeHolder<CraftingRecipe> recipe = level.getServer().getRecipeManager().getRecipeFor(RecipeType.CRAFTING, craftMatrix, level).orElse(null);
+            if (recipe != null) {
                 if (craftResult.setRecipeUsed(level, player, recipe)) {
-                    itemstack = recipe.assemble(craftMatrix, level.registryAccess());
+                    itemstack = recipe.value().assemble(craftMatrix, level.registryAccess());
                 }
             }
 
