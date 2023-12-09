@@ -1,0 +1,3 @@
+dependencies {
+    implementation "net.blay09.mods:craftingtweaks-neoforge:$craftingtweaks_version"
+}

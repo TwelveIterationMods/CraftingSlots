@@ -1,42 +1,47 @@
 {
   "schemaVersion": 1,
-  "id": "craftingcraft",
+  "id": "${mod_id}",
   "version": "${version}",
 
-  "name": "Crafting Slots",
-  "description": "Adds an inventory crafting table and a normal portable one.",
+  "name": "${mod_name}",
+  "description": "${description}",
   "authors": [
     "BlayTheNinth"
   ],
   "contact": {
-    "homepage": "https://mods.twelveiterations.com/mc/craftingslots",
-    "sources": "https://github.com/TwelveIterationMods/CraftingCraft",
-    "issues": "https://github.com/TwelveIterationMods/CraftingCraft/issues"
+    "homepage": "${homepage}",
+    "sources": "${sources}",
+    "issues": "${issues}"
   },
 
-  "license": "All Rights Reserved",
-  "icon": "craftingcraft-icon.png",
+  "license": "${license}",
+  "icon": "${mod_id}.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.blay09.mods.craftingcraft.FabricCraftingCraft"
+      "net.blay09.mods.${mod_id}.fabric.Fabric${mod_main}"
     ],
     "client": [
-      "net.blay09.mods.craftingcraft.client.FabricCraftingCraftClient"
+      "net.blay09.mods.${mod_id}.fabric.client.Fabric${mod_main}Client"
+    ],
+    "modmenu": [
+      "net.blay09.mods.${mod_id}.fabric.compat.ModMenuIntegration"
     ]
   },
   "mixins": [
+    "${mod_id}.mixins.json",
+    "${mod_id}.fabric.mixins.json"
   ],
+
   "depends": {
-    "balm-fabric": ">=8.0.0",
-    "fabricloader": ">=0.14.22",
-    "fabric": "*",
+    "fabricloader": ">=0.14",
+    "fabric-api": "*",
+    "balm-fabric": "*",
     "minecraft": ">=1.20.2",
     "java": ">=17"
   },
   "suggests": {
-    "craftingtweaks": "*"
   },
   "custom": {
     "modmenu": {
