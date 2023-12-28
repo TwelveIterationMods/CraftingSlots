@@ -1,0 +1,11 @@
+{
+    "item.craftingslots.inventoryCraftingTable": "背包工作台",
+    "item.craftingslots.portableCraftingTable": "便攜工作台",
+
+    "craftingslots.container.inventoryCraftingTable": "背包合成",
+
+    "key.categories.craftingslots": "Crafting Slots",
+    "key.craftingslots.portableCrafting": "打開便攜工作台",
+
+    "itemGroup.craftingslots": "Crafting Slots"
+}

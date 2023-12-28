@@ -1,0 +1,13 @@
+{
+    "item.craftingslots.inventory_crafting": "Inventory Crafting",
+    "item.craftingslots.portable_crafting": "Portable Crafting",
+
+    "container.craftingslots.portable_crafting": "Portable Crafting",
+    "container.craftingslots.inventory_crafting": "Inventory Crafting",
+
+    "key.categories.craftingslots": "Crafting Slots",
+    "key.craftingslots.portable_crafting": "Open Portable Crafting",
+    "key.craftingslots.back_to_inventory": "Back to Inventory",
+
+    "itemGroup.craftingslots.craftingslots": "Crafting Slots"
+}
