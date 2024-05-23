@@ -1,3 +1,0 @@
-dependencies {
-    compileOnly("net.blay09.mods:craftingtweaks-common:${craftingtweaks_version}")
-}

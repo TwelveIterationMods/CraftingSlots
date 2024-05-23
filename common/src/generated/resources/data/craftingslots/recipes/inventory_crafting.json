@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "craftingslots:portable_crafting"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "craftingslots:inventory_crafting"
+  }
+}

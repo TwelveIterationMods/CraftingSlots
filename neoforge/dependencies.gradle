@@ -1,3 +1,6 @@
 dependencies {
+    implementation("net.blay09.mods:balm-neoforge:${balm_version}") {
+        changing = balm_version.contains("SNAPSHOT")
+    }
     implementation "net.blay09.mods:craftingtweaks-neoforge:$craftingtweaks_version"
 }
