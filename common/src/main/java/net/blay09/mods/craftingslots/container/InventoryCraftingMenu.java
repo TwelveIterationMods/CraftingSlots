@@ -1,6 +1,11 @@
 package net.blay09.mods.craftingslots.container;
 
+import net.blay09.mods.balm.api.menu.BalmMenuProvider;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.Unit;
 import net.minecraft.world.Container;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
@@ -10,7 +15,17 @@ import net.minecraft.world.item.ItemStack;
 
 public class InventoryCraftingMenu extends CustomCraftingMenu {
 
-    public static final MenuProvider provider = new MenuProvider() {
+    public static final MenuProvider provider = new BalmMenuProvider<Unit>() {
+        @Override
+        public Unit getScreenOpeningData(ServerPlayer serverPlayer) {
+            return Unit.INSTANCE;
+        }
+
+        @Override
+        public StreamCodec<RegistryFriendlyByteBuf, Unit> getScreenStreamCodec() {
+            return StreamCodec.unit(Unit.INSTANCE);
+        }
+
         @Override
         public Component getDisplayName() {
             return Component.translatable("container.craftingslots.inventory_crafting");
