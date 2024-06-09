@@ -41,7 +41,7 @@ public class ModMenus {
     }
 
     private static ResourceLocation id(String name) {
-        return new ResourceLocation(CraftingSlots.MOD_ID, name);
+        return ResourceLocation.fromNamespaceAndPath(CraftingSlots.MOD_ID, name);
     }
 
 }

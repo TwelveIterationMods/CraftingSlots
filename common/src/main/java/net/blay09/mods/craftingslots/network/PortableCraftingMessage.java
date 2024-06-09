@@ -14,7 +14,7 @@ import net.minecraft.world.item.ItemStack;
 
 public class PortableCraftingMessage implements CustomPacketPayload {
 
-    public static final Type<PortableCraftingMessage> TYPE = new Type<>(new ResourceLocation(CraftingSlots.MOD_ID, "portable_crafting"));
+    public static final Type<PortableCraftingMessage> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(CraftingSlots.MOD_ID, "portable_crafting"));
 
     public static void encode(FriendlyByteBuf buf, PortableCraftingMessage message) {
     }

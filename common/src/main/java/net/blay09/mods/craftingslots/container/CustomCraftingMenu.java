@@ -26,15 +26,16 @@ public abstract class CustomCraftingMenu extends AbstractContainerMenu {
     @Override
     public void slotsChanged(Container container) {
         CraftingContainer craftMatrix = getCraftMatrix();
+        final var recipeInput = craftMatrix.asCraftInput();
         ResultContainer craftResult = getCraftResult();
         Level level = playerInventory.player.level();
         if (!level.isClientSide) {
             ServerPlayer player = (ServerPlayer) playerInventory.player;
             ItemStack itemstack = ItemStack.EMPTY;
-            RecipeHolder<CraftingRecipe> recipe = level.getServer().getRecipeManager().getRecipeFor(RecipeType.CRAFTING, craftMatrix, level).orElse(null);
+            RecipeHolder<CraftingRecipe> recipe = level.getServer().getRecipeManager().getRecipeFor(RecipeType.CRAFTING, recipeInput, level).orElse(null);
             if (recipe != null) {
                 if (craftResult.setRecipeUsed(level, player, recipe)) {
-                    itemstack = recipe.value().assemble(craftMatrix, level.registryAccess());
+                    itemstack = recipe.value().assemble(recipeInput, level.registryAccess());
                 }
             }
 

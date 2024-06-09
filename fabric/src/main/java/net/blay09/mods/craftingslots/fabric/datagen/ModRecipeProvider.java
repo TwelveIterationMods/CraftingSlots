@@ -1,5 +1,6 @@
 package net.blay09.mods.craftingslots.fabric.datagen;
 
+import net.blay09.mods.craftingslots.CraftingSlots;
 import net.blay09.mods.craftingslots.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -38,7 +39,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         shapeless(RecipeCategory.TOOLS, ModItems.portableCraftingTable)
                 .requires(ModItems.inventoryCraftingTable)
                 .unlockedBy("has_inventory_crafting", has(ModItems.inventoryCraftingTable))
-                .save(exporter, new ResourceLocation("waystones", "inventory_to_portable_crafting"));
+                .save(exporter, ResourceLocation.fromNamespaceAndPath(CraftingSlots.MOD_ID, "inventory_to_portable_crafting"));
 
     }
 }

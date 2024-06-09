@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "waystones:inventory_to_portable_crafting"
+        "recipe": "craftingslots:inventory_to_portable_crafting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "waystones:inventory_to_portable_crafting"
+      "craftingslots:inventory_to_portable_crafting"
     ]
   }
 }

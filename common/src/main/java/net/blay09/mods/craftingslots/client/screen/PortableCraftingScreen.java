@@ -9,7 +9,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class PortableCraftingScreen extends AbstractContainerScreen<PortableCraftingMenu> {
 
-    private static final ResourceLocation texture = new ResourceLocation("textures/gui/container/crafting_table.png");
+    private static final ResourceLocation texture = ResourceLocation.withDefaultNamespace("textures/gui/container/crafting_table.png");
 
     public PortableCraftingScreen(PortableCraftingMenu container, Inventory playerInventory, Component displayName) {
         super(container, playerInventory, displayName);

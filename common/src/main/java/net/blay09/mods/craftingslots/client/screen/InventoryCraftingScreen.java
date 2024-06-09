@@ -10,7 +10,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class InventoryCraftingScreen extends AbstractContainerScreen<InventoryCraftingMenu> {
 
-    private final ResourceLocation texture = new ResourceLocation(CraftingSlots.MOD_ID, "textures/gui/portable_crafting.png");
+    private final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(CraftingSlots.MOD_ID, "textures/gui/portable_crafting.png");
 
     public InventoryCraftingScreen(InventoryCraftingMenu container, Inventory playerInventory, Component displayName) {
         super(container, playerInventory, displayName);
