@@ -42,7 +42,6 @@ public class InventoryCraftingMenu extends CustomCraftingMenu {
 
     public InventoryCraftingMenu(int windowId, Inventory playerInventory) {
         super(ModMenus.inventoryCrafting.get(), windowId, playerInventory);
-        Container portableCraftingInventory = new PortableCraftingContainer(playerInventory, this);
         craftMatrix = new InventoryCraftingContainer(this, playerInventory);
 
         addSlot(new ResultSlot(playerInventory.player, craftMatrix, craftResult, 0, 193, 38));
@@ -50,7 +49,7 @@ public class InventoryCraftingMenu extends CustomCraftingMenu {
         // Crafting Matrix
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                addSlot(new Slot(portableCraftingInventory, (j + 6) + i * 9 + 9, 119 + j * 18, 20 + i * 18));
+                addSlot(new Slot(craftMatrix, j + i * 3, 119 + j * 18, 20 + i * 18));
             }
         }
 
