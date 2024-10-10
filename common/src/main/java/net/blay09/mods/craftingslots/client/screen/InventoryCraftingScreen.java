@@ -4,6 +4,7 @@ import net.blay09.mods.craftingslots.CraftingSlots;
 import net.blay09.mods.craftingslots.container.InventoryCraftingMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -31,8 +32,7 @@ public class InventoryCraftingScreen extends AbstractContainerScreen<InventoryCr
 
     @Override
     protected void renderBg(GuiGraphics guiGraphics, float f, int i, int j) {
-        guiGraphics.setColor(1f, 1f, 1f, 1f);
-        guiGraphics.blit(texture, leftPos, topPos, 0, 0, imageWidth, imageHeight);
+        guiGraphics.blit(RenderType::guiTextured, texture, leftPos, topPos, 0, 0, imageWidth, imageHeight, 256, 256);
     }
 
 }

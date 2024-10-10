@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "equipment",
   "ingredients": [
-    {
-      "item": "craftingslots:inventory_crafting"
-    }
+    "craftingslots:inventory_crafting"
   ],
   "result": {
     "count": 1,

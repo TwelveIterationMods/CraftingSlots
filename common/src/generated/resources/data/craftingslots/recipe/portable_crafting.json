@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "C": {
-      "item": "minecraft:crafting_table"
-    },
-    "S": {
-      "item": "minecraft:stick"
-    }
+    "C": "minecraft:crafting_table",
+    "S": "minecraft:stick"
   },
   "pattern": [
     " C",

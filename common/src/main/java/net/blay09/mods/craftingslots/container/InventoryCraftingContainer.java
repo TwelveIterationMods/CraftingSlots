@@ -3,6 +3,7 @@ package net.blay09.mods.craftingslots.container;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.StackedContents;
+import net.minecraft.world.entity.player.StackedItemContents;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.TransientCraftingContainer;
 import net.minecraft.world.item.ItemStack;
@@ -58,7 +59,7 @@ public class InventoryCraftingContainer extends TransientCraftingContainer {
     }
 
     @Override
-    public void fillStackedContents(StackedContents stackedContents) {
+    public void fillStackedContents(StackedItemContents stackedContents) {
         for (int i = 0; i < getContainerSize(); i++) {
             final var itemStack = getItem(i);
             stackedContents.accountSimpleStack(itemStack);

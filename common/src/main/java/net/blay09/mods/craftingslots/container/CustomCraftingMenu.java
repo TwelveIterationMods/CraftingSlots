@@ -34,7 +34,7 @@ public abstract class CustomCraftingMenu extends AbstractContainerMenu {
             ItemStack itemstack = ItemStack.EMPTY;
             RecipeHolder<CraftingRecipe> recipe = level.getServer().getRecipeManager().getRecipeFor(RecipeType.CRAFTING, recipeInput, level).orElse(null);
             if (recipe != null) {
-                if (craftResult.setRecipeUsed(level, player, recipe)) {
+                if (craftResult.setRecipeUsed(player, recipe)) {
                     itemstack = recipe.value().assemble(recipeInput, level.registryAccess());
                 }
             }

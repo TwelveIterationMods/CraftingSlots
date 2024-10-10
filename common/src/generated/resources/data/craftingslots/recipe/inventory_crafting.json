@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "equipment",
   "ingredients": [
-    {
-      "item": "craftingslots:portable_crafting"
-    }
+    "craftingslots:portable_crafting"
   ],
   "result": {
     "count": 1,
