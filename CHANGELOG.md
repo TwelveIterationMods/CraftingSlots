@@ -1,2 +1,1 @@
-- Added support for JEI transfer button
-- Added support for wearing portable / inventory crafting table as a Curios/Trinkets charm
+- Updated to Minecraft 1.21.5

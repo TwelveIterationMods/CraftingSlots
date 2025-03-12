@@ -34,7 +34,7 @@ public class ModKeyBindings {
     private static void clientTicked(Minecraft client) {
         if (BalmClient.getKeyMappings().isKeyDownIgnoreContext(keyPortableCrafting)) {
             if (client.player != null && client.screen == null) {
-                Balm.getNetworking().sendToServer(new PortableCraftingMessage());
+                Balm.getNetworking().sendToServer(PortableCraftingMessage.INSTANCE);
             }
         }
     }
@@ -46,7 +46,7 @@ public class ModKeyBindings {
         Minecraft client = Minecraft.getInstance();
         if (BalmClient.getKeyMappings().isActiveAndMatches(keyPortableCrafting, key, scanCode)) {
             if (client.player != null && client.screen instanceof InventoryScreen) {
-                Balm.getNetworking().sendToServer(new PortableCraftingMessage());
+                Balm.getNetworking().sendToServer(PortableCraftingMessage.INSTANCE);
             }
         }
 
