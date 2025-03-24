@@ -87,7 +87,7 @@ public class PortableCraftingMenu extends CustomCraftingMenu {
             ItemStack slotStack = slot.getItem();
             itemStack = slotStack.copy();
             if (index == 0) {
-                slotStack.getItem().onCraftedBy(slotStack, player.level(), player);
+                slotStack.getItem().onCraftedBy(slotStack, player);
                 if (!this.moveItemStackTo(slotStack, 10, 46, true)) {
                     return ItemStack.EMPTY;
                 }

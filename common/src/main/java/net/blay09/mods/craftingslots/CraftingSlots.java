@@ -4,6 +4,7 @@ import net.blay09.mods.balm.api.Balm;
 import net.blay09.mods.craftingslots.menu.ModMenus;
 import net.blay09.mods.craftingslots.item.ModItems;
 import net.blay09.mods.craftingslots.network.ModNetworking;
+import net.minecraft.resources.ResourceLocation;
 
 public class CraftingSlots {
 
@@ -17,4 +18,7 @@ public class CraftingSlots {
         Balm.initializeIfLoaded("craftingtweaks", "net.blay09.mods.craftingslots.addon.CraftingTweaksAddon");
     }
 
+    public static ResourceLocation id(String path) {
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+    }
 }
