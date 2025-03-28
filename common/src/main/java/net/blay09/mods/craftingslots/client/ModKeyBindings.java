@@ -18,11 +18,15 @@ public class ModKeyBindings {
         Kuma.createKeyMapping(id("portable_crafting"))
                 .withDefault(InputBinding.key(InputConstants.KEY_C))
                 .handleWorldInput(event -> {
-                    Balm.getNetworking().sendToServer(PortableCraftingMessage.INSTANCE);
+                    if (Balm.getProxy().isConnected()) {
+                        Balm.getNetworking().sendToServer(PortableCraftingMessage.INSTANCE);
+                    }
                     return false;
                 })
                 .handleScreenInput(event -> {
-                    Balm.getNetworking().sendToServer(PortableCraftingMessage.INSTANCE);
+                    if (Balm.getProxy().isConnected()) {
+                        Balm.getNetworking().sendToServer(PortableCraftingMessage.INSTANCE);
+                    }
                     return false;
                 })
                 .build();
