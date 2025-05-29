@@ -4,10 +4,9 @@ import net.blay09.mods.craftingslots.CraftingSlots;
 import net.blay09.mods.craftingslots.menu.InventoryCraftingMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.navigation.ScreenPosition;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen;
 import net.minecraft.client.gui.screens.recipebook.CraftingRecipeBookComponent;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -41,7 +40,7 @@ public class InventoryCraftingScreen extends AbstractRecipeBookScreen<InventoryC
 
     @Override
     protected void renderBg(GuiGraphics guiGraphics, float f, int i, int j) {
-        guiGraphics.blit(RenderType::guiTextured, texture, leftPos, topPos, 0, 0, actualImageWidth, imageHeight, 256, 256);
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, texture, leftPos, topPos, 0, 0, actualImageWidth, imageHeight, 256, 256);
     }
 
 }

@@ -1,1 +1,1 @@
-- Fixed pressing Crafting Slots key mappings in main menu crashing the game on Fabric
+- Updated to Minecraft 1.21.6

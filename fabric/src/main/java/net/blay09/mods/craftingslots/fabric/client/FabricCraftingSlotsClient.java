@@ -10,6 +10,6 @@ public class FabricCraftingSlotsClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        BalmClient.initialize(CraftingSlots.MOD_ID, EmptyLoadContext.INSTANCE, CraftingSlotsClient::initialize);
+        BalmClient.initializeMod(CraftingSlots.MOD_ID, EmptyLoadContext.INSTANCE, CraftingSlotsClient::initialize);
     }
 }
