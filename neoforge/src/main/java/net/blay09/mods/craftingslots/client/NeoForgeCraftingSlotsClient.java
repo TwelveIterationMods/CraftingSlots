@@ -11,6 +11,6 @@ import net.neoforged.fml.common.Mod;
 public class NeoForgeCraftingSlotsClient {
     public NeoForgeCraftingSlotsClient(IEventBus modEventBus) {
         final var context = new NeoForgeLoadContext(modEventBus);
-        BalmClient.initialize(CraftingSlots.MOD_ID, context, CraftingSlotsClient::initialize);
+        BalmClient.initializeMod(CraftingSlots.MOD_ID, context, CraftingSlotsClient::initialize);
     }
 }
