@@ -12,7 +12,7 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 public class ForgeCraftingSlots {
     public ForgeCraftingSlots(FMLJavaModLoadingContext context) {
         final var loadContext = new ForgeLoadContext(context.getModEventBus());
-        Balm.initialize(CraftingSlots.MOD_ID, loadContext, CraftingSlots::initialize);
+        Balm.initializeMod(CraftingSlots.MOD_ID, loadContext, CraftingSlots::initialize);
         if (FMLEnvironment.dist.isClient()) {
             BalmClient.initialize(CraftingSlots.MOD_ID, loadContext, CraftingSlotsClient::initialize);
         }
