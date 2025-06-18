@@ -11,7 +11,7 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 @Mod(CraftingSlots.MOD_ID)
 public class ForgeCraftingSlots {
     public ForgeCraftingSlots(FMLJavaModLoadingContext context) {
-        final var loadContext = new ForgeLoadContext(context.getModEventBus());
+        final var loadContext = new ForgeLoadContext(context.getModBusGroup());
         Balm.initializeMod(CraftingSlots.MOD_ID, loadContext, CraftingSlots::initialize);
         if (FMLEnvironment.dist.isClient()) {
             BalmClient.initializeMod(CraftingSlots.MOD_ID, loadContext, CraftingSlotsClient::initialize);
