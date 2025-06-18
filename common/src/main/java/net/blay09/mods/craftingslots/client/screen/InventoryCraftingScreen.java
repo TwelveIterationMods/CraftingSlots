@@ -43,4 +43,9 @@ public class InventoryCraftingScreen extends AbstractRecipeBookScreen<InventoryC
         guiGraphics.blit(RenderPipelines.GUI_TEXTURED, texture, leftPos, topPos, 0, 0, actualImageWidth, imageHeight, 256, 256);
     }
 
+    @Override
+    protected boolean hasClickedOutside(double x, double y, int leftPos, int topPos, int button) {
+        final var isOutside = x < (double) leftPos || y < (double) topPos || x >= (double) (leftPos + actualImageWidth) || y >= (double) (topPos + this.imageHeight);
+        return isOutside && super.hasClickedOutside(x, y, leftPos, topPos, button);
+    }
 }
