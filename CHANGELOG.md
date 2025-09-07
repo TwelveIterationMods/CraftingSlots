@@ -1,1 +1,1 @@
-- Fixed pressing Crafting Slots key mappings in main menu crashing the game on Fabric
+- Fixed portable crafting keybind opening screen on chat or other non-container screens
