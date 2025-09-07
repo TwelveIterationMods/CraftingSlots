@@ -8,6 +8,7 @@ import net.blay09.mods.craftingslots.network.PortableCraftingMessage;
 import net.blay09.mods.kuma.api.InputBinding;
 import net.blay09.mods.kuma.api.Kuma;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 
 import static net.blay09.mods.craftingslots.CraftingSlots.id;
@@ -24,7 +25,7 @@ public class ModKeyBindings {
                     return false;
                 })
                 .handleScreenInput(event -> {
-                    if (Balm.getProxy().isConnected()) {
+                    if (Balm.getProxy().isConnected() && event.screen() instanceof AbstractContainerScreen<?>) {
                         Balm.getNetworking().sendToServer(PortableCraftingMessage.INSTANCE);
                     }
                     return false;
