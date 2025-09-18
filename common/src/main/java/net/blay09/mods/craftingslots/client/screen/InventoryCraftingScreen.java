@@ -44,8 +44,8 @@ public class InventoryCraftingScreen extends AbstractRecipeBookScreen<InventoryC
     }
 
     @Override
-    protected boolean hasClickedOutside(double x, double y, int leftPos, int topPos, int button) {
+    protected boolean hasClickedOutside(double x, double y, int leftPos, int topPos) {
         final var isOutside = x < (double) leftPos || y < (double) topPos || x >= (double) (leftPos + actualImageWidth) || y >= (double) (topPos + this.imageHeight);
-        return isOutside && super.hasClickedOutside(x, y, leftPos, topPos, button);
+        return isOutside && super.hasClickedOutside(x, y, leftPos, topPos);
     }
 }
