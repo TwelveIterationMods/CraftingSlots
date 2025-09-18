@@ -1,1 +1,1 @@
-- Fixed portable crafting keybind opening screen on chat or other non-container screens
+- Updated to Minecraft 1.21.9
