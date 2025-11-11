@@ -1,6 +1,7 @@
 package net.blay09.mods.craftingslots.menu;
 
 import net.blay09.mods.balm.api.menu.BalmMenuProvider;
+import net.blay09.mods.craftingslots.mixin.InventoryAccessor;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.StreamCodec;
@@ -12,6 +13,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedItemContents;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingRecipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
 
 import java.util.List;
 
@@ -156,4 +159,63 @@ public class InventoryCraftingMenu extends CustomCraftingMenu {
     public void fillCraftSlotsStackedContents(StackedItemContents stackedItemContents) {
         craftingContainer.fillStackedContents(stackedItemContents);
     }
+
+    @Override
+    protected PostPlaceAction placeRecipe(boolean useMaxItems, boolean flag, Inventory inventory, List<Slot> inputGridSlots, RecipeHolder<CraftingRecipe> craftingRecipeHolder) {
+        inputGridSlots.forEach(slot -> placeItemBackInInventory(inventory, slot.getItem(), false));
+        return super.placeRecipe(useMaxItems, flag, inventory, inputGridSlots, craftingRecipeHolder);
+    }
+
+    private void placeItemBackInInventory(Inventory inventory, ItemStack itemStack, boolean sendUpdate) {
+        while (!itemStack.isEmpty()) {
+            int slot = getSlotWithRemainingSpace(inventory, itemStack);
+            if (slot == -1) {
+                slot = getFreeSlot(inventory);
+            }
+
+            if (slot == -1) {
+                inventory.player.drop(itemStack, false);
+                break;
+            }
+
+            int countToAdd = itemStack.getMaxStackSize() - inventory.getItem(slot).getCount();
+            if (inventory.add(slot, itemStack.split(countToAdd)) && sendUpdate && inventory.player instanceof ServerPlayer player) {
+                player.connection.send(inventory.createInventoryUpdatePacket(slot));
+            }
+        }
+    }
+
+    private int getSlotWithRemainingSpace(Inventory inventory, ItemStack stack) {
+        final var inventoryAccessor = (InventoryAccessor) inventory;
+        if (inventoryAccessor.callHasRemainingSpaceForItem(inventory.getSelectedItem(), stack)) {
+            return inventory.getSelectedSlot();
+        } else if (inventoryAccessor.callHasRemainingSpaceForItem(inventory.getItem(40), stack)) {
+            return 40;
+        } else {
+            for (int i = 0; i < inventory.getContainerSize(); i++) {
+                if (!isInlineCraftingSlot(i) && inventoryAccessor.callHasRemainingSpaceForItem(inventory.getItem(i), stack)) {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+    }
+
+    private int getFreeSlot(Inventory inventory) {
+        for (int i = 0; i < inventory.getContainerSize(); i++) {
+            if (!isInlineCraftingSlot(i) && inventory.getItem(i).isEmpty()) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    private boolean isInlineCraftingSlot(int slot) {
+        return (slot >= 15 && slot <= 17)
+                || (slot >= 24 && slot <= 26)
+                || (slot >= 33 && slot <= 35);
+    }
+
 }

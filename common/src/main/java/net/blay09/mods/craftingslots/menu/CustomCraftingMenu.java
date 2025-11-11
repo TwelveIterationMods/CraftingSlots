@@ -36,26 +36,30 @@ public abstract class CustomCraftingMenu extends AbstractCraftingMenu {
 
         RecipeBookMenu.PostPlaceAction result;
         try {
-            List<Slot> list = getInputGridSlots();
-            result = ServerPlaceRecipe.placeRecipe(new ServerPlaceRecipe.CraftingMenuAccess<>() {
-                public void fillCraftSlotsStackedContents(StackedItemContents stackedItemContents) {
-                    CustomCraftingMenu.this.fillCraftSlotsStackedContents(stackedItemContents);
-                }
-
-                public void clearCraftingContent() {
-                    CustomCraftingMenu.this.getResultContainer().clearContent();
-                    CustomCraftingMenu.this.getCraftingContainer().clearContent();
-                }
-
-                public boolean recipeMatches(RecipeHolder<CraftingRecipe> recipeHolder) {
-                    return recipeHolder.value().matches(CustomCraftingMenu.this.getCraftingContainer().asCraftInput(), CustomCraftingMenu.this.owner().level());
-                }
-            }, WIDTH, HEIGHT, list, list, inventory, craftingRecipeHolder, useMaxItems, b);
+            final var list = getInputGridSlots();
+            result = placeRecipe(useMaxItems, b, inventory, list, craftingRecipeHolder);
         } finally {
             finishPlacingRecipe(level, craftingRecipeHolder);
         }
 
         return result;
+    }
+
+    protected PostPlaceAction placeRecipe(boolean useMaxItems, boolean flag, Inventory inventory, List<Slot> inputGridSlots, RecipeHolder<CraftingRecipe> craftingRecipeHolder) {
+        return ServerPlaceRecipe.placeRecipe(new ServerPlaceRecipe.CraftingMenuAccess<>() {
+            public void fillCraftSlotsStackedContents(StackedItemContents stackedItemContents) {
+                CustomCraftingMenu.this.fillCraftSlotsStackedContents(stackedItemContents);
+            }
+
+            public void clearCraftingContent() {
+                CustomCraftingMenu.this.getResultContainer().clearContent();
+                CustomCraftingMenu.this.getCraftingContainer().clearContent();
+            }
+
+            public boolean recipeMatches(RecipeHolder<CraftingRecipe> recipeHolder) {
+                return recipeHolder.value().matches(CustomCraftingMenu.this.getCraftingContainer().asCraftInput(), CustomCraftingMenu.this.owner().level());
+            }
+        }, WIDTH, HEIGHT, inputGridSlots, inputGridSlots, inventory, craftingRecipeHolder, useMaxItems, flag);
     }
 
     public abstract Slot getResultSlot();
