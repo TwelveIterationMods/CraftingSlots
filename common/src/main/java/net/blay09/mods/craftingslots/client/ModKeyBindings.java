@@ -25,8 +25,10 @@ public class ModKeyBindings {
                     return false;
                 })
                 .handleScreenInput(event -> {
-                    if (Balm.getProxy().isConnected() && event.screen() instanceof AbstractContainerScreen<?>) {
-                        Balm.getNetworking().sendToServer(PortableCraftingMessage.INSTANCE);
+                    if (!event.screen().isFocused()) {
+                        if (Balm.getProxy().isConnected() && event.screen() instanceof AbstractContainerScreen<?>) {
+                            Balm.getNetworking().sendToServer(PortableCraftingMessage.INSTANCE);
+                        }
                     }
                     return false;
                 })
@@ -34,11 +36,13 @@ public class ModKeyBindings {
 
         Kuma.createKeyMapping(id("back_to_inventory"))
                 .handleScreenInput(event -> {
-                    final var client = Minecraft.getInstance();
-                    if (client.player != null && (event.screen() instanceof InventoryCraftingScreen || event.screen() instanceof PortableCraftingScreen)) {
-                        client.player.closeContainer();
-                        client.setScreen(new InventoryScreen(client.player));
-                        return true;
+                    if (!event.screen().isFocused()) {
+                        final var client = Minecraft.getInstance();
+                        if (client.player != null && (event.screen() instanceof InventoryCraftingScreen || event.screen() instanceof PortableCraftingScreen)) {
+                            client.player.closeContainer();
+                            client.setScreen(new InventoryScreen(client.player));
+                            return true;
+                        }
                     }
                     return false;
                 })
