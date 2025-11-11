@@ -30,9 +30,9 @@ public class PortableCraftingMessage implements CustomPacketPayload {
         }
 
         ItemStack itemStack = findPortableCrafting(player.getInventory());
-        if (itemStack.getItem() == ModItems.inventoryCraftingTable) {
+        if (itemStack.getItem() == ModItems.inventoryCraftingTable && !(player.containerMenu instanceof InventoryCraftingMenu)) {
             Balm.getNetworking().openMenu(player, InventoryCraftingMenu.provider);
-        } else if (itemStack.getItem() == ModItems.portableCraftingTable) {
+        } else if (itemStack.getItem() == ModItems.portableCraftingTable && !(player.containerMenu instanceof PortableCraftingMenu)) {
             Balm.getNetworking().openMenu(player, PortableCraftingMenu.provider);
         }
     }
