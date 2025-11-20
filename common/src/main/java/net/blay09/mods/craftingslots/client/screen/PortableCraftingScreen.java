@@ -7,12 +7,12 @@ import net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen;
 import net.minecraft.client.gui.screens.recipebook.CraftingRecipeBookComponent;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 
 public class PortableCraftingScreen extends AbstractRecipeBookScreen<PortableCraftingMenu> {
 
-    private static final ResourceLocation texture = ResourceLocation.withDefaultNamespace("textures/gui/container/crafting_table.png");
+    private static final Identifier texture = Identifier.withDefaultNamespace("textures/gui/container/crafting_table.png");
 
     public PortableCraftingScreen(PortableCraftingMenu menu, Inventory playerInventory, Component displayName) {
         super(menu, new CraftingRecipeBookComponent(menu), playerInventory, displayName);

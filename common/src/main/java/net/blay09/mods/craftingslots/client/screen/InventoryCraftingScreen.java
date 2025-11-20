@@ -8,12 +8,12 @@ import net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen;
 import net.minecraft.client.gui.screens.recipebook.CraftingRecipeBookComponent;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 
 public class InventoryCraftingScreen extends AbstractRecipeBookScreen<InventoryCraftingMenu> {
 
-    private final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(CraftingSlots.MOD_ID, "textures/gui/portable_crafting.png");
+    private final Identifier texture = Identifier.fromNamespaceAndPath(CraftingSlots.MOD_ID, "textures/gui/portable_crafting.png");
 
     private final int actualImageWidth = 218;
 

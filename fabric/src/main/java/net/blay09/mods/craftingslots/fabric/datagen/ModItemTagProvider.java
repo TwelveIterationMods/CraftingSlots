@@ -7,7 +7,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
@@ -20,9 +20,9 @@ public class ModItemTagProvider extends IntrinsicHolderTagsProvider<Item> {
 
     @Override
     protected void addTags(HolderLookup.Provider lookup) {
-        tag(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("curios", "charm")))
+        tag(TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("curios", "charm")))
                 .add(ModItems.inventoryCraftingTable, ModItems.portableCraftingTable);
-        tag(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("trinkets", "charm/charm")))
+        tag(TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("trinkets", "charm/charm")))
                 .add(ModItems.inventoryCraftingTable, ModItems.portableCraftingTable);
     }
 }

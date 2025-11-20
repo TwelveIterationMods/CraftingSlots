@@ -1,6 +1,6 @@
 package net.blay09.mods.craftingslots.menu;
 
-import net.blay09.mods.balm.api.menu.BalmMenuProvider;
+import net.blay09.mods.balm.world.BalmMenuProvider;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.StreamCodec;
@@ -48,7 +48,7 @@ public class PortableCraftingMenu extends CustomCraftingMenu {
     private final ResultContainer resultContainer = new ResultContainer();
 
     public PortableCraftingMenu(int windowId, Inventory playerInventory) {
-        super(ModMenus.portableCrafting.get(), windowId, playerInventory);
+        super(ModMenus.portableCrafting.value(), windowId, playerInventory);
         addSlot(new ResultSlot(playerInventory.player, craftingContainer, resultContainer, RESULT_SLOT, 124, 35));
 
         for (int i = 0; i < 3; i++) {

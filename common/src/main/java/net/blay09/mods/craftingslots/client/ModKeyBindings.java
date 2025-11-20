@@ -1,7 +1,7 @@
 package net.blay09.mods.craftingslots.client;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import net.blay09.mods.balm.api.Balm;
+import net.blay09.mods.balm.Balm;
 import net.blay09.mods.craftingslots.client.screen.InventoryCraftingScreen;
 import net.blay09.mods.craftingslots.client.screen.PortableCraftingScreen;
 import net.blay09.mods.craftingslots.network.PortableCraftingMessage;
@@ -19,15 +19,15 @@ public class ModKeyBindings {
         Kuma.createKeyMapping(id("portable_crafting"))
                 .withDefault(InputBinding.key(InputConstants.KEY_C))
                 .handleWorldInput(event -> {
-                    if (Balm.getProxy().isConnected()) {
-                        Balm.getNetworking().sendToServer(PortableCraftingMessage.INSTANCE);
+                    if (Balm.safeClientAccess().isConnected()) {
+                        Balm.networking().sendToServer(PortableCraftingMessage.INSTANCE);
                     }
                     return false;
                 })
                 .handleScreenInput(event -> {
                     if (!event.screen().isFocused()) {
-                        if (Balm.getProxy().isConnected() && event.screen() instanceof AbstractContainerScreen<?>) {
-                            Balm.getNetworking().sendToServer(PortableCraftingMessage.INSTANCE);
+                        if (Balm.safeClientAccess().isConnected() && event.screen() instanceof AbstractContainerScreen<?>) {
+                            Balm.networking().sendToServer(PortableCraftingMessage.INSTANCE);
                         }
                     }
                     return false;

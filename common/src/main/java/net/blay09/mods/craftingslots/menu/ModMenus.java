@@ -1,22 +1,22 @@
 package net.blay09.mods.craftingslots.menu;
 
-import net.blay09.mods.balm.api.DeferredObject;
-import net.blay09.mods.balm.api.menu.BalmMenuFactory;
-import net.blay09.mods.balm.api.menu.BalmMenus;
+import net.blay09.mods.balm.world.BalmMenuFactory;
+import net.blay09.mods.balm.world.inventory.BalmMenuTypeRegistrar;
 import net.blay09.mods.craftingslots.CraftingSlots;
+import net.minecraft.core.Holder;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.Unit;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.MenuType;
 
 public class ModMenus {
-    public static DeferredObject<MenuType<PortableCraftingMenu>> portableCrafting;
-    public static DeferredObject<MenuType<InventoryCraftingMenu>> inventoryCrafting;
+    public static Holder<MenuType<PortableCraftingMenu>> portableCrafting;
+    public static Holder<MenuType<InventoryCraftingMenu>> inventoryCrafting;
 
-    public static void initialize(BalmMenus menus) {
-        portableCrafting = menus.registerMenu(id("portable_crafting"), new BalmMenuFactory<PortableCraftingMenu, Unit>() {
+    public static void initialize(BalmMenuTypeRegistrar menus) {
+        portableCrafting = menus.register("portable_crafting", new BalmMenuFactory<PortableCraftingMenu, Unit>() {
             @Override
             public PortableCraftingMenu create(int windowId, Inventory inventory, Unit unit) {
                 return new PortableCraftingMenu(windowId, inventory);
@@ -26,8 +26,8 @@ public class ModMenus {
             public StreamCodec<RegistryFriendlyByteBuf, Unit> getStreamCodec() {
                 return StreamCodec.unit(Unit.INSTANCE);
             }
-        });
-        inventoryCrafting = menus.registerMenu(id("inventory_crafting"), new BalmMenuFactory<InventoryCraftingMenu, Unit>() {
+        }).asHolder();
+        inventoryCrafting = menus.register("inventory_crafting", new BalmMenuFactory<InventoryCraftingMenu, Unit>() {
             @Override
             public InventoryCraftingMenu create(int windowId, Inventory inventory, Unit unit) {
                 return new InventoryCraftingMenu(windowId, inventory);
@@ -37,11 +37,11 @@ public class ModMenus {
             public StreamCodec<RegistryFriendlyByteBuf, Unit> getStreamCodec() {
                 return StreamCodec.unit(Unit.INSTANCE);
             }
-        });
+        }).asHolder();
     }
 
-    private static ResourceLocation id(String name) {
-        return ResourceLocation.fromNamespaceAndPath(CraftingSlots.MOD_ID, name);
+    private static Identifier id(String name) {
+        return Identifier.fromNamespaceAndPath(CraftingSlots.MOD_ID, name);
     }
 
 }

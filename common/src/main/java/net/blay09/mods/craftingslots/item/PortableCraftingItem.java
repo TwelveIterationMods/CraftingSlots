@@ -1,6 +1,6 @@
 package net.blay09.mods.craftingslots.item;
 
-import net.blay09.mods.balm.api.Balm;
+import net.blay09.mods.balm.Balm;
 import net.blay09.mods.craftingslots.menu.PortableCraftingMenu;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -11,8 +11,6 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 
 public class PortableCraftingItem extends Item {
-
-    public static final String name = "portable_crafting";
 
     public PortableCraftingItem(Properties properties) {
         super(properties.stacksTo(1));
@@ -35,7 +33,7 @@ public class PortableCraftingItem extends Item {
 
     private void openPortableCrafting(Player player) {
         if (!player.level().isClientSide()) {
-            Balm.getNetworking().openMenu(player, getCraftingContainerProvider());
+            Balm.networking().openMenu(player, getCraftingContainerProvider());
         }
     }
 

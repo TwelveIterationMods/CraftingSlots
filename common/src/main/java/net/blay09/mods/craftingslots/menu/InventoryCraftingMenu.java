@@ -1,6 +1,6 @@
 package net.blay09.mods.craftingslots.menu;
 
-import net.blay09.mods.balm.api.menu.BalmMenuProvider;
+import net.blay09.mods.balm.world.BalmMenuProvider;
 import net.blay09.mods.craftingslots.mixin.InventoryAccessor;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
@@ -51,7 +51,7 @@ public class InventoryCraftingMenu extends CustomCraftingMenu {
     private final CraftingContainer craftingContainer;
 
     public InventoryCraftingMenu(int windowId, Inventory playerInventory) {
-        super(ModMenus.inventoryCrafting.get(), windowId, playerInventory);
+        super(ModMenus.inventoryCrafting.value(), windowId, playerInventory);
         craftingContainer = new InventoryCraftingContainer(this, playerInventory);
 
         addSlot(new ResultSlot(playerInventory.player, craftingContainer, resultContainer, RESULT_SLOT, 193, 38));

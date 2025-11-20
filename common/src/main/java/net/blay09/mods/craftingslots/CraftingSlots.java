@@ -1,24 +1,25 @@
 package net.blay09.mods.craftingslots;
 
-import net.blay09.mods.balm.api.Balm;
+import net.blay09.mods.balm.Balm;
+import net.blay09.mods.balm.core.BalmRegistrars;
 import net.blay09.mods.craftingslots.menu.ModMenus;
 import net.blay09.mods.craftingslots.item.ModItems;
 import net.blay09.mods.craftingslots.network.ModNetworking;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 public class CraftingSlots {
 
     public static final String MOD_ID = "craftingslots";
 
-    public static void initialize() {
+    public static void initialize(BalmRegistrars registrars) {
         ModNetworking.initialize();
-        ModItems.initialize(Balm.getItems());
-        ModMenus.initialize(Balm.getMenus());
+        registrars.items(ModItems::initialize);
+        registrars.menuTypes(ModMenus::initialize);
 
         Balm.initializeIfLoaded("craftingtweaks", "net.blay09.mods.craftingslots.addon.CraftingTweaksAddon");
     }
 
-    public static ResourceLocation id(String path) {
-        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+    public static Identifier id(String path) {
+        return Identifier.fromNamespaceAndPath(MOD_ID, path);
     }
 }

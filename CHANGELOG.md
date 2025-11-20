@@ -1,3 +1,1 @@
-- Fixed items being deleted when using recipe book in inventory crafting menu
-- Fixed portable crafting opening when typing the key into the recipe book search bar
-- Fixed portable crafting re-opening when the key is pressed again
+- Updated to Minecraft 1.21.11
