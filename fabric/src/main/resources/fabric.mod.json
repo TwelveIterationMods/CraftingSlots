@@ -27,9 +27,6 @@
     ],
     "fabric-datagen": [
       "net.blay09.mods.craftingslots.fabric.datagen.ModDataGenerator"
-    ],
-    "jei_mod_plugin": [
-      "net.blay09.mods.craftingslots.addon.JEIAddon"
     ]
   },
   "mixins": [
