@@ -21,8 +21,8 @@ public class ModItemTagProvider extends IntrinsicHolderTagsProvider<Item> {
     @Override
     protected void addTags(HolderLookup.Provider lookup) {
         tag(TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("curios", "charm")))
-                .add(ModItems.inventoryCraftingTable, ModItems.portableCraftingTable);
+                .add(ModItems.inventoryCraftingTable.asItem(), ModItems.portableCraftingTable.asItem());
         tag(TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("trinkets", "charm/charm")))
-                .add(ModItems.inventoryCraftingTable, ModItems.portableCraftingTable);
+                .add(ModItems.inventoryCraftingTable.asItem(), ModItems.portableCraftingTable.asItem());
     }
 }
