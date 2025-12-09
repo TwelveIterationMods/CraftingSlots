@@ -14,6 +14,7 @@ public class CraftingSlots {
     public static void initialize(BalmRegistrars registrars) {
         ModNetworking.initialize();
         registrars.items(ModItems::initialize);
+        registrars.creativeModeTabs(ModItems::initialize);
         registrars.menuTypes(ModMenus::initialize);
 
         Balm.initializeIfLoaded("craftingtweaks", "net.blay09.mods.craftingslots.addon.CraftingTweaksAddon");
