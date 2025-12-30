@@ -35,7 +35,7 @@ public class InventoryCraftingScreen extends AbstractRecipeBookScreen<InventoryC
 
     @Override
     protected void renderLabels(GuiGraphics guiGraphics, int i, int j) {
-        guiGraphics.drawString(font, title, 8, imageHeight - 96 + 1, 0x404040, false);
+        guiGraphics.drawString(font, title, 8, imageHeight - 96 + 1, 0xFF404040, false);
     }
 
     @Override
