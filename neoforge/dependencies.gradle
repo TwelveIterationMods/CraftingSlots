@@ -2,10 +2,5 @@ dependencies {
     implementation(libs.balmNeoForge) {
         changing = libs.versions.balm.get().endsWith("SNAPSHOT")
     }
-    implementation "net.blay09.mods:craftingtweaks-neoforge:$craftingtweaks_version"
-
-    compileOnly "mezz.jei:jei-$jei_minecraft_version-neoforge-api:$jei_version"
-    if (jei_minecraft_version == minecraft_version) {
-        runtimeOnly "mezz.jei:jei-$jei_minecraft_version-neoforge:$jei_version"
-    }
+    implementation(libs.craftingTweaksNeoForge)
 }

@@ -2,6 +2,5 @@ dependencies {
     implementation(libs.balmCommon) {
         changing = libs.versions.balm.get().endsWith("SNAPSHOT")
     }
-    compileOnly("net.blay09.mods:craftingtweaks-common:${craftingtweaks_version}")
-    compileOnly "mezz.jei:jei-$jei_minecraft_version-common-api:$jei_version"
+    implementation(libs.craftingTweaksCommon)
 }

@@ -2,10 +2,5 @@ dependencies {
     modImplementation(libs.balmFabric) {
         changing = libs.versions.balm.get().endsWith("SNAPSHOT")
     }
-    modCompileOnly "net.blay09.mods:craftingtweaks-fabric:$craftingtweaks_version"
-
-    modCompileOnly "mezz.jei:jei-$jei_minecraft_version-fabric-api:$jei_version"
-    if (jei_minecraft_version == minecraft_version) {
-        modRuntimeOnly "mezz.jei:jei-$jei_minecraft_version-fabric:$jei_version"
-    }
+    modImplementation(libs.craftingTweaksFabric)
 }
