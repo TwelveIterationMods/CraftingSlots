@@ -3,4 +3,5 @@ dependencies {
         changing = libs.versions.balm.get().endsWith("SNAPSHOT")
     }
     implementation(libs.craftingTweaksCommon)
+    compileOnly libs.mixinExtras
 }
