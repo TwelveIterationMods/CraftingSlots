@@ -1,6 +1,7 @@
 package net.blay09.mods.craftingslots.menu;
 
 import net.blay09.mods.balm.world.BalmMenuProvider;
+import net.blay09.mods.craftingslots.internal.InventoryRecipePlacementFilter;
 import net.blay09.mods.craftingslots.mixin.InventoryAccessor;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
@@ -163,7 +164,14 @@ public class InventoryCraftingMenu extends CustomCraftingMenu {
     @Override
     protected PostPlaceAction placeRecipe(boolean useMaxItems, boolean flag, Inventory inventory, List<Slot> inputGridSlots, RecipeHolder<CraftingRecipe> craftingRecipeHolder) {
         inputGridSlots.forEach(slot -> placeItemBackInInventory(inventory, slot.getItem(), false));
-        return super.placeRecipe(useMaxItems, flag, inventory, inputGridSlots, craftingRecipeHolder);
+        final var recipePlacementFilter = (InventoryRecipePlacementFilter) inventory;
+        final boolean previousIgnoreInlineCraftingSlots = recipePlacementFilter.craftingslots$getIgnoreInlineCraftingSlots();
+        recipePlacementFilter.craftingslots$setIgnoreInlineCraftingSlots(true);
+        try {
+            return super.placeRecipe(useMaxItems, flag, inventory, inputGridSlots, craftingRecipeHolder);
+        } finally {
+            recipePlacementFilter.craftingslots$setIgnoreInlineCraftingSlots(previousIgnoreInlineCraftingSlots);
+        }
     }
 
     private void placeItemBackInInventory(Inventory inventory, ItemStack itemStack, boolean sendUpdate) {
