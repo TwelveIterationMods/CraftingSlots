@@ -1,1 +1,2 @@
-- Updated to Minecraft 1.21.11
+- Fixed recipe book fill not working correctly in inventory crafting table
+- Fixed title not showing in Inventory Crafting UI
