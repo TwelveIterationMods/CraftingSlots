@@ -2,7 +2,7 @@ package net.blay09.mods.craftingslots.client.screen;
 
 import net.blay09.mods.craftingslots.CraftingSlots;
 import net.blay09.mods.craftingslots.menu.InventoryCraftingMenu;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.navigation.ScreenPosition;
 import net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen;
 import net.minecraft.client.gui.screens.recipebook.CraftingRecipeBookComponent;
@@ -28,18 +28,18 @@ public class InventoryCraftingScreen extends AbstractRecipeBookScreen<InventoryC
     }
 
     @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+    public void render(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
         renderTooltip(guiGraphics, mouseX, mouseY);
     }
 
     @Override
-    protected void renderLabels(GuiGraphics guiGraphics, int i, int j) {
+    protected void renderLabels(GuiGraphicsExtractor guiGraphics, int i, int j) {
         guiGraphics.drawString(font, title, 8, imageHeight - 96 + 1, 0xFF404040, false);
     }
 
     @Override
-    protected void renderBg(GuiGraphics guiGraphics, float f, int i, int j) {
+    protected void renderBg(GuiGraphicsExtractor guiGraphics, float f, int i, int j) {
         guiGraphics.blit(RenderPipelines.GUI_TEXTURED, texture, leftPos, topPos, 0, 0, actualImageWidth, imageHeight, 256, 256);
     }
 

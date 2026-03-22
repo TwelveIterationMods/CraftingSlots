@@ -1,7 +1,7 @@
 package net.blay09.mods.craftingslots.client.screen;
 
 import net.blay09.mods.craftingslots.menu.PortableCraftingMenu;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.navigation.ScreenPosition;
 import net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen;
 import net.minecraft.client.gui.screens.recipebook.CraftingRecipeBookComponent;
@@ -24,13 +24,13 @@ public class PortableCraftingScreen extends AbstractRecipeBookScreen<PortableCra
     }
 
     @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+    public void render(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
         renderTooltip(guiGraphics, mouseX, mouseY);
     }
 
     @Override
-    protected void renderBg(GuiGraphics guiGraphics, float f, int i, int j) {
+    protected void renderBg(GuiGraphicsExtractor guiGraphics, float f, int i, int j) {
         guiGraphics.blit(RenderPipelines.GUI_TEXTURED, texture, leftPos, topPos, 0, 0, imageWidth, imageHeight, 256, 256);
     }
 

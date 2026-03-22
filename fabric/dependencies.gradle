@@ -1,6 +1,6 @@
 dependencies {
-    modImplementation(libs.balmFabric) {
+    implementation(libs.balmFabric) {
         changing = libs.versions.balm.get().endsWith("SNAPSHOT")
     }
-    modImplementation(libs.craftingTweaksFabric)
+    implementation(libs.craftingTweaksFabric)
 }
