@@ -28,19 +28,14 @@ public class InventoryCraftingScreen extends AbstractRecipeBookScreen<InventoryC
     }
 
     @Override
-    public void render(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
-        super.render(guiGraphics, mouseX, mouseY, partialTicks);
-        renderTooltip(guiGraphics, mouseX, mouseY);
+    protected void extractLabels(GuiGraphicsExtractor guiGraphics, int i, int j) {
+        guiGraphics.text(font, title, 8, imageHeight - 96 + 1, 0xFF404040, false);
     }
 
     @Override
-    protected void renderLabels(GuiGraphicsExtractor guiGraphics, int i, int j) {
-        guiGraphics.drawString(font, title, 8, imageHeight - 96 + 1, 0xFF404040, false);
-    }
-
-    @Override
-    protected void renderBg(GuiGraphicsExtractor guiGraphics, float f, int i, int j) {
-        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, texture, leftPos, topPos, 0, 0, actualImageWidth, imageHeight, 256, 256);
+    public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
+        super.extractBackground(graphics, mouseX, mouseY, a);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, texture, leftPos, topPos, 0, 0, actualImageWidth, imageHeight, 256, 256);
     }
 
     @Override

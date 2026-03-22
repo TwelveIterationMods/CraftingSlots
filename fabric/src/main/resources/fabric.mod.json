@@ -33,7 +33,7 @@
     "craftingslots.mixins.json",
     "craftingslots.fabric.mixins.json"
   ],
-
+  "accessWidener" : "craftingslots.classtweaker",
   "depends": {
     "fabricloader": ">=${fabric_loader_version}",
     "fabric-api": "*",
