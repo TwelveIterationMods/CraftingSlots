@@ -43,9 +43,9 @@ public class CraftingTweaksAddon implements CraftingGridProvider {
     @Override
     public void buildCraftingGrids(CraftingGridBuilder builder, AbstractContainerMenu menu) {
         if (menu instanceof PortableCraftingMenu) {
-            builder.addGrid(1, 9);
+            builder.addGrid(1, 3, 3);
         } else if (menu instanceof InventoryCraftingMenu) {
-            builder.addGrid(1, 9)
+            builder.addGrid(1, 3, 3)
                     .clearHandler(inventoryCraftingClearHandler)
                     .setButtonPosition(TweakType.Rotate, 119, 2)
                     .setButtonPosition(TweakType.Balance, 137, 2)
