@@ -1,2 +1,1 @@
-- Fixed recipe book fill not working correctly in inventory crafting table
-- Fixed title not showing in Inventory Crafting UI
+- Updated to Minecraft 26.1
