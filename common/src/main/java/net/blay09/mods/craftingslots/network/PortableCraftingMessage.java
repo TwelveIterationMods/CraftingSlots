@@ -25,10 +25,6 @@ public class PortableCraftingMessage implements CustomPacketPayload {
     }
 
     public static void handle(ServerPlayer player, PortableCraftingMessage message) {
-        if (player == null) {
-            return;
-        }
-
         ItemStack itemStack = findPortableCrafting(player.getInventory());
         if (itemStack.is(ModItems.inventoryCraftingTable) && !(player.containerMenu instanceof InventoryCraftingMenu)) {
             Balm.networking().openMenu(player, InventoryCraftingMenu.provider);

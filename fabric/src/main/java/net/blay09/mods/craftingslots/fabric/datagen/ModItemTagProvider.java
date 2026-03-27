@@ -1,26 +1,25 @@
 package net.blay09.mods.craftingslots.fabric.datagen;
 
 import net.blay09.mods.craftingslots.item.ModItems;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.PackOutput;
-import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ModItemTagProvider extends IntrinsicHolderTagsProvider<Item> {
-    public ModItemTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
-        super(output, Registries.ITEM, registriesFuture, (item) -> item.builtInRegistryHolder().key());
+public class ModItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
+    public ModItemTagProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+        super(output, registriesFuture);
     }
 
     @Override
     protected void addTags(HolderLookup.Provider lookup) {
-        tag(TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("curios", "charm")))
+        valueLookupBuilder(TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("curios", "charm")))
                 .add(ModItems.inventoryCraftingTable.asItem(), ModItems.portableCraftingTable.asItem());
-        tag(TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("trinkets", "charm/charm")))
+        valueLookupBuilder(TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("trinkets", "charm/charm")))
                 .add(ModItems.inventoryCraftingTable.asItem(), ModItems.portableCraftingTable.asItem());
     }
 }

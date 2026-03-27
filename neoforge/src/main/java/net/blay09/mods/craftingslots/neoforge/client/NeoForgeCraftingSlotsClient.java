@@ -1,8 +1,9 @@
-package net.blay09.mods.craftingslots.client;
+package net.blay09.mods.craftingslots.neoforge.client;
 
 import net.blay09.mods.balm.client.BalmClient;
 import net.blay09.mods.balm.neoforge.platform.runtime.NeoForgeLoadContext;
 import net.blay09.mods.craftingslots.CraftingSlots;
+import net.blay09.mods.craftingslots.client.CraftingSlotsClient;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;

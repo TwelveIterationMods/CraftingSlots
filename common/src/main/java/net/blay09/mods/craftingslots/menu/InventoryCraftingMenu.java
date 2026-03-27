@@ -137,7 +137,6 @@ public class InventoryCraftingMenu extends CustomCraftingMenu {
 
     @Override
     public Slot getResultSlot() {
-        //noinspection SequencedCollectionMethodCanBeUsed
         return slots.get(RESULT_SLOT);
     }
 

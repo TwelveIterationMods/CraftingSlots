@@ -1,7 +1,8 @@
-package net.blay09.mods.craftingslots;
+package net.blay09.mods.craftingslots.neoforge;
 
 import net.blay09.mods.balm.Balm;
 import net.blay09.mods.balm.neoforge.platform.runtime.NeoForgeLoadContext;
+import net.blay09.mods.craftingslots.CraftingSlots;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;

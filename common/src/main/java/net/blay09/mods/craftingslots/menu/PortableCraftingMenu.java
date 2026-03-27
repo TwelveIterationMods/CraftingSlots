@@ -133,7 +133,6 @@ public class PortableCraftingMenu extends CustomCraftingMenu {
 
     @Override
     public Slot getResultSlot() {
-        //noinspection SequencedCollectionMethodCanBeUsed
         return slots.get(RESULT_SLOT);
     }
 
