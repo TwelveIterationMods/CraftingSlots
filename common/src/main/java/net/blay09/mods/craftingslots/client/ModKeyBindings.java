@@ -25,7 +25,7 @@ public class ModKeyBindings {
                     return false;
                 })
                 .handleScreenInput(event -> {
-                    if (!event.screen().isFocused()) {
+                    if (!event.screen().isFocused() && !Balm.modSupport().recipeViewers().hasKeyboardFocus()) {
                         if (Balm.safeClientAccess().isConnected() && event.screen() instanceof AbstractContainerScreen<?>) {
                             Balm.networking().sendToServer(PortableCraftingMessage.INSTANCE);
                         }
