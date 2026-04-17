@@ -1,1 +1,3 @@
-- Updated to Minecraft 26.1
+- Fixed JEI recipe transfer support
+- Fixed Portable Crafting keybind triggering even if JEI search is focused
+- Fixed inventory crafting overlapping with recipe viewers
