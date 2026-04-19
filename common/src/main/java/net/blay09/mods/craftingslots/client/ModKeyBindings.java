@@ -8,6 +8,8 @@ import net.blay09.mods.craftingslots.network.PortableCraftingMessage;
 import net.blay09.mods.kuma.api.InputBinding;
 import net.blay09.mods.kuma.api.Kuma;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.components.events.ContainerEventHandler;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 
@@ -25,7 +27,7 @@ public class ModKeyBindings {
                     return false;
                 })
                 .handleScreenInput(event -> {
-                    if (!event.screen().isFocused() && !Balm.modSupport().recipeViewers().hasKeyboardFocus()) {
+                    if (!hasFocusedElement(event.screen()) && !Balm.modSupport().recipeViewers().hasKeyboardFocus()) {
                         if (Balm.safeClientAccess().isConnected() && event.screen() instanceof AbstractContainerScreen<?>) {
                             Balm.networking().sendToServer(PortableCraftingMessage.INSTANCE);
                         }
@@ -36,7 +38,7 @@ public class ModKeyBindings {
 
         Kuma.createKeyMapping(id("back_to_inventory"))
                 .handleScreenInput(event -> {
-                    if (!event.screen().isFocused()) {
+                    if (!hasFocusedElement(event.screen())) {
                         final var client = Minecraft.getInstance();
                         if (client.player != null && (event.screen() instanceof InventoryCraftingScreen || event.screen() instanceof PortableCraftingScreen)) {
                             client.player.closeContainer();
@@ -47,6 +49,20 @@ public class ModKeyBindings {
                     return false;
                 })
                 .build();
+    }
+
+    private static boolean hasFocusedElement(Screen screen) {
+        return screen.isFocused() || hasFocusedChild(screen);
+    }
+
+    private static boolean hasFocusedChild(ContainerEventHandler parent) {
+        for (final var child : parent.children()) {
+            if (child.isFocused() || (child instanceof ContainerEventHandler childParent && hasFocusedChild(childParent))) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }
