@@ -1,3 +1,1 @@
-- Fixed JEI recipe transfer support
-- Fixed Portable Crafting keybind triggering even if JEI search is focused
-- Fixed inventory crafting overlapping with recipe viewers
+- Fixed Portable Crafting keybind triggering even if a textbox has focus
