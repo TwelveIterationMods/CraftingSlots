@@ -26,15 +26,15 @@ public class PortableCraftingMessage implements CustomPacketPayload {
 
     public static void handle(ServerPlayer player, PortableCraftingMessage message) {
         ItemStack itemStack = findPortableCrafting(player.getInventory());
-        if (itemStack.is(ModItems.inventoryCraftingTable) && !(player.containerMenu instanceof InventoryCraftingMenu)) {
+        if (itemStack.is(ModItems.inventoryCraftingTable.asItem()) && !(player.containerMenu instanceof InventoryCraftingMenu)) {
             Balm.networking().openMenu(player, InventoryCraftingMenu.provider);
-        } else if (itemStack.is(ModItems.portableCraftingTable) && !(player.containerMenu instanceof PortableCraftingMenu)) {
+        } else if (itemStack.is(ModItems.portableCraftingTable.asItem()) && !(player.containerMenu instanceof PortableCraftingMenu)) {
             Balm.networking().openMenu(player, PortableCraftingMenu.provider);
         }
     }
 
     private static ItemStack findPortableCrafting(Inventory inventory) {
-        final Predicate<ItemStack> predicate = itemStack -> itemStack.is(ModItems.inventoryCraftingTable) || itemStack.is(ModItems.portableCraftingTable);
+        final Predicate<ItemStack> predicate = itemStack -> itemStack.is(ModItems.inventoryCraftingTable.asItem()) || itemStack.is(ModItems.portableCraftingTable.asItem());
         final var charm = Balm.modSupport().trinkets().findEquipped(inventory.player, predicate);
         if (!charm.isEmpty()) {
             return charm;

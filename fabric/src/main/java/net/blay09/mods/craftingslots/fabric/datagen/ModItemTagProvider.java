@@ -17,9 +17,9 @@ public class ModItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider lookup) {
-        valueLookupBuilder(TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("curios", "charm")))
-                .add(ModItems.inventoryCraftingTable.asItem(), ModItems.portableCraftingTable.asItem());
-        valueLookupBuilder(TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("trinkets", "charm/charm")))
-                .add(ModItems.inventoryCraftingTable.asItem(), ModItems.portableCraftingTable.asItem());
+        builder(TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("curios", "charm")))
+                .add(ModItems.inventoryCraftingTable.asResourceKey(), ModItems.portableCraftingTable.asResourceKey());
+        builder(TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("trinkets", "charm/charm")))
+                .add(ModItems.inventoryCraftingTable.asResourceKey(), ModItems.portableCraftingTable.asResourceKey());
     }
 }

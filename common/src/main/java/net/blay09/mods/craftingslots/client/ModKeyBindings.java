@@ -42,7 +42,7 @@ public class ModKeyBindings {
                         final var client = Minecraft.getInstance();
                         if (client.player != null && (event.screen() instanceof InventoryCraftingScreen || event.screen() instanceof PortableCraftingScreen)) {
                             client.player.closeContainer();
-                            client.setScreen(new InventoryScreen(client.player));
+                            client.gui.setScreen(new InventoryScreen(client.player));
                             return true;
                         }
                     }
