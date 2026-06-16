@@ -1,1 +1,1 @@
-- Fixed Portable Crafting keybind triggering even if a textbox has focus
+- Updated to Minecraft 26.2
