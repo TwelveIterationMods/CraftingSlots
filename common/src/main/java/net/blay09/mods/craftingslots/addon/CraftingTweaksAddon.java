@@ -4,6 +4,7 @@ import net.blay09.mods.craftingslots.CraftingSlots;
 import net.blay09.mods.craftingslots.menu.InventoryCraftingMenu;
 import net.blay09.mods.craftingslots.menu.PortableCraftingMenu;
 import net.blay09.mods.craftingtweaks.api.*;
+import net.minecraft.util.Prediction;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 
@@ -15,7 +16,7 @@ public class CraftingTweaksAddon implements CraftingGridProvider {
         for (int i = start; i < start + size; i++) {
             menu.quickMoveStack(player, i);
             if (forced && menu.slots.get(i).hasItem()) {
-                player.drop(menu.slots.get(i).getItem(), false);
+                player.drop(menu.slots.get(i).getItem(), false, Prediction.SERVER_ONLY);
                 menu.slots.get(i).set(ItemStack.EMPTY);
             }
         }

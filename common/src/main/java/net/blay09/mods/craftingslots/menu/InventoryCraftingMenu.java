@@ -7,6 +7,7 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.Prediction;
 import net.minecraft.util.Unit;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
@@ -124,7 +125,7 @@ public class InventoryCraftingMenu extends CustomCraftingMenu {
 
             slot.onTake(player, slotStack);
             if (index == CRAFTING_RESULT_SLOT) {
-                player.drop(slotStack, false);
+                player.drop(slotStack, false, Prediction.SERVER_ONLY);
             }
         }
         return itemStack;
@@ -181,7 +182,7 @@ public class InventoryCraftingMenu extends CustomCraftingMenu {
             }
 
             if (slot == -1) {
-                inventory.player.drop(itemStack, false);
+                inventory.player.drop(itemStack, false, Prediction.SERVER_ONLY);
                 break;
             }
 

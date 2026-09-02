@@ -5,6 +5,7 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.Prediction;
 import net.minecraft.util.Unit;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
@@ -119,7 +120,7 @@ public class PortableCraftingMenu extends CustomCraftingMenu {
 
             slot.onTake(player, slotStack);
             if (index == 0) {
-                player.drop(slotStack, false);
+                player.drop(slotStack, false, Prediction.SERVER_ONLY);
             }
         }
 
