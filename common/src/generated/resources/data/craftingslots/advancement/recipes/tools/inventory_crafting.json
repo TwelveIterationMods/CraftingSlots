@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "craftingslots:inventory_crafting"
+        "recipes": "craftingslots:inventory_crafting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
