@@ -6,7 +6,7 @@ neoForge = "26.2.0.0-beta"
 forge = "64.0.4"
 fabricApi = "0.159.1+26.3"
 fabricLoader = "0.19.5"
-craftingtweaks = "26.2.0.1-SNAPSHOT"
+craftingtweaks = "26.3.0.1-SNAPSHOT"
 
 [libraries]
 minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
